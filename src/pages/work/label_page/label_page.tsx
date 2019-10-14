@@ -1,11 +1,18 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { Component, Config, useReducer } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import './label_page.scss'
 
 import Anlabel from './an_label/an_label'
 
+interface onePageLabel {
+  title: String;
+  labels: Array<Object>;
+  pageid: number;
+  doing: Function;
 
-export default class Labelpage extends Component {
+}
+
+export default class Labelpage extends Component<onePageLabel> {
 
     /**
      * 指定config的类型声明为: Taro.Config
@@ -27,58 +34,15 @@ export default class Labelpage extends Component {
     componentDidShow () { }
   
     componentDidHide () { }
-    
-    change
 
     render () {
-      const arr = [
-        {
-          name: '黄色',
-          id: 23,
-          ifChoose: false,
-        },
-        {
-          name: '绿色',
-          id: 25,
-          ifChoose: true,
-        },
-        {
-          name: '黄色',
-          id: 23,
-          ifChoose: false,
-        },
-        {
-          name: '绿色',
-          id: 25,
-          ifChoose: true,
-        },
-        {
-          name: '黄色',
-          id: 23,
-          ifChoose: false,
-        },
-        {
-          name: '绿色',
-          id: 25,
-          ifChoose: true,
-        },
-        {
-          name: '黄色',
-          id: 23,
-          ifChoose: false,
-        },
-        {
-          name: '绿色',
-          id: 25,
-          ifChoose: true,
-        },
-      ]
+      //不能命名成预留关键字id 否则传参失效 只能命名成idc
       return (
         <View className='labelpage'>
-          <Text className='title'>色系</Text>
+          <Text className='title'>{this.props.title}</Text>
           <View className='labels'>
-            {arr.map(ele => 
-                <Anlabel key={ele.id} name={ele.name} id={ele.id} ifChoose={ele.ifChoose} />
+            {this.props.labels.map((ele) => 
+                <Anlabel key={ele.id} pageid={this.props.pageid} name={ele.name} idc={ele.id} ifChoose={ele.ifChoose} doing={this.props.doing}/>
               )
             }
           </View>

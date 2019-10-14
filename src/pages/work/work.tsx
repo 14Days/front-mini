@@ -1,4 +1,4 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { Component, Config, useReducer } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import './work.scss'
 
@@ -33,6 +33,131 @@ export default class Work extends Component {
   componentDidHide () { }
 
   render () {
+
+    // 一组对象的形式：
+    // title： String
+    // label： Array （下方到AnLabel）
+
+
+    //pageid一定要对
+    const arrs =[
+      {
+        title :  '色系',
+        pageid : 0,
+        labels : [
+          {
+            name: '黄色',
+            id: 1,
+            ifChoose: false,
+          },
+          {
+            name: '绿色',
+            id: 2,
+            ifChoose: false,
+          },
+          {
+            name: '黄色',
+            id: 3,
+            ifChoose: false,
+          },
+          {
+            name: '绿色',
+            id: 4,
+            ifChoose: false,
+          },
+          {
+            name: '黄色',
+            id: 5,
+            ifChoose: false,
+          },
+          {
+            name: '绿色',
+            id: 6,
+            ifChoose: false,
+          },
+          {
+            name: '黄色',
+            id: 7,
+            ifChoose: false,
+          },
+          {
+            name: '绿色',
+            id: 8,
+            ifChoose: false,
+          },
+        ],
+      },
+      {
+        title :  '号牌',
+        pageid : 1,
+        labels : [
+          {
+            name: '黄色',
+            id: 9,
+            ifChoose: false,
+          },
+          {
+            name: '绿色',
+            id: 10,
+            ifChoose: false,
+          },
+          {
+            name: '黄色',
+            id: 11,
+            ifChoose: false,
+          },
+          {
+            name: '绿色',
+            id: 12,
+            ifChoose: false,
+          },
+          {
+            name: '黄色',
+            id: 13,
+            ifChoose: false,
+          },
+          {
+            name: '绿色',
+            id: 14,
+            ifChoose: false,
+          },
+          {
+            name: '黄色',
+            id: 15,
+            ifChoose: false,
+          },
+          {
+            name: '绿色',
+            id: 16,
+            ifChoose: false,
+          },
+        ],
+      },
+    ]
+
+    //更改处理器
+    const changeDisplay = (state, action) => {  
+      let v = JSON.parse(JSON.stringify(state))
+      console.log('haha' + action.pageid)
+      console.log('jiji' + action.id)
+      for (let i=0; i<v.length ;i++) {
+        if (v[i].pageid == action.pageid) {
+          for (let j=0; j<v[i].labels.length; j++) {
+            
+            if (v[i].labels[j].id == action.id) {
+              v[i].labels[j].ifChoose = !state[i].labels[j].ifChoose
+              console.log('hehe')
+              return v
+            }
+          }
+        }
+      }
+      return v
+    } 
+
+    //useReducer管理整个标签面板
+    const [stat, dispatch] = useReducer(changeDisplay, arrs)
+
     return (
       <View className='doing'>
         <StatusBar />
@@ -40,9 +165,11 @@ export default class Work extends Component {
         <Capsule number={5}/>
         <OperateBar />
         <Headstand />
-        <Labelpage />
-        <Labelpage />
-        <Labelpage />
+        {
+          stat.map( (ele) => {
+            return <Labelpage key={ele.pageid} title={ele.title} labels={ele.labels} doing={dispatch} pageid={ele.pageid}/>
+          })
+        }
         <View className='takeplace' />
       </View>
     )

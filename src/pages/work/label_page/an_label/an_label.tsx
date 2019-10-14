@@ -1,4 +1,4 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { Component, Config, useReducer } from '@tarojs/taro'
 import { View, Text, Icon } from '@tarojs/components'
 import './an_label.scss'
 
@@ -6,7 +6,9 @@ import './an_label.scss'
 interface label_status {
   ifChoose: boolean;
   name: string;
-  id: number;
+  idc: number;
+  pageid: number;
+  doing: Function;
 }
 
 export default class Anlabel extends Component<label_status> {
@@ -32,6 +34,7 @@ export default class Anlabel extends Component<label_status> {
   
     componentDidHide () { }
   
+
     render () {
       let styleIc = {
         opacity: 0,
@@ -47,8 +50,9 @@ export default class Anlabel extends Component<label_status> {
           background: 'rgba(139, 195, 74, 1);',
         }
       }
+      
       return (
-        <View className='anlabel' style={styleBg}>
+        <View className='anlabel' style={styleBg} onClick={() => this.props.doing({pageid: this.props.pageid, id: this.props.idc})}>
           <Text className='name'>{this.props.name}</Text> 
           <Icon size='20' className='ic' type='success_no_circle' color='white' style={styleIc} />
         </View>

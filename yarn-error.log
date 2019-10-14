@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @fortawesome/ --silent --no-progress
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react --silent --no-progress
 
 PATH: 
-  C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\jiaju\jiaju\node_modules\.bin;C:\Users\不甘\AppData\Local\Temp\yarn--1570986045941-0.8220845778869359;C:\jiaju\jiaju\node_modules\.bin;C:\Users\不甘\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\jiaju\jiaju\node_modules\.bin;C:\Users\不甘\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs;C:\Program Files\AdoptOpenJDK\jdk-12.0.2.10-hotspot\bin;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\MinGW\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;c:\altera\90sp1\quartus\bin;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\apache-maven-3.6.2\bin\;C:\apache-tomcat-9.0.26\bin\;C:\Program Files\Git\cmd;C:\flutter\bin;C:\Users\不甘\AppData\Roaming\npm;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\不甘\AppData\Local\Yarn\bin
+  C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\jiaju\jiaju\node_modules\.bin;C:\Users\不甘\AppData\Local\Temp\yarn--1571060972703-0.6355787792606222;C:\jiaju\jiaju\node_modules\.bin;C:\Users\不甘\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\jiaju\jiaju\node_modules\.bin;C:\Users\不甘\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs;C:\Program Files\AdoptOpenJDK\jdk-12.0.2.10-hotspot\bin;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\MinGW\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;c:\altera\90sp1\quartus\bin;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\apache-maven-3.6.2\bin\;C:\apache-tomcat-9.0.26\bin\;C:\Program Files\Git\cmd;C:\flutter\bin;C:\Users\不甘\AppData\Roaming\npm;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\不甘\AppData\Local\Yarn\bin
 
 Yarn version: 
   1.13.0
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@fortawesome%2f: Request "https://registry.yarnpkg.com/@fortawesome%2f" returned a 405
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65373:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129397:22)
-      at Request.emit (events.js:198:13)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130369:10)
-      at Request.emit (events.js:198:13)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130291:12)
-      at Object.onceWrapper (events.js:286:20)
-      at IncomingMessage.emit (events.js:203:15)
-      at endReadableNT (_stream_readable.js:1129:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  Error: EPERM: operation not permitted, unlink 'C:\jiaju\jiaju\node_modules\node-sass\vendor\win32-x64-64\binding.node'
 
 npm manifest: 
   {
@@ -69,7 +59,8 @@ npm manifest:
       "@tarojs/taro-tt": "1.3.19",
       "@tarojs/taro-weapp": "1.3.19",
       "nerv-devtools": "^1.4.0",
-      "nervjs": "^1.4.0"
+      "nervjs": "^1.4.0",
+      "taro-ui": "^2.2.2"
     },
     "devDependencies": {
       "@fortawesome/fontawesome-free": "^5.11.2",
