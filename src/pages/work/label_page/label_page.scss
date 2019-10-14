@@ -1,0 +1,24 @@
+.labelpage {
+    display: block;
+}
+
+.title {
+    height: 20Px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 14Px;
+    text-align: left;
+    font-family: PingFangSC-regular;
+    display: block;
+    margin: 10Px auto 1% 10%;
+    display: block;
+    
+}
+
+.labels {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0Px auto;
+}
+
