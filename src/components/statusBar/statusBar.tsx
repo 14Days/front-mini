@@ -1,14 +1,10 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 
-import './capsule.scss'
-import { get as getGlobalData } from '../../../globalData/global_data'
+import { get as getGlobalData } from '../../globalData/global_data'
+import './statusBar.scss'
 
-interface pr {
-  number: number;
-}
-
-export default class Capsule extends Component<pr> {
+export default class head extends Component {
 
     /**
      * 指定config的类型声明为: Taro.Config
@@ -32,15 +28,16 @@ export default class Capsule extends Component<pr> {
     componentDidHide () { }
   
     render () {
-
+      const barHight = getGlobalData('statusBarHeight')
       const style = {
-          top:  (getGlobalData('statusBarHeight') + 8) + 'px',
-
+        height: (44 + barHight) + 'px', 
       }
-
+      const style0 = {
+        top: (12 + barHight) + 'px',
+      }
       return (
-        <View className='capsule' style={style}>
-            <Text className='tip'>今日第{this.props.number}张图片</Text>
+        <View style={style} className='statusbar' >
+          <Text className='title' style={style0}>关于</Text>
         </View>
       )
     }

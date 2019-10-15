@@ -1,6 +1,6 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
-import samplePic from '../../../images/3997/39974737/v2_pyzne4.jpg'
+import { View, Image} from '@tarojs/components'
+import samplePic from '../../images/3997/39974737/v2_pyzne4.jpg'
 import './head.scss'
 
 
@@ -34,7 +34,7 @@ export default class head extends Component {
       }
       return (
         <View className='header'>
-          <Image src={samplePic} style={style} mode='aspectFill'></Image>
+          <Image src={samplePic} style={style} mode='aspectFill' ></Image>
         </View>
       )
     }
