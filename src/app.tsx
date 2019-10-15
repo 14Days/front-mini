@@ -3,7 +3,7 @@ import Index from './pages/index'
 import './app.scss'
 import './icon.scss'
 //全局变量
-import { set as setGlobalData} from '../src/globalData/global_data'
+import { set as setGlobalData} from './common/globalData/global_data'
 //import { set as setGlobalData, get as getGlobalData } from 'src/globalData/global_data.js'
 
 

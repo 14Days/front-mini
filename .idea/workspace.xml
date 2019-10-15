@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01bf8544-a6a4-436b-b85e-e7de404e7502" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/capsule/capsule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/capsule/capsule.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="01bf8544-a6a4-436b-b85e-e7de404e7502" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +41,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/capsule/capsule.tsx">
+        <entry file="file://$PROJECT_DIR$/src/components/capsule/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" column="66" selection-start-line="4" selection-start-column="66" selection-end-line="4" selection-end-column="66" />
@@ -78,7 +75,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/work/work.tsx">
+        <entry file="file://$PROJECT_DIR$/src/pages/work/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="265">
               <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
@@ -106,6 +103,7 @@
         <option value="$PROJECT_DIR$/src/pages/index/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/work/work.tsx" />
         <option value="$PROJECT_DIR$/src/components/capsule/capsule.tsx" />
+        <option value="$PROJECT_DIR$/src/components/capsule/index.tsx" />
       </list>
     </option>
   </component>
@@ -145,6 +143,20 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="capsule" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-mini" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-mini" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="head" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-mini" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-mini" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="statusBar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="front-mini" type="b2602c69:ProjectViewProjectNode" />
@@ -209,6 +221,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/work/components" />
+      <recent name="$PROJECT_DIR$/src/pages/index/components" />
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
   </component>
@@ -235,16 +249,15 @@
       <option name="presentableId" value="Default" />
       <updated>1571129799241</updated>
       <workItem from="1571129802211" duration="644000" />
-      <workItem from="1571153004202" duration="821000" />
+      <workItem from="1571153004202" duration="1137000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1465000" />
+    <option name="totallyTimeSpent" value="1781000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="140" y="43" width="1400" height="934" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533137" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -286,7 +299,7 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/capsule/capsule.scss">
+    <entry file="file://$PROJECT_DIR$/src/components/capsule/index.scss">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/index/statusBar/statusBar.scss">
@@ -326,7 +339,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/work/work.tsx">
+    <entry file="file://$PROJECT_DIR$/src/pages/work/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
@@ -357,7 +370,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/capsule/capsule.tsx">
+    <entry file="file://$PROJECT_DIR$/src/components/capsule/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="66" selection-start-line="4" selection-start-column="66" selection-end-line="4" selection-end-column="66" />

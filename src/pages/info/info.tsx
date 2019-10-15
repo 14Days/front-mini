@@ -1,7 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 
-import { get as getGlobalData } from '../../globalData/global_data'
+import { get as getGlobalData } from '../../common/globalData/global_data'
 
 //import StatusBar from './statusBar/statusBar'
 
@@ -9,7 +9,7 @@ import { get as getGlobalData } from '../../globalData/global_data'
 //import { get as getGlobalData } from '../../globalData/global_data'
 
 import './info.scss'
-import Statusbar from '../../components/statusBar'
+import Statusbar from '../../common/components/statusBar'
 
 
 export default class Info extends Component {

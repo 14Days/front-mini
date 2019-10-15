@@ -1,6 +1,6 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Image} from '@tarojs/components'
-import samplePic from '../../images/3997/39974737/v2_pyzne4.jpg'
+import samplePic from '../../../static/images/3997/39974737/v2_pyzne4.jpg'
 import './index.scss'
 
 
