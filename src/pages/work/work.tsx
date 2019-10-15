@@ -2,7 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import './work.scss'
 
-import StatusBar from './statusBar/statusBar'
+import StatusBar from '../../components/statusBar'
 import Head from './head/head'
 import Capsule from './capsule/capsule'
 import Labelpage from './label_page/label_page'
