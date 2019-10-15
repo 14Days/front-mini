@@ -14,19 +14,19 @@
 
 ## 目录结构描述
 
-├── config  
-└── src  
-    ├── common  
-    │   ├── components  
-    │   └── globalData  
-    ├── pages  
-    │   ├── index  
-    │   ├── info  
-    │   ├── marklabel  
-    │   └── work  
-    └── static  
-        ├── font_awesome  
-        └── images  
+    ├── config  
+    └── src  
+        ├── common  
+        │   ├── components  
+        │   └── globalData  
+        ├── pages  
+        │   ├── index  
+        │   ├── info  
+        │   ├── marklabel  
+        │   └── work  
+        └── static  
+            ├── font_awesome  
+            └── images  
 
 ## 版本迭代内容
 
