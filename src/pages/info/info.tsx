@@ -9,7 +9,7 @@ import { get as getGlobalData } from '../../globalData/global_data'
 //import { get as getGlobalData } from '../../globalData/global_data'
 
 import './info.scss'
-import Statusbar from '../../components/statusBar/statusBar'
+import Statusbar from '../../components/statusBar'
 
 
 export default class Info extends Component {
