@@ -1,6 +1,6 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import './marklabel.scss'
+import './index.scss'
 
 import { get as getGlobalData } from '../../common/globalData/global_data'
 

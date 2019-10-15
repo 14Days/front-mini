@@ -8,7 +8,7 @@ import { get as getGlobalData } from '../../common/globalData/global_data'
 //全局变量
 //import { get as getGlobalData } from '../../globalData/global_data'
 
-import './info.scss'
+import './index.scss'
 import Statusbar from '../../common/components/statusBar'
 
 
