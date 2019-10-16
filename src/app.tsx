@@ -27,7 +27,6 @@ class App extends Component {
       'pages/login/index'
     ],
     window: {
-      navigationStyle: 'custom',
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',

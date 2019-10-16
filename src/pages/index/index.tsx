@@ -18,6 +18,7 @@ export default class Index extends Component {
    */
   config: Config = {
     //navigationBarTitleText: '首页'
+    navigationStyle: 'custom'
   };
 
   render() {
