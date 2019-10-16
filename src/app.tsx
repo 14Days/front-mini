@@ -24,7 +24,8 @@ class App extends Component {
       'pages/work/index',
       'pages/marklabel/index',
       'pages/info/index',
-      'pages/login/index'
+      'pages/login/index',
+      'pages/register/index'
     ],
     window: {
       backgroundTextStyle: 'light',
