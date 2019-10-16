@@ -2,11 +2,11 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 
 //import StatusBar from './statusBar/statusBar'
-import Head from './head/head'
-import Capsule from './capsule/capsule'
-import Statistics from './statistics/statistics'
-import Bulletin from './bulletin/bulletin'
-import Shelvebar from './shelveBar/shelveBar'
+import Head from '../../common/components/head'
+import Capsule from '../../common/components/capsule'
+import Statistics from './components/statistics/statistics'
+import Bulletin from './components/bulletin/bulletin'
+import Shelvebar from './components/shelveBar/shelveBar'
 //全局变量
 //import { get as getGlobalData } from '../../globalData/global_data'
 

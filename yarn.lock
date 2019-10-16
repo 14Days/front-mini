@@ -355,6 +355,14 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/react@^16.7.3":
+  version "16.9.6"
+  resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.6.tgz?cache=0&sync_timestamp=1571090702348&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-16.9.6.tgz#40722a2ef9f67b054c15b0a0b0d7f09409176134"
+  integrity sha1-QHIqLvn2ewVMFbCgsNfwlAkXYTQ=
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
 "@types/webpack-env@^1.13.6":
   version "1.14.0"
   resolved "https://registry.npm.taobao.org/@types/webpack-env/download/@types/webpack-env-1.14.0.tgz#8edfc5f8e6eae20eeed3ca0d02974ed4ee5e4efc"
@@ -8140,9 +8148,9 @@ tar@^4:
     yallist "^3.0.3"
 
 taro-ui@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.npm.taobao.org/taro-ui/download/taro-ui-2.2.2.tgz#485847ed2ac2343c394477b25bbea439e0adc03d"
-  integrity sha1-SFhH7SrCNDw5RHeyW76kOeCtwD0=
+  version "2.2.3"
+  resolved "https://registry.npm.taobao.org/taro-ui/download/taro-ui-2.2.3.tgz#8b2a0d5c86257fa82585980c675871ca3d2a0602"
+  integrity sha1-iyoNXIYlf6glhZgMZ1hxyj0qBgI=
   dependencies:
     "@types/react" "^16.7.3"
     bind-decorator "^1.0.11"

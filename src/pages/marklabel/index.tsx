@@ -1,10 +1,10 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import './marklabel.scss'
+import './index.scss'
 
-import { get as getGlobalData } from '../../globalData/global_data'
+import { get as getGlobalData } from '../../common/globalData/global_data'
 
-import StatusBar from './statusBar/statusBar'
+import StatusBar from '../../common/components/statusBar'
 import Labelpage from './label_page/label_page'
 
 export default class Marklabel extends Component {

@@ -1,15 +1,15 @@
 import Taro, { Component, Config, useReducer } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import './work.scss'
+import './index.scss'
 
-import StatusBar from './statusBar/statusBar'
-import Head from './head/head'
-import Capsule from './capsule/capsule'
-import Labelpage from './label_page/label_page'
-import Headstand from './head_stand/head_stand'
-import OperateBar from './operate_bar/operate_bar'
+import StatusBar from '../../common/components/statusBar'
+import Head from '../../common/components/head'
+import Capsule from '../../common/components/capsule'
+import Labelpage from './components/label_page/label_page'
+import Headstand from './components/head_stand/head_stand'
+import OperateBar from './components/operate_bar/operate_bar'
 
-export default class Work extends Component {
+export default class Index extends Component {
 
   /**
    * 指定config的类型声明为: Taro.Config
