@@ -8,6 +8,7 @@ import './head_swiper.scss'
 
 export default class Headswiper extends Component {
   
+  // 样例轮播图片
   samplePic = [
       samplePic0,
       samplePic1,
@@ -30,8 +31,6 @@ export default class Headswiper extends Component {
               </SwiperItem>
             )
           }
-        
-
       </Swiper>
     )
   }

@@ -1,11 +1,10 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import './index.scss'
 
-import { get as getGlobalData } from '../../common/globalData/global_data'
+//import { get as getGlobalData } from '../../common/globalData/global_data'
 
-import StatusBar from '../../components/statusBar'
-import Labelpage from './label_page/label_page'
+import Labelpage from './label_group/label_group'
 
 export default class Marklabel extends Component {
 
@@ -32,15 +31,9 @@ export default class Marklabel extends Component {
 
   render () {
 
-    const barHight = getGlobalData('statusBarHeight')
-      const style = {
-        height: (44 + barHight) + 'px', 
-      }
 
     return (
       <View className='marklabel'>
-        <StatusBar />
-        <View style={style} className='statusbar' ></View>
         <Labelpage />
         <Labelpage />
         <Labelpage />

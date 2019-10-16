@@ -1,7 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
-import Head from '../../components/head';
 import Capsule from '../../components/capsule';
+import Headswiper from './components/head_swiper/head_swiper';
 import Statistics from './components/statistics/statistics';
 import Bulletin from './components/bulletin/bulletin';
 import Shelvebar from './components/shelveBar/shelveBar';
@@ -17,6 +17,8 @@ export default class Index extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
+    pages:[
+    ],
     //navigationBarTitleText: '首页'
     navigationStyle: 'custom'
   };
@@ -24,8 +26,8 @@ export default class Index extends Component {
   render() {
     return (
       <View className='index'>
-        <Head />
-        <Capsule />
+        <Headswiper />
+        <Capsule number={0} displayName={true}/>
         <View className='welcome'>
           <Text>欢迎您 亲爱的设计师</Text>
         </View>
