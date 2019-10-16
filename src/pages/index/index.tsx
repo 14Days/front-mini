@@ -31,7 +31,7 @@ export default class Index extends Component {
         <View className='welcome'>
           <Text>欢迎您 亲爱的设计师</Text>
         </View>
-        <Statistics />
+        <Statistics week={439} day={19}/>
         <Bulletin />
         <Shelvebar />
       </View>
