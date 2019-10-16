@@ -4,7 +4,7 @@ import './index.scss'
 
 import { get as getGlobalData } from '../../common/globalData/global_data'
 
-import StatusBar from '../../common/components/statusBar'
+import StatusBar from '../../components/statusBar'
 import Labelpage from './label_page/label_page'
 
 export default class Marklabel extends Component {

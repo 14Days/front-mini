@@ -1,10 +1,10 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 
+import { get as getGlobalData } from '../../common/globalData/global_data'
 import './index.scss'
-import { get as getGlobalData } from '../../globalData/global_data'
 
-export default class Capsule extends Component {
+export default class head extends Component {
 
     /**
      * 指定config的类型声明为: Taro.Config
@@ -16,23 +16,28 @@ export default class Capsule extends Component {
     config: Config = {
       //navigationBarTitleText: '首页'
     }
-    
-    handleClick() {
-      Taro.navigateTo({
-        url: '/pages/info/info'
-      })
-    }
-
+  
+    componentWillMount () { }
+  
+    componentDidMount () { }
+  
+    componentWillUnmount () { }
+  
+    componentDidShow () { }
+  
+    componentDidHide () { }
+  
     render () {
-
+      const barHight = getGlobalData('statusBarHeight')
       const style = {
-          top:  (getGlobalData('statusBarHeight') + 8) + 'px',
-
+        height: (44 + barHight) + 'px', 
       }
-
+      const style0 = {
+        top: (12 + barHight) + 'px',
+      }
       return (
-        <View className='capsule' style={style} onClick={this.handleClick}>
-            <Text className='tip'>张舜宇</Text>
+        <View style={style} className='statusbar' >
+          <Text className='title' style={style0}>关于</Text>
         </View>
       )
     }
