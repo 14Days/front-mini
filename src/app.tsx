@@ -25,9 +25,10 @@ class App extends Component {
   config: Config = {
     pages: [
       'pages/index/index',
-      'pages/work/work',
-      'pages/marklabel/marklabel',
-      'pages/info/info',
+      'pages/work/index',
+      'pages/marklabel/index',
+      'pages/info/index',
+      'pages/login/index'
     ],
     window: {
       navigationStyle: 'custom',
@@ -49,24 +50,24 @@ class App extends Component {
           //selectedIconPath: 
         },
         {
-          pagePath: 'pages/work/work',
+          pagePath: 'pages/work/index',
           text: '开始打标',
           //iconPath: 
           //selectedIconPath: 
         },
         {
-          pagePath: 'pages/marklabel/marklabel',
+          pagePath: 'pages/marklabel/index',
           text: '标签',
           //iconPath: 
           //selectedIconPath: 
         },
       ]
     }
-  }
+  };
 
   componentWillMount () {
     Taro.getSystemInfo().then( (res) => {
-      setGlobalData('statusBarHeight', res.statusBarHeight || 0)
+      setGlobalData('statusBarHeight', res.statusBarHeight || 0);
       setGlobalData('id', 'NRGW54E56')
     })
     
