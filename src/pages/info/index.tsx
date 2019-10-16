@@ -1,19 +1,11 @@
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import Taro, { Component, Config } from '@tarojs/taro';
+import { View, Text } from '@tarojs/components';
+import { get as getGlobalData } from '../../common/globalData/global_data';
+import Statusbar from '../../components/statusBar';
 
-import { get as getGlobalData } from '../../common/globalData/global_data'
-
-//import StatusBar from './statusBar/statusBar'
-
-//全局变量
-//import { get as getGlobalData } from '../../globalData/global_data'
-
-import './index.scss'
-import Statusbar from '../../components/statusBar'
-
+import './index.scss';
 
 export default class Info extends Component {
-
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -23,27 +15,16 @@ export default class Info extends Component {
    */
   config: Config = {
     //navigationBarTitleText: '首页'
-  }
+  };
 
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
+  render() {
     //        <StatusBar />
     const id = getGlobalData('id');
     return (
-      <View className='info' >
-        <Statusbar className='statusbar'/>
+      <View className='info'>
+        <Statusbar className='statusbar' />
         <Text className='text_id'>您的唯一识别ID： {id}</Text>
-
       </View>
-    )
+    );
   }
 }

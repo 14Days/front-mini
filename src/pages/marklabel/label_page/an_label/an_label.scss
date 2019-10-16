@@ -1,29 +1,26 @@
 .anlabel {
-    margin: 2% 4%;
-    width: max-content;
-    height: 26Px;
-    line-height: 20Px;
-    border-radius: 13Px;
-    background-color: rgba(139, 195, 74, 1);
-    text-align: center;
-    display: flex;
+  margin: 2% 4%;
+  width: max-content;
+  height: 26px;
+  line-height: 20px;
+  border-radius: 13px;
+  background-color: rgba(139, 195, 74, 1);
+  text-align: center;
+  display: flex;
 }
 
 .ic {
-    margin: 3Px 6Px 3Px 0;
-    opacity: 0;
+  margin: 3px 6px 3px 0;
+  opacity: 0;
 }
 
 .name {
-    display: block;
-    width: max-content;
-    height: 20Px;
-    color: rgba(249, 249, 249, 1);
-    font-size: 14Px;
-    text-align: left;
-    font-family: PingFangSC-regular;
-    margin: auto 26Px auto 19Px; 
+  display: block;
+  width: max-content;
+  height: 20px;
+  color: rgba(249, 249, 249, 1);
+  font-size: 14px;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  margin: auto 26px auto 19px;
 }
-
-
-

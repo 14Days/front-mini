@@ -1,13 +1,13 @@
 import Taro, { Component, Config, useReducer } from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import './index.scss';
-
 import StatusBar from '../../components/statusBar';
 import Head from '../../components/head';
 import Capsule from '../../components/capsule';
 import Labelpage from './components/label_page/label_page';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
+
+import './index.scss';
 
 export default class Index extends Component {
   /**

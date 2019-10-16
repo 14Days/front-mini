@@ -1,27 +1,25 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Input } from '@tarojs/components'
-import {LoginProp, LoginState} from "../../interface/login";
-import './index.scss'
+import Taro, { Component } from '@tarojs/taro';
+import { View, Text, Input } from '@tarojs/components';
+import { LoginProp, LoginState } from '../../interface/login';
+import './index.scss';
 
 class Login extends Component<LoginProp, LoginState> {
-  constructor(props:LoginProp){
+  constructor(props: LoginProp) {
     super(props);
 
     this.state = {
       username: '',
       password: ''
-    }
+    };
 
     this.onUseeChange = this.onUseeChange.bind(this);
   }
-  config = {
+  config = {};
 
-  };
-
-  onUseeChange(e:Event):void{
-    console.log(e)
+  onUseeChange(e: Event): void {
+    console.log(e);
   }
-  render (){
+  render() {
     return (
       <View className='container'>
         <View>
@@ -37,21 +35,19 @@ class Login extends Component<LoginProp, LoginState> {
                 value={this.state.username}
                 placeholder='用户名'
                 onInput={this.onUseeChange}
-              >
-              </Input>
+              ></Input>
             </View>
             <View className='Pwd'>
               <Input
                 value={this.state.password}
                 placeholder='密码'
                 password={true}
-              >
-              </Input>
+              ></Input>
             </View>
           </View>
         </View>
       </View>
-    )
+    );
   }
 }
 
