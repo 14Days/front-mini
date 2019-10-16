@@ -17,11 +17,13 @@ export default class Index extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    pages:[
-    ],
+    pages:[],
     //navigationBarTitleText: '首页'
     navigationStyle: 'custom'
   };
+  
+  //样例公告
+  bulletinWord = '每人每天额定700张图片，请确定是否满足额度'
 
   render() {
     return (
@@ -32,7 +34,7 @@ export default class Index extends Component {
           <Text>欢迎您 亲爱的设计师</Text>
         </View>
         <Statistics week={439} day={19}/>
-        <Bulletin />
+        <Bulletin content={this.bulletinWord}/>
         <Shelvebar />
       </View>
     );

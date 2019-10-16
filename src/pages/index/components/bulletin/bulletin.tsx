@@ -2,7 +2,11 @@ import Taro, { Component, Config } from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import './bulletin.scss';
 
-export default class Bulletin extends Component {
+interface bulletin_info {
+  content: string;
+}
+
+export default class Bulletin extends Component<bulletin_info> {
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -20,7 +24,7 @@ export default class Bulletin extends Component {
         <View className='linebetween' />
         <Text className='title'>告示</Text>
         <Text className='content'>
-          每人每天额定700张图片，请确定是否满足额度
+          {this.props.content}
         </Text>
       </View>
     );
