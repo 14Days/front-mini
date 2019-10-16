@@ -28,13 +28,9 @@ export default class Headstand extends Component {
     componentDidHide () { }
   
     render () {
-      const style = {
-        height: 234 + 'px', 
-        width: '100%',
-      }
       return (
         <View className='header'>
-          <View style={style} ></View>
+          
         </View>
       )
     }

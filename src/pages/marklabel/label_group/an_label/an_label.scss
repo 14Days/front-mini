@@ -1,26 +1,26 @@
 .anlabel {
   margin: 2% 4%;
   width: max-content;
-  height: 26px;
-  line-height: 20px;
-  border-radius: 13px;
+  height: 52rpx;
+  line-height: 40rpx;
+  border-radius: 26rpx;
   background-color: rgba(139, 195, 74, 1);
   text-align: center;
   display: flex;
 }
 
 .ic {
-  margin: 3px 6px 3px 0;
+  margin: 6rpx 12rpx 6rpx 0;
   opacity: 0;
 }
 
 .name {
   display: block;
   width: max-content;
-  height: 20px;
+  height: 40rpx;
   color: rgba(249, 249, 249, 1);
-  font-size: 14px;
+  font-size: 28rpx;
   text-align: left;
   font-family: PingFangSC-regular;
-  margin: auto 26px auto 19px;
+  margin: auto 52rpx auto 38rpx;
 }

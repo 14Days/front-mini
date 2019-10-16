@@ -12,17 +12,17 @@
 .linebetween {
   width: 90%;
   height: 0;
-  border: 0.4px solid rgba(187, 187, 187, 1);
-  margin: 18px auto 0px auto;
+  border: 1rpx solid rgba(187, 187, 187, 1);
+  margin: 36rpx auto 0rpx auto;
 }
 
 .content-left {
-  width: 72px;
-  height: 25px;
+  width: 144rpx;
+  height: 50rpx;
   color: rgba(16, 16, 16, 1);
-  font-size: 18px;
+  font-size: 36rpx;
   text-align: left;
-  margin: 24px 0px 24px 12.5%;
+  margin: 48rpx 0rpx 48rpx 12.5%;
   font-family: PingFangSC-regular;
   display: block;
 }
@@ -35,9 +35,10 @@
 
 .tip {
   width: fit-content;
-  height: 20px;
+  height: 40rpx;
   color: rgba(138, 133, 133, 1);
-  font-size: 14px;
+  font-size: 28rpx;
   text-align: right;
   font-family: PingFangSC-regular;
 }
+  

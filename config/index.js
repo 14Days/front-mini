@@ -1,7 +1,7 @@
 const config = {
   projectName: 'jiaju',
   date: '2019-10-11',
-  designWidth: 750,
+  designWidth: 375,
   deviceRatio: {
     '640': 2.34 / 2,
     '750': 1,
