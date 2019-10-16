@@ -1,7 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 
-import { get as getGlobalData } from '../../../globalData/global_data'
+import { get as getGlobalData } from '../../globalData/global_data'
+import './index.scss'
 
 export default class head extends Component {
 
@@ -29,13 +30,14 @@ export default class head extends Component {
     render () {
       const barHight = getGlobalData('statusBarHeight')
       const style = {
-        height: barHight + 'px', 
-        position: 'fixed',
-        top: 0 + 'px',
-        left: 0 + 'px',
+        height: (44 + barHight) + 'px', 
+      }
+      const style0 = {
+        top: (12 + barHight) + 'px',
       }
       return (
-        <View style={style} >
+        <View style={style} className='statusbar' >
+          <Text className='title' style={style0}>关于</Text>
         </View>
       )
     }
