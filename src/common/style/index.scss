@@ -1,0 +1,27 @@
+@import "./color.scss";
+
+//用于多个拼在一起的输入框
+%InputAttachedLines {
+  //输入框宽度
+  $input_width: 500rpx;
+  //文字区域两边留白宽度
+  $remain_white: 20rpx;
+
+  border: 2rpx solid $BORDER;
+  border-radius: 20rpx;
+  width: $input_width;
+
+  Input {
+    height: 80rpx;
+    width: $input_width - 2 * $remain_white;
+    padding: 0 $remain_white;
+    border-bottom: 2rpx solid $BORDER;
+  }
+
+  Input:last-child{
+    border-bottom: 0;
+  }
+}
+
+
+
