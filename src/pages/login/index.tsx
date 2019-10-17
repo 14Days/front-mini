@@ -1,51 +1,86 @@
-import Taro, { Component } from '@tarojs/taro';
-import { View, Text, Input } from '@tarojs/components';
-import { LoginProp, LoginState } from '../../interface/login';
-import './index.scss';
+import Taro, {Component, Config} from '@tarojs/taro'
+import {View, Text, Input, Button} from '@tarojs/components'
+import './index.scss'
 
-class Login extends Component<LoginProp, LoginState> {
-  constructor(props: LoginProp) {
+interface LoginState {
+  username: string,
+  password: string
+}
+
+class Login extends Component<null, LoginState> {
+
+  config : Config = {
+    backgroundColor: "#999999",
+    backgroundTextStyle: "dark",
+  };
+
+  constructor(props){
     super(props);
-
     this.state = {
       username: '',
       password: ''
-    };
-
-    this.onUseeChange = this.onUseeChange.bind(this);
+    }
   }
-  config = {};
 
-  onUseeChange(e: Event): void {
-    console.log(e);
+
+  onClickRegister(): void {
+    //API
+    console.log("register")
   }
-  render() {
+
+  onClickLogin(): void {
+    //API
+    console.log("login")
+  }
+
+
+
+  render(): JSX.Element {
     return (
       <View className='container'>
-        <View>
-          {/*标题*/}
-          <View className='title'>
-            <Text className='titleText'>登陆</Text>
-          </View>
-
-          {/*登陆框*/}
-          <View className='signIn'>
-            <View className='User'>
-              <Input
-                value={this.state.username}
-                placeholder='用户名'
-                onInput={this.onUseeChange}
-              ></Input>
-            </View>
-            <View className='Pwd'>
-              <Input
-                value={this.state.password}
-                placeholder='密码'
-                password={true}
-              ></Input>
-            </View>
-          </View>
+        {/*标题*/}
+        <View className='title'>
+          <Text className='titleText'>登陆</Text>
         </View>
+
+        {/*登陆框*/}
+        <View className='InputAttachedLines'>
+            <Input
+              className='User'
+              value={this.state.username}
+              placeholder='请输入用户名'
+              onInput={(e:any) => {
+                this.setState({
+                  username: e.target.value
+                })
+              }}
+            >
+            </Input>
+            <Input
+              className='Pwd'
+              value={this.state.password}
+              placeholder='请输入密码'
+              password={true}
+              onInput={(e:any) => {
+                this.setState({
+                  password: e.target.value
+                })
+              }}
+            >
+            </Input>
+        </View>
+
+
+        {/*登陆按钮*/}
+        <Button onClick={this.onClickLogin}>登陆</Button>
+
+
+        {/*注册入口*/}
+        <View onClick={this.onClickRegister}>
+          <Text>注册</Text>
+        </View>
+
+
       </View>
     );
   }
