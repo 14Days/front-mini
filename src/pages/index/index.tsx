@@ -1,21 +1,14 @@
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import Taro, { Component, Config } from '@tarojs/taro';
+import { View, Text } from '@tarojs/components';
+import Head from '../../components/head';
+import Capsule from '../../components/capsule';
+import Statistics from './components/statistics/statistics';
+import Bulletin from './components/bulletin/bulletin';
+import Shelvebar from './components/shelveBar/shelveBar';
 
-//import StatusBar from './statusBar/statusBar'
-import Head from '../../common/components/head'
-import Capsule from '../../common/components/capsule'
-import Statistics from './components/statistics/statistics'
-import Bulletin from './components/bulletin/bulletin'
-import Shelvebar from './components/shelveBar/shelveBar'
-//全局变量
-//import { get as getGlobalData } from '../../globalData/global_data'
-
-import './index.scss'
-
-
+import './index.scss';
 
 export default class Index extends Component {
-
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -25,33 +18,21 @@ export default class Index extends Component {
    */
   config: Config = {
     //navigationBarTitleText: '首页'
-  }
+    navigationStyle: 'custom'
+  };
 
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
-    //        <StatusBar />
-
+  render() {
     return (
-      <View className='index' >
-
+      <View className='index'>
         <Head />
         <Capsule />
         <View className='welcome'>
-          <Text >欢迎您 亲爱的设计师</Text>
+          <Text>欢迎您 亲爱的设计师</Text>
         </View>
         <Statistics />
         <Bulletin />
         <Shelvebar />
       </View>
-    )
+    );
   }
 }

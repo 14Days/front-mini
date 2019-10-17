@@ -1,8 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Image} from '@tarojs/components'
-import samplePic from '../../../static/images/3997/39974737/v2_pyzne4.jpg'
-import './index.scss'
+import { View, Text } from '@tarojs/components'
 
+import { get as getGlobalData } from '../../common/globalData/global_data'
+import './index.scss'
 
 export default class head extends Component {
 
@@ -28,13 +28,16 @@ export default class head extends Component {
     componentDidHide () { }
   
     render () {
+      const barHight = getGlobalData('statusBarHeight')
       const style = {
-        height: 234 + 'px', 
-        width: '100%',
+        height: (44 + barHight) + 'px', 
+      }
+      const style0 = {
+        top: (12 + barHight) + 'px',
       }
       return (
-        <View className='header'>
-          <Image src={samplePic} style={style} mode='aspectFill' ></Image>
+        <View style={style} className='statusbar' >
+          <Text className='title' style={style0}>关于</Text>
         </View>
       )
     }

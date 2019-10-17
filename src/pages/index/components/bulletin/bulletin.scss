@@ -1,37 +1,36 @@
 .bulletin {
-    align-content: center;
-    display: block;
-    position: relative;
-    
+  align-content: center;
+  display: block;
+  position: relative;
 }
 
 .title {
-    height: 20Px;
-    color: rgba(16, 16, 16, 1);
-    font-size: 14Px;
-    text-align: left;
-    font-family: PingFangSC-regular;
-    display: block;
-    margin: 24Px auto 15Px 12.5%;
+  height: 20px;
+  color: rgba(16, 16, 16, 1);
+  font-size: 14px;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  display: block;
+  margin: 24px auto 15px 12.5%;
 }
 
 .content {
-    top: 59Px;
-    left: 48Px;
-    width: 75%;
-    height: 50Px;
-    color: rgba(16, 16, 16, 1);
-    font-size: 18Px;
-    text-align: left;
-    font-family: PingFangSC-regular;
-    display: block;
-    margin: 15Px auto;
+  top: 59px;
+  left: 48px;
+  width: 75%;
+  height: 50px;
+  color: rgba(16, 16, 16, 1);
+  font-size: 18px;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  display: block;
+  margin: 15px auto;
 }
 
 .linebetween {
-    width: 90%;
-    height: 0;
-    border: 0.4px solid rgba(187, 187, 187, 1);
-    margin: 18Px auto 0Px auto;
-    display: block;
+  width: 90%;
+  height: 0;
+  border: 0.4px solid rgba(187, 187, 187, 1);
+  margin: 18px auto 0px auto;
+  display: block;
 }

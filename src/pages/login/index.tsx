@@ -1,82 +1,79 @@
-import Taro, {Component} from '@tarojs/taro'
+import Taro, {useState} from '@tarojs/taro'
 import {View, Text, Input, Button} from '@tarojs/components'
-import {LoginProp, LoginState} from "../../interface/login";
 import './index.scss'
+interface LoginState {
+  username: string,
+  password: string
+}
+function Login(){
 
-class Login extends Component<LoginProp, LoginState> {
-  constructor(props: LoginProp) {
-    super(props);
-
-    this.state = {
-      username: '',
-      password: ''
-    };
-
-    this.onUserChange = this.onUserChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
+  function onClickRegister(): void {
+    //API
+    console.log("register")
   }
 
-  onUserChange(e): void {
-    console.log(e.target.value)
+  function onClickLogin(): void {
+    //API
+    console.log("login")
   }
 
-  onPasswordChange(): void {
+  const initState : LoginState = {
+    username: '',
+    password: ''
+  };
 
-  }
-
-  onClickRegister(): void {
-
-  }
-
-  onClickLogin(): void {
-
-  }
-
-  render() {
-    return (
-      <View className='container'>
-        <View>
-          {/*标题*/}
-          <View className='title'>
-            <Text className='titleText'>登陆</Text>
-          </View>
-
-          {/*登陆框*/}
-          <View className='signIn'>
-            <View className='User'>
-              <Input
-                value={this.state.username}
-                placeholder='用户名'
-                onInput={this.onUserChange}
-              >
-              </Input>
-            </View>
-            <View className='Pwd'>
-              <Input
-                value={this.state.password}
-                placeholder='密码'
-                password={true}
-                onInput={this.onPasswordChange}
-              >
-              </Input>
-            </View>
-          </View>
+  const [state, setState] = useState(initState);
 
 
-          {/*登陆按钮*/}
-          <Button onClick={this.onClickLogin}>登陆</Button>
-
-
-          {/*注册入口*/}
-          <View onClick={this.onClickRegister}>
-            <Text>注册</Text>
-          </View>
-
-
+  return (
+    <View className='container'>
+      <View>
+        {/*标题*/}
+        <View className='title'>
+          <Text className='titleText'>登陆</Text>
         </View>
+
+        {/*登陆框*/}
+        <View className='signIn'>
+          <View className='User'>
+            <Input
+              value={this.state.username}
+              placeholder='用户名'
+              onInput={(e) => setState({
+                username: e.target.value,
+                password: state.password
+              })}
+            >
+            </Input>
+          </View>
+          <View className='Pwd'>
+            <Input
+              value={this.state.password}
+              placeholder='密码'
+              password={true}
+              onInput={(e) => setState({
+                username: state.username,
+                password: e.target.value
+              })}
+            >
+            </Input>
+          </View>
+        </View>
+
+
+        {/*登陆按钮*/}
+        <Button onClick={onClickLogin}>登陆</Button>
+
+
+        {/*注册入口*/}
+        <View onClick={onClickRegister}>
+          <Text>注册</Text>
+        </View>
+
+
       </View>
-    )
-  }
+    </View>
+  );
 }
 
 export default Login;
