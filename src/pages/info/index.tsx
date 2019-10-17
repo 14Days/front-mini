@@ -1,7 +1,6 @@
 import Taro, { Component, Config } from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import { get as getGlobalData } from '../../common/globalData/global_data';
-import Statusbar from '../../components/statusBar';
 
 import './index.scss';
 
@@ -14,7 +13,7 @@ export default class Info extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    //navigationBarTitleText: '首页'
+    navigationBarTitleText: '关于'
   };
 
   render() {
@@ -22,7 +21,6 @@ export default class Info extends Component {
     const id = getGlobalData('id');
     return (
       <View className='info'>
-        <Statusbar className='statusbar' />
         <Text className='text_id'>您的唯一识别ID： {id}</Text>
       </View>
     );

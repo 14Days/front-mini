@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
-import './label_page.scss';
+import './label_group.scss';
 
 import Anlabel from './an_label/an_label';
 

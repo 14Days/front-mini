@@ -4,7 +4,12 @@ import { View, Text } from '@tarojs/components'
 import './index.scss'
 import { get as getGlobalData } from '../../common/globalData/global_data'
 
-export default class Capsule extends Component {
+interface capsule_info {
+  displayName: boolean;
+  number: number;
+}
+
+export default class Capsule extends Component<capsule_info> {
 
     /**
      * 指定config的类型声明为: Taro.Config
@@ -19,7 +24,7 @@ export default class Capsule extends Component {
     
     handleClick() {
       Taro.navigateTo({
-        url: '/pages/info/info'
+        url: '/pages/info/index'
       })
     }
 
@@ -29,10 +34,16 @@ export default class Capsule extends Component {
           top:  (getGlobalData('statusBarHeight') + 8) + 'px',
 
       }
-
+      const userName = getGlobalData('userName');
+      let textTip = null;
+      if (this.props.displayName) {
+        textTip = <Text className='tip'>{userName}</Text>
+      } else {
+        textTip = <Text className='tip'>今日第{this.props.number}张图片</Text>
+      }
       return (
         <View className='capsule' style={style} onClick={this.handleClick}>
-            <Text className='tip'>张舜宇</Text>
+            {textTip}
         </View>
       )
     }

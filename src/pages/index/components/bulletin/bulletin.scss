@@ -5,32 +5,32 @@
 }
 
 .title {
-  height: 20px;
+  height: 40rpx;
   color: rgba(16, 16, 16, 1);
-  font-size: 14px;
+  font-size: 28rpx;
   text-align: left;
   font-family: PingFangSC-regular;
   display: block;
-  margin: 24px auto 15px 12.5%;
+  margin: 48rpx auto 30rpx 12.5%;
 }
 
 .content {
-  top: 59px;
-  left: 48px;
+  top: 118rpx;
+  left: 96rpx;
   width: 75%;
-  height: 50px;
+  height: 100rpx;
   color: rgba(16, 16, 16, 1);
-  font-size: 18px;
+  font-size: 36rpx;
   text-align: left;
   font-family: PingFangSC-regular;
   display: block;
-  margin: 15px auto;
+  margin: 30rpx auto;
 }
 
 .linebetween {
   width: 90%;
   height: 0;
-  border: 0.4px solid rgba(187, 187, 187, 1);
-  margin: 18px auto 0px auto;
+  border: 1rpx solid rgba(187, 187, 187, 1);
+  margin: 36rpx auto 0rpx auto;
   display: block;
 }

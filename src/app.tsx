@@ -24,7 +24,8 @@ class App extends Component {
       'pages/work/index',
       'pages/marklabel/index',
       'pages/info/index',
-      'pages/login/index'
+      'pages/login/index',
+      'pages/register/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -64,6 +65,7 @@ class App extends Component {
     Taro.getSystemInfo().then(res => {
       setGlobalData('statusBarHeight', res.statusBarHeight || 0);
       setGlobalData('id', 'NRGW54E56');
+      setGlobalData('userName', '张舜宇')
     });
   }
 
