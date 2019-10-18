@@ -34,28 +34,28 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     },
     tabBar: {
-      color: '#101010 100%',
-      selectedColor: '#EAB95D 100%',
-      backgroundColor: '#F7F7F7 100%',
+      color: '#CDCDCD',
+      selectedColor: '#333333',
+      backgroundColor: '#F7F7F7',
       borderStyle: 'black',
       list: [
         {
           pagePath: 'pages/index/index',
-          text: '首页'
-          //iconPath:
-          //selectedIconPath:
+          text: '首页',
+          iconPath: 'static/icon/ushouye.png',
+          selectedIconPath: 'static/icon/shouye.png'
         },
         {
           pagePath: 'pages/work/index',
-          text: '开始打标'
-          //iconPath:
-          //selectedIconPath:
+          text: '开始打标',
+          iconPath: 'static/icon/usousuo.png',
+          selectedIconPath: 'static/icon/sousuo.png'
         },
         {
           pagePath: 'pages/marklabel/index',
-          text: '标签'
-          //iconPath:
-          //selectedIconPath:
+          text: '标签',
+          iconPath: 'static/icon/ubianji.png',
+          selectedIconPath: 'static/icon/bianji.png'
         }
       ]
     }
