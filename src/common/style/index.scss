@@ -22,3 +22,19 @@
     border-bottom: 0;
   }
 }
+
+
+//按钮
+%ButtonForSign {
+  width: 500rpx;
+  height: 80rpx;
+}
+
+
+//标题文字 View
+%TitleView {
+  font-size: 40rpx;
+  color: $TITLE;
+  margin: 0 auto;
+  text-align: center;
+}

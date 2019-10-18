@@ -1,20 +1,31 @@
 @import "../../common/style/index.scss";
 @import "../../common/style/color.scss";
+
 .container {
+
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-direction: column;
   align-content: center;
   background-color: white;
+  margin: 100rpx auto 0 auto;
 
   .title{
-    font-size: 60rpx;
-    color: $TITLE;
-    margin: 0 auto;
+    @extend %TitleView;
   }
 
   .InputAttachedLines {
     margin: 80rpx auto 0 auto;
     @extend %InputAttachedLines;
+  }
+
+  Button {
+    margin: 60rpx auto 0 auto;
+    @extend %ButtonForSign;
+  }
+
+  .register{
+    font-size: 25rpx;
+    margin: 30rpx auto 0 auto;
   }
 }
