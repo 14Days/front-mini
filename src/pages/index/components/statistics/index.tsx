@@ -1,22 +1,22 @@
 import Taro from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import StatisticsBlock from './statistics_block/statistics_block';
-import './statistics.scss';
+import StatisticsBlock from './statistics_block';
+import style from './index.module.scss';
 
 interface IProps {
   week: number;
   day: number;
 }
 
-function statistics(props: IProps) {
+function Statistics(props: IProps) {
   const { week, day } = props;
   return (
-    <View className='statistics'>
+    <View className={style.statistics}>
       <StatisticsBlock desc={'今日'} number={day} />
-      <View className='linebetween' />
+      <View className={style.linebetween} />
       <StatisticsBlock desc={'本周'} number={week} />
     </View>
   );
 }
 
-export default statistics;
+export default Statistics;
