@@ -2,9 +2,9 @@ import Taro, { Component, Config } from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import Capsule from '../../components/capsule';
 import Headswiper from './components/head_swiper';
-import Statistics from './components/statistics/statistics';
+import Statistics from './components/statistics';
 import Bulletin from './components/bulletin';
-import Shelvebar from './components/shelveBar/shelveBar';
+import Shelvebar from './components/shelveBar';
 
 import './index.scss';
 

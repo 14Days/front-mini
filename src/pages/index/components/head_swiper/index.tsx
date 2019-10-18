@@ -17,7 +17,7 @@ function HeadSwiper() {
       circular={true}
     >
       {samplePic.map(pic => (
-        <SwiperItem>
+        <SwiperItem key={String(pic)}>
           <View>
             <Image
               src={pic}
