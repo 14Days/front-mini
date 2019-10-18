@@ -1,4 +1,4 @@
-@import "./color.scss";
+@import './color.scss';
 
 //用于多个拼在一起的输入框
 %InputAttachedLines {
@@ -11,17 +11,14 @@
   border-radius: 20rpx;
   width: $input_width;
 
-  Input {
+  input {
     height: 80rpx;
     width: $input_width - 2 * $remain_white;
     padding: 0 $remain_white;
     border-bottom: 2rpx solid $BORDER;
   }
 
-  Input:last-child{
+  input:last-child {
     border-bottom: 0;
   }
 }
-
-
-
