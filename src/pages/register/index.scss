@@ -28,6 +28,10 @@
     @extend %InputAttachedLines;
   }
 
+  .sendTip {
+    margin: 60rpx auto 0 auto;
+    text-align: center;  //必要，否则Text子结点不居中
+  }
 
   Button {
     margin: 60rpx auto 0 auto;
