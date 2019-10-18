@@ -5,24 +5,15 @@ import Capsule from '../../components/capsule';
 import Labelpage from './components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
-import samplePic from '../../static/images/3997/39974737/v2_pyzne4.jpg'
+import samplePic from '../../static/images/3997/39974737/v2_pyzne4.jpg';
 
 import './index.scss';
 
 export default class Index extends Component {
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
   config: Config = {
-    //navigationBarTitleText: '首页'
-    pages: [],
-    navigationStyle: 'custom',
+    navigationStyle: 'custom'
   };
-  
+
   // 一组对象的形式：
   // title： String
   // pageid: number (组id)
@@ -140,19 +131,17 @@ export default class Index extends Component {
     return v;
   };
 
-  render() { 
+  render() {
     //useReducer管理整个标签面板
     const [state, dispatch] = useReducer(this.changeDisplay, this.arrs);
 
     return (
       <View className='doing'>
-        
-        <Headimg url={samplePic}/> 
+        <Headimg url={samplePic} />
         <Headstand />
         <Capsule number={5} displayName={false} />
         <OperateBar />
-        
-        
+
         {state.map(ele => {
           return (
             <Labelpage

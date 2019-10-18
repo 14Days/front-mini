@@ -1,0 +1,26 @@
+.statistics {
+  align-content: center;
+  display: block;
+  float: left;
+
+  .title {
+    width: 308rpx;
+    height: 40rpx;
+    color: rgba(16, 16, 16, 1);
+    font-size: 28rpx;
+    text-align: center;
+    font-family: PingFangSC-regular;
+    display: block;
+    font-weight: 700;
+  }
+
+  .number {
+    width: 308rpx;
+    height: 100rpx;
+    color: rgba(16, 16, 16, 1);
+    font-size: 72rpx;
+    text-align: center;
+    font-family: PingFangSC-regular;
+    display: block;
+  }
+}

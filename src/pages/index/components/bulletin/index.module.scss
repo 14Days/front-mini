@@ -1,0 +1,35 @@
+.bulletin {
+  align-content: center;
+  display: block;
+  position: relative;
+
+  .linebetween {
+    width: 90%;
+    height: 0;
+    border: 1px solid rgba(187, 187, 187, 1);
+    margin: 36px auto 0px auto;
+    display: block;
+  }
+
+  .title {
+    height: 80px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 28px;
+    text-align: left;
+    font-family: PingFangSC-regular;
+    display: block;
+    margin: 48px auto 30px 12.5%;
+  }
+  .content {
+    top: 118px;
+    left: 96px;
+    width: 75%;
+    height: 100px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 36px;
+    text-align: left;
+    font-family: PingFangSC-regular;
+    display: block;
+    margin: 30px auto;
+  }
+}

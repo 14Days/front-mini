@@ -1,0 +1,43 @@
+.shelvebar {
+  align-content: center;
+  position: relative;
+
+  .linebetween {
+    width: 90%;
+    height: 0;
+    border: 1px solid rgba(187, 187, 187, 1);
+    margin: 36px auto 0px auto;
+  }
+
+  .content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .contentLeft {
+    width: 144px;
+    height: 50px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 36px;
+    text-align: left;
+    margin: 48px 0px 48px 12.5%;
+    font-family: PingFangSC-regular;
+    display: block;
+  }
+
+  .contentRight {
+    display: block;
+    width: fit-content;
+    margin: auto 12.5% auto 0;
+
+    .tip {
+      width: fit-content;
+      height: 40px;
+      color: rgba(138, 133, 133, 1);
+      font-size: 28px;
+      text-align: right;
+      font-family: PingFangSC-regular;
+    }
+  }
+}
