@@ -1,3 +1,41 @@
-.statusbar {
-  width: 100%;
+@import "../../common/style/index.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  background-color: white;
+  margin: 100rpx auto 0 auto;
+
+
+  .title{
+    @extend %TitleView
+  }
+
+  .authBox {
+    margin: 100rpx auto 0 auto;
+    @extend %InputAttachedLines;
+  }
+
+  .phoneBox {
+    margin: 100rpx auto 0 auto;
+    @extend %InputAttachedLines;
+  }
+
+  .userInfo{
+    margin: 60rpx auto 0 auto;
+    @extend %InputAttachedLines;
+  }
+
+  .sendTip {
+    margin: 60rpx auto 0 auto;
+    text-align: center;  //必要，否则Text子结点不居中
+  }
+
+  Button {
+    margin: 60rpx auto 0 auto;
+    @extend %ButtonForSign;
+  }
 }
+
