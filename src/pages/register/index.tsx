@@ -1,16 +1,27 @@
 import Taro, {Component} from '@tarojs/taro';
 import {View, Text, Input, Button} from '@tarojs/components';
-import {RegisterProp, RegisterState} from '../../interface/register';
 import './index.scss';
 
+interface RegisterState {
+  phoneNumber: string,
+  username: string,
+  firstPassword: string,
+  secondPassword: string,
+  password: string,
+  code: string,
+  step: number,
+  sendText: string,
+  allowSend: boolean,  //直接控制‘下一步’按钮状态
+  isRepeat: boolean,  //是否正在重发读秒
+  frontTip: string,  //发送提示
+}
 
-class Register extends Component<RegisterProp, RegisterState> {
-  constructor(props: RegisterProp) {
+class Register extends Component<null, RegisterState> {
+  constructor(props) {
     super(props);
 
     this.state = {
       phoneNumber: '',
-      auth: 0,
       username: '',
       firstPassword: '',
       secondPassword: '',
@@ -35,18 +46,23 @@ class Register extends Component<RegisterProp, RegisterState> {
   //检查手机号, 改变下一步按钮的状态
   checkPhoneNumber(): boolean {
     //检查手机号
-    const reg = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/
-    const ifphoneCorrect = reg.test(this.state.phoneNumber)
+    let ifphoneCorrect = false
+    if (this.state.phoneNumber.length === 11) {
+      const reg = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/
+      ifphoneCorrect = reg.test(this.state.phoneNumber)
+    }
     if (ifphoneCorrect === true && this.state.isRepeat === false) {  //确保此时不在读秒状态，否则这时更改框中号码会出现读秒状态按钮却激活的现象
       this.setState({
         allowSend: true
       })
+      return true;
     } else {
       this.setState({
         allowSend: false
       })
+      return false;
     }
-    return false;
+    
   }
   
   //用于重发读秒
@@ -59,12 +75,13 @@ class Register extends Component<RegisterProp, RegisterState> {
     if (count > 0) {
       setTimeout(() => {this.loopCount(count)}, 1000)
     } else {
-      setTimeout(() => {this.setState({
+      setTimeout(
+        () => {this.setState({
         sendText: '重新发送',
         isRepeat: false,
-      },
-      () => {this.checkPhoneNumber()}},   //读秒最后额外检查一次电话号码，来决定是否真的激活按钮
-      1000)
+        },
+        () => {this.checkPhoneNumber()})},   //读秒最后额外检查一次电话号码，来决定是否真的激活按钮
+      1000);
       
     }
   }
@@ -84,10 +101,85 @@ class Register extends Component<RegisterProp, RegisterState> {
     this.loopCount(10)  //重发读秒
     
     //API
+    Taro.request({
+      url: 'https://wghtstudio.cn/mini/user/code',
+      data: {
+        phone: this.state.phoneNumber
+      }
+    }).then(res => {
+      console.log(res)
+    })
 
     this.setState({
       step: 2
     })
+  }
+
+  checkALL(): void {
+    Taro.showLoading({
+      title: '请稍后..',
+      mask: true,
+    })
+    if (!this.checkPhoneNumber) {
+      this.setState({
+        frontTip: '手机号码格式不正确'
+      })
+      Taro.hideLoading()
+      return
+    }
+    if (this.state.code.length != 4) {
+      this.setState({
+        frontTip: '验证码格式不正确'
+      })
+      Taro.hideLoading()
+      return
+    }
+    if (this.state.username == '') {
+      this.setState({
+        frontTip: '用户名不能为空'
+      })
+      Taro.hideLoading()
+      return
+    }
+    if (this.state.firstPassword == '') {
+      this.setState({
+        frontTip: '密码不能为空'
+      })
+      Taro.hideLoading()
+      return
+    }
+    if (this.state.firstPassword != this.state.secondPassword) {
+      this.setState({
+        frontTip: '两次密码不相同'
+      })
+      Taro.hideLoading()
+      return
+    }
+    console.log('all correct')
+    Taro.request({
+      url: 'https://wghtstudio.cn/mini/user/account',
+      method: 'POST',
+      data: {
+        phone: this.state.phoneNumber,
+        code: this.state.code,
+        password: this.state.firstPassword,
+        name: this.state.username
+      }
+    }).then(res => {
+      console.log(res)
+      if (res.data.status == 'success') {
+        //登录
+
+        Taro.hideLoading()
+      } else {
+        this.setState({
+          frontTip: '验证码错误'
+        })
+        Taro.hideLoading()
+      }
+    })
+    Taro.hideLoading()
+
   }
 
 
@@ -103,7 +195,7 @@ class Register extends Component<RegisterProp, RegisterState> {
           <Input
             value={this.state.phoneNumber}
             placeholder='手机号码'
-            onInput={(e) => {
+            onInput={(e: any) => {
               this.setState({
                 phoneNumber: e.target.value
               },
@@ -122,7 +214,7 @@ class Register extends Component<RegisterProp, RegisterState> {
           <Input
             type='number'
             placeholder='验证码'
-            onInput={(e) => {
+            onInput={(e: any) => {
               this.setState({
                 code: e.target.value
               })
@@ -134,14 +226,17 @@ class Register extends Component<RegisterProp, RegisterState> {
             <Input
               value={this.state.username}
               placeholder='用户名'
-              onInput={() => {
+              onInput={(e: any) => {
+                this.setState({
+                  username: e.target.value
+                })
               }}>
             </Input>
             <Input
               value={this.state.firstPassword}
               placeholder='密码'
               password={true}
-              onInput={(e) => {
+              onInput={(e: any) => {
                 this.setState({
                   firstPassword: e.target.value
                 })
@@ -151,14 +246,17 @@ class Register extends Component<RegisterProp, RegisterState> {
               value={this.state.secondPassword}
               placeholder='再次输入密码'
               password={true}
-              onInput={(e) => {
+              onInput={(e: any) => {
                 this.setState({
                   secondPassword: e.target.value
                 })
               }}
             ></Input>
         </View>
-        <Button>确认</Button>
+        <Button
+          className='comfirmButton'
+          onClick={this.checkALL}
+        >确认</Button>
         <View>
           <Text className='tipWord'></Text>
         </View>
