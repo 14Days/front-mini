@@ -18,10 +18,7 @@ function Capsule(props: IProps) {
     });
   };
 
-  const style = {
-    top: `${getGlobalData('statusBarHeight')}8px`
-  };
-  const userName = getGlobalData('userName');
+  const userName = getGlobalData('username');
 
   let textTip: null | React.ReactElement = null;
   if (displayName) {
@@ -31,7 +28,7 @@ function Capsule(props: IProps) {
   }
 
   return (
-    <View className='capsule' style={style} onClick={handleClick}>
+    <View className='capsule' onClick={handleClick}>
       {textTip}
     </View>
   );
