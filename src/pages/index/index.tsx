@@ -8,11 +8,21 @@ import Shelvebar from './components/shelveBar';
 
 import './index.scss';
 
+//全局变量
+import { get as getGlobalData } from '../../common/globalData/global_data';
+
 export default class Index extends Component {
   config: Config = {
     navigationStyle: 'custom'
   };
-
+  componentWillMount() {
+    const token = getGlobalData('token')
+    if (token == '') {
+      Taro.redirectTo({
+        url: '../login/index'
+      })
+    }
+  }
   //样例公告
   bulletinWord = '每人每天额定700张图片，请确定是否满足额度';
 

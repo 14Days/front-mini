@@ -65,7 +65,8 @@ class App extends Component {
     Taro.getSystemInfo().then(res => {
       setGlobalData('statusBarHeight', res.statusBarHeight || 0);
       setGlobalData('id', 'NRGW54E56');
-      setGlobalData('userName', '张舜宇');
+      setGlobalData('username', '张舜宇');
+      setGlobalData('token', '');
     });
   }
 
