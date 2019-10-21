@@ -1,5 +1,6 @@
 import Taro, {Component} from '@tarojs/taro';
 import {View, Text, Input, Button} from '@tarojs/components';
+import { set as setGlobalData } from '../../common/globalData/global_data';
 import './index.scss';
 
 interface RegisterState {
@@ -167,8 +168,34 @@ class Register extends Component<null, RegisterState> {
       }
     }).then(res => {
       console.log(res)
-      if (res.data.status == 'success') {
-        //登录
+      if (res.data.status == 'success') {  //注册成功
+
+        //马上尝试登录
+        Taro.request({
+          url: 'https://wghtstudio.cn/mini/user/authorization',
+          method: 'POST',
+          data: {
+            name: this.state.username,
+            password: this.state.password,
+          }
+        }).then(res => {
+          console.log(res)
+          if (res.data.status != 'success') {
+            this.setState({
+              frontTip: res.data.err_msg
+            })
+            Taro.hideLoading()
+          } else {
+            console.log('set token: ' + res.data.data)
+            setGlobalData('token', res.data.data)
+            setGlobalData('username', this.state.username)
+            Taro.hideLoading()
+            Taro.switchTab({
+              url: '../index/index'
+            })
+          }
+        })
+        console.log('login');
 
         Taro.hideLoading()
       } else {
