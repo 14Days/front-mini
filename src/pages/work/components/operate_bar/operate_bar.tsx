@@ -3,8 +3,12 @@ import { View, Button } from '@tarojs/components'
 
 import './operate_bar.scss'
 
+interface operatebarAttr {
+  state: Array<object>,
+  img: string
+}
 
-export default class Operatebar extends Component {
+export default class Operatebar extends Component<operatebarAttr> {
 
     /**
      * 指定config的类型声明为: Taro.Config
