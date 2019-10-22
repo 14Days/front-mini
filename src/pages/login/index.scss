@@ -28,4 +28,9 @@
     font-size: 25rpx;
     margin: 30rpx auto 0 auto;
   }
+
+  .tip {
+    margin: 60rpx auto 0 auto;
+    text-align: center;  //必要，否则Text子结点不居中
+  }
 }
