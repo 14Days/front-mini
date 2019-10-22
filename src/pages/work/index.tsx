@@ -321,7 +321,7 @@ export default class Index extends Component {
   ];
 
   //真正处理的
-  arrs: Array<object>
+  arrs = this.defaultArrs
 
   //页面初始化，用于首次进入/更新
   initPage = () => {
