@@ -389,7 +389,7 @@ export default class Index extends Component {
         <Headstand />
         <Capsule number={5} displayName={false} />
 
-        <OperateBar img={this.state.img} state={state}/>
+        <OperateBar img={this.state.img} info={state}/>
 
         {state.map(ele => {
           return (

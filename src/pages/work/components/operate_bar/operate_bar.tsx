@@ -4,7 +4,7 @@ import { View, Button } from '@tarojs/components'
 import './operate_bar.scss'
 
 interface operatebarAttr {
-  state: Array<object>,
+  info: Array<any>,
   img: string
 }
 
@@ -30,13 +30,36 @@ export default class Operatebar extends Component<operatebarAttr> {
     componentDidShow () { }
   
     componentDidHide () { }
+
+    toNext = () => {
+      //集合已选label的id
+      let res = []
+      this.props.info.map(group => {
+        group.labels.map(lab => {
+          if (lab.ifChoose === true) {
+            res.push(lab.id)
+          }
+        })
+      })
+      console.log(res)
+
+      //发送
+
+      //刷新至下一页
+    }
+
+    toShelve = () => {
+      //请求
+
+      //刷新至下一页
+    }
   
     render () {
     
       return (
         <View className='header'>
           <Button className='abutton'>不确定，先搁置</Button>
-          <Button className='abutton'>确定，下一张</Button>
+          <Button className='abutton' onClick={() => this.toNext()}>确定，下一张</Button>
         </View>
       )
     }
