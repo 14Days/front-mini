@@ -5,11 +5,16 @@ import Capsule from '../../components/capsule';
 import Labelpage from './components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
-import samplePic from '../../static/images/3997/39974737/v2_pyzne4.jpg';
+import { fetchImg } from '../../services/work'
 import { get as getGlobalData } from '../../common/globalData/global_data';
 import './index.scss';
 
-export default class Index extends Component {
+interface workState {
+  imgURL: string,
+  imgID: number
+}
+
+export default class Index extends Component<null, workState> {
   config: Config = {
     navigationStyle: 'custom'
   };
@@ -17,7 +22,8 @@ export default class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      img: '',
+      imgURL: '',
+      imgID: -1,
     };
   }
 
@@ -324,37 +330,33 @@ export default class Index extends Component {
   arrs = this.defaultArrs
 
   //页面初始化，用于首次进入/更新
-  initPage = () => {
-    this.arrs = this.defaultArrs
-    const token = getGlobalData('token')
-    console.log('token:' + token)
-    Taro.request({
-      url: 'https://wghtstudio.cn/mini/img/imgs',
-      method: 'GET',
-      header: {
-        token: token
-      },
-      data: {
-        num: 1
-      }
-    }).then(res => {
+  initPage = async () => {
+    try {
+      const res = await fetchImg()
       console.log(res)
-      if (res.data.status == 'success') {
-        this.setState({
-          img: res.data.date
-        })
-      } else {
-        Taro.showToast({
-          title: '获取图片错误',
-          icon: 'warning'
-        })
-      }
+      const name = res.data.substr(30)
+      const num = parseInt(name.substring(0, name.length - 4))
+      console.log(num);
+      
+      this.setState({
+        imgURL: res.data,
+        imgID: num
+      })
+    } catch (e) {
+      Taro.showToast({
+        icon: 'none',
+        title: e.message
+      });
+    }
 
-    })
   }
+  
 
   //更改处理器
   changeDisplay = (state, action) => {
+    if (action.ifRefresh == true) {
+      return this.defaultArrs;
+    }
     let v = JSON.parse(JSON.stringify(state));
     for (let i = 0; i < v.length; i++) {
       if (v[i].pageid == action.pageid) {
@@ -370,28 +372,31 @@ export default class Index extends Component {
   };
 
   componentWillMount() {
-    const token = getGlobalData('token')
+    const token = Taro.getStorageSync('token')
+    console.log(token);
+    
     if (token == '') {
 
     } else {
+      this.arrs = this.defaultArrs
       this.initPage()
     }
   }
 
   render() {
     //useReducer管理整个标签面板
-    //arrs 在此转成 state 使用
-    const [state, dispatch] = useReducer(this.changeDisplay, this.arrs);
+    //arrs 在此转成 arrState 使用
+    const [arrState, dispatch] = useReducer(this.changeDisplay, this.arrs);
     
     return (
       <View className='doing'>
-        <Headimg url={samplePic} />
+        <Headimg url={this.state.imgURL} />
         <Headstand />
         <Capsule number={5} displayName={false} />
 
-        <OperateBar img={this.state.img} info={state}/>
+        <OperateBar toRefresh={dispatch} toInit={this.initPage} imgID={this.state.imgID} info={arrState}/>
 
-        {state.map(ele => {
+        {arrState.map(ele => {
           return (
             <Labelpage
               key={ele.pageid}
@@ -402,6 +407,7 @@ export default class Index extends Component {
             />
           );
         })}
+        {/*底部占位，让标签页拉满*/}
         <View className='takeplace' />
       </View>
     );

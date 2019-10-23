@@ -1,11 +1,13 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
-
+import { deliverLabels } from '../../../../services/work'
 import './operate_bar.scss'
 
 interface operatebarAttr {
-  info: Array<any>,
-  img: string
+  info: Array<any>,  //所有的标签信息（未统计）
+  imgID: number,
+  toInit: Function,
+  toRefresh: Function
 }
 
 export default class Operatebar extends Component<operatebarAttr> {
@@ -31,11 +33,11 @@ export default class Operatebar extends Component<operatebarAttr> {
   
     componentDidHide () { }
 
-    toNext = () => {
+    toNext = async () => {
       //集合已选label的id
-      let res = []
+      let res: Array<number> = []
       this.props.info.map(group => {
-        group.labels.map(lab => {
+        group.labels.map((lab: any)  => {
           if (lab.ifChoose === true) {
             res.push(lab.id)
           }
@@ -44,8 +46,11 @@ export default class Operatebar extends Component<operatebarAttr> {
       console.log(res)
 
       //发送
+      //await deliverLabels(this.props.imgID, res)
 
       //刷新至下一页
+      this.props.toRefresh({ifRefresh: true})
+      this.props.toInit()
     }
 
     toShelve = () => {

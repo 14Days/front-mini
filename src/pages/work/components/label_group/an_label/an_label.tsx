@@ -52,7 +52,7 @@ export default class Anlabel extends Component<label_status> {
       }
       
       return (
-        <View className='anlabel' style={styleBg} onClick={() => this.props.doing({pageid: this.props.pageid, id: this.props.idc})}>
+        <View className='anlabel' style={styleBg} onClick={() => this.props.doing({pageid: this.props.pageid, id: this.props.idc, ifRefresh: false})}>
           <Text className='name'>{this.props.name}</Text> 
           <Icon size='20' className='ic' type='success_no_circle' color='white' style={styleIc} />
         </View>
