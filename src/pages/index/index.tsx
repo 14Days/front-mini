@@ -32,7 +32,9 @@ export default class Index extends Component<{}, IState> {
   }
 
   componentWillMount() {
-    const token = getGlobalData('token');
+    const token = Taro.getStorageSync('token')
+    console.log('indextoken: ' + token);
+    
     if (token == '') {
       //未登录
       Taro.redirectTo({
