@@ -48,7 +48,7 @@ async function request<T = any>(
     const token = Taro.getStorageSync('token');
     const response: IResponse = await Taro.request({
       url: url,
-      header: token ? { ...header, authorization: token } : { ...header },
+      header: token ? { ...header, token: token } : { ...header },
       method: method,
       data: data
     });
