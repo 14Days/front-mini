@@ -1,17 +1,5 @@
 import Taro from '@tarojs/taro';
-
-interface IResponse {
-  statusCode: number;
-  header: object;
-  data: string | object | ArrayBuffer;
-  errMsg?: string;
-}
-
-interface IData {
-  status: 'success' | 'error';
-  data?: any;
-  err_msg?: string;
-}
+import { IResponse, IData } from '../types/request';
 
 /**
  * 网络请求状态检验
@@ -32,8 +20,7 @@ function checkStatusCode(response: IResponse): IResponse {
  * 服务器返回数据检验
  * @param response
  */
-function chaeckStatus(response: IResponse): IData {
-  const data: IData = response.data as IData;
+function chaeckStatus<T = any>(data: IData<T>): IData<T> {
   if (data.status === 'success') {
     return data;
   }
@@ -51,12 +38,12 @@ function chaeckStatus(response: IResponse): IData {
  * @param data
  * @param header
  */
-async function request(
+async function request<T = any>(
   url: string,
   method: 'GET' | 'POST',
   data: object = {},
   header: object = {}
-): Promise<IData> {
+): Promise<IData<T>> {
   try {
     const token = Taro.getStorageSync('token');
     const response: IResponse = await Taro.request({
@@ -66,7 +53,8 @@ async function request(
       data: data
     });
     checkStatusCode(response);
-    return chaeckStatus(response);
+    const result = response.data as IData<T>;
+    return chaeckStatus(result);
   } catch (e) {
     Taro.showToast({
       title: e.message,
@@ -84,12 +72,12 @@ export default {
    * @param data
    * @param header
    */
-  async get(
+  async get<T = any>(
     url: string,
     data: object = {},
     header: object = {}
-  ): Promise<IData> {
-    return await request(url, 'GET', data, header);
+  ): Promise<IData<T>> {
+    return await request<T>(url, 'GET', data, header);
   },
   /**
    * POST请求封装
@@ -97,11 +85,11 @@ export default {
    * @param data
    * @param header
    */
-  async post(
+  async post<T = any>(
     url: string,
     data: object = {},
     header: object = {}
-  ): Promise<IData> {
-    return await request(url, 'POST', data, header);
+  ): Promise<IData<T>> {
+    return await request<T>(url, 'POST', data, header);
   }
 };

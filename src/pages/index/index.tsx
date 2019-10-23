@@ -1,4 +1,4 @@
-import Taro, { PureComponent, Config } from '@tarojs/taro';
+import Taro, { Component, Config } from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import Capsule from '../../components/capsule';
 import Headswiper from './components/head_swiper';
@@ -16,7 +16,7 @@ interface IState {
   cyclePhoto: Array<string>;
 }
 
-export default class Index extends PureComponent<{}, IState> {
+export default class Index extends Component<{}, IState> {
   config: Config = {
     navigationStyle: 'custom'
   };
