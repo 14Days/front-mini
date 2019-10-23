@@ -1,4 +1,4 @@
-import Taro, { Component, Config } from '@tarojs/taro';
+import Taro, { PureComponent, Config } from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import Capsule from '../../components/capsule';
 import Headswiper from './components/head_swiper';
@@ -9,14 +9,14 @@ import Shelvebar from './components/shelveBar';
 import { get as getGlobalData } from '../../common/globalData/global_data';
 import './index.scss';
 
-interface IndexState {
+interface IState {
   bulletinWord: string;
   dayNumber: number;
   weekNumber: number;
   cyclePhoto: Array<string>;
 }
 
-export default class Index extends Component<IndexState> {
+export default class Index extends PureComponent<{}, IState> {
   config: Config = {
     navigationStyle: 'custom'
   };
