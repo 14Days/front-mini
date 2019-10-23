@@ -1,37 +1,48 @@
-import { useReducer } from '@tarojs/taro';
+import Taro from '@tarojs/taro';
+import { fetchLogin } from '../../services/login';
 
-type IState = {
-  username: string;
-  password: string;
-};
-
-type IAction = {
-  type: 'handlerUsername' | 'handlerPassword';
-  payload: string;
-};
-
-const initialState: IState = {
-  username: '',
-  password: ''
-};
-
-function reducer(state: IState, action: IAction): IState {
-  switch (action.type) {
-    case 'handlerUsername':
+export default {
+  namespace: 'login',
+  state: {
+    username: '',
+    password: ''
+  },
+  reducers: {
+    save(state, { payload: data }) {
       return {
         ...state,
-        username: action.payload
+        ...data
       };
-    case 'handlerPassword':
-      return {
-        ...state,
-        password: action.payload
-      };
+    }
+  },
+  effects: {
+    *handlerLogin(_, { select, call }) {
+      const { username, password } = yield select(state => state.login);
+      if (username === '' || password === '') {
+        Taro.showToast({
+          icon: 'none',
+          title: '请检查必填项'
+        });
+        return;
+      }
+      try {
+        Taro.showLoading({
+          title: '加载中...',
+          mask: true
+        });
+        const res = yield call(fetchLogin, username, password);
+        Taro.hideLoading();
+        Taro.setStorageSync('token', res.data);
+        Taro.reLaunch({
+          url: '/pages/index/index'
+        });
+      } catch (e) {
+        Taro.hideLoading();
+        Taro.showToast({
+          icon: 'none',
+          title: e.message
+        });
+      }
+    }
   }
-}
-
-export function useLoginState() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return { state, dispatch };
-}
+};

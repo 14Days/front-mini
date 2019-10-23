@@ -18,7 +18,7 @@
     @extend %InputAttachedLines;
   }
 
-  button {
+  .submit {
     margin: 60rpx auto 0 auto;
     @extend %ButtonForSign;
   }

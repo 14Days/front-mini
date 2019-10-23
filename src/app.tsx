@@ -1,16 +1,24 @@
 import Taro, { Component, Config } from '@tarojs/taro';
+import { Provider } from '@tarojs/redux';
 import '@tarojs/async-await';
+import dva from './utils/dva';
+import models from './models';
 import Index from './pages/index';
+
 import './app.scss';
-//全局变量
-import { set as setGlobalData } from './common/globalData/global_data';
-import { UserProvider } from './store';
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
 //   require('nerv-devtools')
 // }
+
+const dvaApp = dva.createApp({
+  initialState: {},
+  models: models
+});
+
+const store = dvaApp.getStore();
 
 class App extends Component {
   /**
@@ -63,22 +71,13 @@ class App extends Component {
     }
   };
 
-  componentWillMount() {
-    Taro.getSystemInfo().then(res => {
-      setGlobalData('statusBarHeight', res.statusBarHeight || 0);
-      setGlobalData('id', 'NRGW54E56');
-      setGlobalData('username', '张舜宇');
-      setGlobalData('token', '');
-    });
-  }
-
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render() {
     return (
-      <UserProvider>
+      <Provider store={store}>
         <Index />
-      </UserProvider>
+      </Provider>
     );
   }
 }
