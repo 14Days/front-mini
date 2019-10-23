@@ -12,7 +12,7 @@ export default class head extends Component<head_img_info> {
     render () {
       return (
         <View>
-          <Image src={this.props.url} mode='aspectFill' className='header' />
+          <Image src={'http://pull.wghtstudio.cn/img/' + this.props.url} mode='aspectFill' className='header' />
         </View>
       )
     }

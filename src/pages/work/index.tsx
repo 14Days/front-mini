@@ -334,12 +334,18 @@ export default class Index extends Component<null, workState> {
     try {
       const res = await fetchImg()
       console.log(res)
-      const name = res.data.substr(30)
-      const num = parseInt(name.substring(0, name.length - 4))
-      console.log(num);
+      const name = res.data
+      console.log(name);
+      
+      let num;
+      let url;
+      for (let key in name) {
+        num = key;
+        url = name[key]
+      }
       
       this.setState({
-        imgURL: res.data,
+        imgURL: url,
         imgID: num
       })
     } catch (e) {
