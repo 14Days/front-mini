@@ -6,7 +6,7 @@
   flex-direction: column;
   align-content: center;
   background-color: white;
-  margin: 100rpx auto 0 auto;
+  margin: 50rpx auto 0 auto;
 
 
   .title{
@@ -19,7 +19,7 @@
   }
 
   .phoneBox {
-    margin: 100rpx auto 0 auto;
+    margin: 80rpx auto 0 auto;
     @extend %InputAttachedLines;
   }
 

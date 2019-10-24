@@ -23,15 +23,19 @@ class Register extends Component<RegisterProp, RegisterState> {
       frontTip: '',  //发送提示
     };
 
-    this.onUseeChange = this.onUseeChange.bind(this);
+    this.confirm = this.confirm.bind(this);
   }
 
   config = {};
 
-  onUseeChange(e: Event): void {
-    console.log(e);
-  }
 
+  confirm():void {
+    //检查是否填写验证码
+    if(this.state.code === ''){
+
+    }
+
+  }
   //检查手机号, 改变下一步按钮的状态
   checkPhoneNumber(): boolean {
     //检查手机号
@@ -53,7 +57,7 @@ class Register extends Component<RegisterProp, RegisterState> {
   loopCount(count:number): void {
     this.setState({
       sendText: count + '秒后重发'
-    })
+    });
 
     count -= 1
     if (count > 0) {
@@ -75,13 +79,13 @@ class Register extends Component<RegisterProp, RegisterState> {
     //界面逻辑
     this.setState({
       frontTip: '已发送验证码到' + this.state.phoneNumber
-    })
+    });
 
     this.setState({
       allowSend: false,  //失活按钮
       isRepeat: true,  //进入读秒状态
-    })
-    this.loopCount(10)  //重发读秒
+    });
+    this.loopCount(10);  //重发读秒
     
     //API
 
@@ -158,7 +162,9 @@ class Register extends Component<RegisterProp, RegisterState> {
               }}
             ></Input>
         </View>
-        <Button>确认</Button>
+        <Button
+          onClick={this.confirm}
+        >确认</Button>
         <View>
           <Text className='tipWord'></Text>
         </View>
@@ -178,6 +184,7 @@ class Register extends Component<RegisterProp, RegisterState> {
         </View>
       </View>
     );
+
     return (
       <View className='container'>
         {StepOne}
