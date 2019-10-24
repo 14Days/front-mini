@@ -1,6 +1,6 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
-import { deliverLabels } from '../../../../services/work'
+import { deliverLabels, shelveImg } from '../../../../services/work'
 import './operate_bar.scss'
 
 interface operatebarAttr {
@@ -46,24 +46,36 @@ export default class Operatebar extends Component<operatebarAttr> {
       console.log(res)
 
       //发送
-      //await deliverLabels(this.props.imgID, res)
-
+      const r = await deliverLabels(this.props.imgID, res)
+      console.log(r);
+      
       //刷新至下一页
       this.props.toRefresh({ifRefresh: true})
       this.props.toInit()
     }
 
-    toShelve = () => {
-      //请求
-
-      //刷新至下一页
+    toShelve = async () => {
+      Taro.showModal({
+        content: '确认搁置这张图片？',
+        title: '警告'
+      }).then(async (res) => {
+        if (res.confirm == true) {
+          //请求
+          const r = await shelveImg(this.props.imgID)
+          console.log(r);
+          
+          //刷新至下一页
+          this.props.toRefresh({ifRefresh: true})
+          this.props.toInit()
+        }
+      })
     }
   
     render () {
     
       return (
         <View className='header'>
-          <Button className='abutton'>不确定，先搁置</Button>
+          <Button className='abutton' onClick={() => this.toShelve()}>不确定，先搁置</Button>
           <Button className='abutton' onClick={() => this.toNext()}>确定，下一张</Button>
         </View>
       )
