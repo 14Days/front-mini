@@ -27,7 +27,7 @@ let Login = (() => {
       Taro.setStorageSync('token', res.data);
       changeLoading(false);
       Taro.switchTab({
-        url: '/pages/index/index'
+        url: '../index/index'
       });
     } catch (e) {
       changeLoading(false);
