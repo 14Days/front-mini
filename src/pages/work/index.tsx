@@ -2,7 +2,7 @@ import Taro, { Component, Config, useReducer } from '@tarojs/taro';
 import { View } from '@tarojs/components';
 import Headimg from './components/head_img/head_img';
 import Capsule from '../../components/capsule';
-import Labelpage from './components/label_group/label_group';
+import Labelpage from '../../components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
 import samplePic from '../../static/images/3997/39974737/v2_pyzne4.jpg';
