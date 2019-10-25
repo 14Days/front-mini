@@ -1,7 +1,8 @@
 import Taro, {Component} from '@tarojs/taro';
 import {View, Text, Input, Button} from '@tarojs/components';
-import { set as setGlobalData } from '../../common/globalData/global_data';
-import {getCodeURL} from "../../utils/url";
+import {set as setGlobalData} from '../../common/globalData/global_data';
+import {getCodeURL, registerURL, loginURL} from "../../utils/url";
+import request from '../../utils/request';
 
 import './index.scss';
 
@@ -39,7 +40,6 @@ class Register extends Component<{}, IRegisterState> {
   }
 
 
-
   //检查手机号, 改变下一步按钮的状态
   checkPhoneNumber(): boolean {
     //检查手机号
@@ -75,19 +75,22 @@ class Register extends Component<{}, IRegisterState> {
       }, 1000)
     } else {
       setTimeout(
-        () => {this.setState({
-        sendText: '重新发送',
-        isRepeat: false,
-        },
-        () => {this.checkPhoneNumber()})},   //读秒最后额外检查一次电话号码，来决定是否真的激活按钮
-      1000);
+        () => {
+          this.setState({
+              sendText: '重新发送',
+              isRepeat: false,
+            },
+            () => {
+              this.checkPhoneNumber()
+            })
+        },   //读秒最后额外检查一次电话号码，来决定是否真的激活按钮
+        1000);
 
     }
   }
 
   //点击下一步/重发按钮，请求发送短信并追加显示下一段表单
   sendCode(): void {
-
     //界面逻辑
     this.setState({
       frontTip: '已发送验证码到' + this.state.phoneNumber
@@ -116,7 +119,7 @@ class Register extends Component<{}, IRegisterState> {
     })
   }
 
-  checkALL(): void {
+  checkALL(): boolean {
     Taro.showLoading({
       title: '请稍后..',
       mask: true,
@@ -126,91 +129,61 @@ class Register extends Component<{}, IRegisterState> {
         frontTip: '手机号码格式不正确'
       });
       Taro.hideLoading();
-      return
+      return false;
     }
-    if (this.state.code.length != 4) {
+    if (this.state.code.length !== 4) {
       this.setState({
         frontTip: '验证码格式不正确'
       });
       Taro.hideLoading();
-      return
+      return false;
     }
-    if (this.state.username == '') {
+    if (this.state.username === '') {
       this.setState({
         frontTip: '用户名不能为空'
       });
       Taro.hideLoading();
-      return
+      return false;
     }
-    if (this.state.firstPassword == '') {
+    if (this.state.firstPassword === '') {
       this.setState({
         frontTip: '密码不能为空'
       });
       Taro.hideLoading();
-      return
+      return false;
     }
     if (this.state.firstPassword !== this.state.secondPassword) {
       this.setState({
         frontTip: '两次密码不相同'
       });
       Taro.hideLoading();
-      return
+      return false;
     }
-    console.log('all correct');
-    Taro.request({
-      url: 'https://wghtstudio.cn/mini/user/account',
-      method: 'POST',
-      data: {
-        phone: this.state.phoneNumber,
-        code: this.state.code,
-        password: this.state.firstPassword,
-        name: this.state.username
-      }
-    }).then(res => {
-      console.log(res);
-      if (res.data.status == 'success') {  //注册成功
 
-        //马上尝试登录
-        Taro.request({
-          url: 'https://wghtstudio.cn/mini/user/authorization',
-          method: 'POST',
-          data: {
-            name: this.state.username,
-            password: this.state.password,
-          }
-        }).then(res => {
-          console.log(res);
-          if (res.data.status != 'success') {
-            this.setState({
-              frontTip: res.data.err_msg
-            });
-            Taro.hideLoading()
-          } else {
-            console.log('set token: ' + res.data.data);
-            setGlobalData('token', res.data.data);
-            setGlobalData('username', this.state.username);
-            Taro.hideLoading();
-            Taro.switchTab({
-              url: '../index/index'
-            })
-          }
-        });
-        console.log('login');
-
-        Taro.hideLoading()
-      } else {
-        this.setState({
-          frontTip: '验证码错误'
-        });
-        Taro.hideLoading()
-      }
-    });
-    Taro.hideLoading()
+    Taro.hideLoading();
+    return true
   }
 
+  // 信息格式✅, 提交至服务器
+  commitInfo(): void {
+    if (this.checkALL()) {
+      const {phoneNumber: phone, password, code, username: name} = this.state;
+      const regData = {phone, password, code, name};
+      request.get(registerURL, regData)
+        .then(() => {
+            //注册成功, 直接登录
+            const loginData = {name, password};
+            request.post(loginURL, loginData)
+              .then(() => {
+                // 登陆成功👌, 进入 Tab 页
+                Taro.switchTab({url:"../index/index"})
+              })
+          }
+        )
+    }
+  }
 
   render() {
-
     //只显示手机号码输入框
     const StepOne: JSX.Element = (
       <View>
@@ -221,7 +194,7 @@ class Register extends Component<{}, IRegisterState> {
           <Input
             value={this.state.phoneNumber}
             placeholder='手机号码'
-            onInput={(e:any) => {
+            onInput={(e: any) => {
               this.setState({
                   phoneNumber: e.target.value
                 },
@@ -240,7 +213,7 @@ class Register extends Component<{}, IRegisterState> {
           <Input
             type='number'
             placeholder='验证码'
-            onInput={(e:any) => {
+            onInput={(e: any) => {
               this.setState({
                 code: e.target.value
               })
@@ -249,41 +222,41 @@ class Register extends Component<{}, IRegisterState> {
           </Input>
         </View>
         <View className='userInfo'>
-            <Input
-              value={this.state.username}
-              placeholder='用户名'
-              onInput={(e: any) => {
-                this.setState({
-                  username: e.target.value
-                })
-              }}>
-            </Input>
-            <Input
-              value={this.state.firstPassword}
-              placeholder='密码'
-              password={true}
-              onInput={(e: any) => {
-                this.setState({
-                  firstPassword: e.target.value
-                })
-              }}
-            >
-            </Input>
-            <Input
-              value={this.state.secondPassword}
-              placeholder='再次输入密码'
-              password={true}
-              onInput={(e: any) => {
-                this.setState({
-                  secondPassword: e.target.value
-                })
-              }}
-            >
-            </Input>
+          <Input
+            value={this.state.username}
+            placeholder='用户名'
+            onInput={(e: any) => {
+              this.setState({
+                username: e.target.value
+              })
+            }}>
+          </Input>
+          <Input
+            value={this.state.firstPassword}
+            placeholder='密码'
+            password={true}
+            onInput={(e: any) => {
+              this.setState({
+                firstPassword: e.target.value
+              })
+            }}
+          >
+          </Input>
+          <Input
+            value={this.state.secondPassword}
+            placeholder='再次输入密码'
+            password={true}
+            onInput={(e: any) => {
+              this.setState({
+                secondPassword: e.target.value
+              })
+            }}
+          >
+          </Input>
         </View>
         <Button
           className='comfirmButton'
-          onClick={this.checkALL}
+          onClick={this.commitInfo}
         >确认</Button>
         <View>
           <Text className='tipWord'>
