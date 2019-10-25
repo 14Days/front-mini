@@ -6,12 +6,12 @@ import Labelpage from './components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
 import { fetchImg } from '../../services/work'
-import { get as getGlobalData } from '../../common/globalData/global_data';
 import './index.scss';
 
 interface workState {
   imgURL: string,
-  imgID: number
+  imgID: number,
+  dayNumber: number
 }
 
 export default class Index extends Component<null, workState> {
@@ -24,6 +24,7 @@ export default class Index extends Component<null, workState> {
     this.state = {
       imgURL: '',
       imgID: -1,
+      dayNumber: 0
     };
   }
 
@@ -352,6 +353,26 @@ export default class Index extends Component<null, workState> {
       });
     }
 
+    //后期更改
+    const token = Taro.getStorageSync('token');
+    await Taro.request({
+      url: 'https://wghtstudio.cn/mini/record/count',
+      method: 'GET',
+      header: {
+        token: token
+      }
+    }).then(res => {
+      if (res.data.status == 'success') {
+        this.setState({
+          dayNumber: res.data.data.day,
+        });
+      } else {
+        Taro.showToast({
+          title: '获取统计错误',
+          icon: 'warning'
+        });
+      }
+    });
   }
   
 
@@ -395,7 +416,7 @@ export default class Index extends Component<null, workState> {
       <View className='doing'>
         <Headimg url={this.state.imgURL} />
         <Headstand />
-        <Capsule number={5} displayName={false} />
+        <Capsule number={this.state.dayNumber} displayName={false} />
 
         <OperateBar toRefresh={dispatch} toInit={this.initPage} imgID={this.state.imgID} info={arrState}/>
 
