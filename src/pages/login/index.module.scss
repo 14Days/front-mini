@@ -1,8 +1,7 @@
-@import "../../common/style/index.scss";
-@import "../../common/style/color.scss";
+@import '../../static/style/index.scss';
+@import '../../static/style/color.scss';
 
 .container {
-
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -10,7 +9,7 @@
   background-color: white;
   margin: 100rpx auto 0 auto;
 
-  .title{
+  .title {
     @extend %TitleView;
   }
 
@@ -19,13 +18,18 @@
     @extend %InputAttachedLines;
   }
 
-  Button {
+  .submit {
     margin: 60rpx auto 0 auto;
     @extend %ButtonForSign;
   }
 
-  .register{
+  .register {
     font-size: 25rpx;
     margin: 30rpx auto 0 auto;
+  }
+
+  .tip {
+    margin: 60rpx auto 0 auto;
+    text-align: center; //必要，否则Text子结点不居中
   }
 }

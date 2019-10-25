@@ -1,80 +1,70 @@
-import Taro, { Component, Config } from '@tarojs/taro';
-import { View, Text, Input, Button } from '@tarojs/components';
-import './index.scss';
+import Taro, {useEffect} from '@tarojs/taro';
+import {View, Text, Input, Button} from '@tarojs/components';
+import {CommonEvent} from '@tarojs/components/types/common';
+import {useSelector, useDispatch} from '@tarojs/redux';
+import {IFunctionConfig} from '../../types/fcomponent';
 
-interface LoginState {
-  username: string;
-  password: string;
-}
+import style from './index.module.scss';
 
-class Login extends Component<null, LoginState> {
-  config: Config = {
-    backgroundColor: '#eeeeee',
-    backgroundTextStyle: 'dark',
-    navigationBarTitleText: '家居设计小程序'
-  };
+let Login = (() => {
+  const {username, password} = useSelector((state: any) => state.login);
+  const dispatch = useDispatch();
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: ''
-    };
-  }
-
-  onClickRegister(): void {
-    //API
-    console.log('register');
-  }
-
-  onClickLogin(): void {
-    //API
-    console.log('login');
-  }
-
-  render(): JSX.Element {
-    return (
-      <View className='container'>
-        {/*标题*/}
-        <View className='title'>
-          <Text className='titleText'>用户登陆</Text>
-        </View>
-
-        {/*登陆框*/}
-        <View className='InputAttachedLines'>
-          <Input
-            className='User'
-            value={this.state.username}
-            placeholder='请输入用户名'
-            onInput={(e: any) => {
-              this.setState({
-                username: e.target.value
-              });
-            }}
-          ></Input>
-          <Input
-            className='Pwd'
-            value={this.state.password}
-            placeholder='请输入密码'
-            password={true}
-            onInput={(e: any) => {
-              this.setState({
-                password: e.target.value
-              });
-            }}
-          ></Input>
-        </View>
-
-        {/*登陆按钮*/}
-        <Button onClick={this.onClickLogin}>登陆</Button>
-
-        {/*注册入口*/}
-        <View className='register' onClick={this.onClickRegister}>
-          <Text>>> 还没注册? 点这里 >></Text>
-        </View>
+  return (
+    <View className={style.container}>
+      {/*标题*/}
+      <View className={style.title}>
+        <Text>用户登陆</Text>
       </View>
-    );
-  }
-}
+
+      {/*登陆框*/}
+      <View className={style.InputAttachedLines}>
+        <Input
+          value={username}
+          placeholder='请输入用户名'
+          onInput={(e: CommonEvent) => {
+            dispatch({
+              type: 'login/save',
+              payload: {username: e.detail.value}
+            })}
+          }
+        />
+        <Input
+          value={password}
+          placeholder='请输入密码'
+          password={true}
+          onInput={(e: CommonEvent) => {
+            dispatch({
+              type: 'login/save',
+              payload: {password: e.detail.value}
+            })}
+          }
+        />
+      </View>
+
+      {/*登陆按钮*/}
+      <Button
+        onClick={() => dispatch({type: 'login/handlerLogin'})}
+        className={style.submit}
+      >
+        登陆
+      </Button>
+
+      {/*注册入口*/}
+      <View
+        className={style.register}
+        onClick={() => Taro.navigateTo({url: 'pages/register/index'})}
+      >
+        <Text>>> 还没注册? 点这里 >></Text>
+      </View>
+    </View>
+  );
+}) as IFunctionConfig;
+
+Login.config = {
+  backgroundColor: '#eeeeee',
+  backgroundTextStyle: 'dark',
+  navigationBarTitleText: '家居设计'
+};
 
 export default Login;

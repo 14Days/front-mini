@@ -1,4 +1,3 @@
-import React from 'react';
 import Taro from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import { get as getGlobalData } from '../../common/globalData/global_data';
@@ -18,10 +17,7 @@ function Capsule(props: IProps) {
     });
   };
 
-  const style = {
-    top: `${getGlobalData('statusBarHeight')}8px`
-  };
-  const userName = getGlobalData('userName');
+  const userName = getGlobalData('username');
 
   let textTip: null | React.ReactElement = null;
   if (displayName) {
@@ -31,7 +27,7 @@ function Capsule(props: IProps) {
   }
 
   return (
-    <View className='capsule' style={style} onClick={handleClick}>
+    <View className='capsule' onClick={handleClick}>
       {textTip}
     </View>
   );
