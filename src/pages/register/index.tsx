@@ -284,7 +284,8 @@ class Register extends Component<{}, IRegisterState> {
           onClick={this.checkALL}
         >确认</Button>
         <View>
-          <Text className='tipWord'></Text>
+          <Text className='tipWord'>
+          </Text>
         </View>
       </View>
     );
