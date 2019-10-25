@@ -29,6 +29,14 @@
 
 https://github.com/14Days/back_mini
 
+### Mock
+
+fast-mock
+
+根地址`https://www.fastmock.site/mock/06aee04415ba130a12bc60a55a6a2585/lucky`
+
+
+
 ## 目录结构描述
 
 			.

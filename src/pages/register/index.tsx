@@ -1,6 +1,8 @@
 import Taro, {Component} from '@tarojs/taro';
 import {View, Text, Input, Button} from '@tarojs/components';
 import { set as setGlobalData } from '../../common/globalData/global_data';
+import {getCodeURL} from "../../utils/url";
+
 import './index.scss';
 
 interface IRegisterState {
@@ -101,7 +103,7 @@ class Register extends Component<{}, IRegisterState> {
 
     //API
     Taro.request({
-      url: 'https://wghtstudio.cn/mini/user/code',
+      url: getCodeURL,
       data: {
         phone: this.state.phoneNumber
       }
