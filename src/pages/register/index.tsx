@@ -1,5 +1,7 @@
 import Taro, {Component} from '@tarojs/taro';
 import {View, Text, Input, Button} from '@tarojs/components';
+import request from '../../utils/request';
+
 import './index.scss';
 
 interface IRegisterState {
@@ -13,6 +15,7 @@ interface IRegisterState {
   allowSend: boolean,  //直接控制‘下一步’按钮状态, 输入手机号格式正确时
   isRepeat: boolean,  //是否正在重发读秒
   frontTip: string, //文字提示
+
 }
 
 class Register extends Component<{}, IRegisterState> {
@@ -86,7 +89,7 @@ class Register extends Component<{}, IRegisterState> {
   }
 
   //点击下一步/重发按钮，请求发送短信并追加显示下一段表单
-  checkCode(): void {
+  sendCode(): void {
 
     //界面逻辑
     this.setState({
@@ -97,7 +100,9 @@ class Register extends Component<{}, IRegisterState> {
       allowSend: false,  //失活按钮
       isRepeat: true,  //进入读秒状态
     });
+    // const res = request.get();
     this.loopCount(10);  //重发读秒
+
 
     //API
 
@@ -187,7 +192,7 @@ class Register extends Component<{}, IRegisterState> {
       <View>
         <Button
           className='sendButton'
-          onClick={this.checkCode}
+          onClick={this.sendCode}
           disabled={!this.state.allowSend}
         >{this.state.sendText}</Button>
         {/*发送提示*/}
