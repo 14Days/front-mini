@@ -27,6 +27,8 @@
 
 见项目back-mini.
 
+https://github.com/14Days/back_mini
+
 ## 目录结构描述
 
 			.

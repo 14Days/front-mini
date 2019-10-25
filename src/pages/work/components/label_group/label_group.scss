@@ -1,24 +1,18 @@
-.labelpage {
-    display: block;
-}
+@import "../../../../static/style/color";
 
-.title {
-    height: 40rpx;
-    color: rgba(16, 16, 16, 1);
-    font-size: 28rpx;
-    text-align: left;
-    font-family: PingFangSC-regular;
-    display: block;
-    margin: 20rpx auto 1% 10%;
-    display: block;
-    
+.labelpage {
+  margin: 40rpx auto 0 auto;
+  text-align: center;
+
+  .title{
+    color: $TITLE;
+    font-size: 40rpx;
+  }
 }
 
 .labels {
-    width: 80%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: 0rpx auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 

@@ -16,11 +16,13 @@
     width: $input_width - 2 * $remain_white;
     padding: 0 $remain_white;
     border-bottom: 2rpx solid $BORDER;
+
+    &:last-child {
+      border-bottom: 0;
+    }
   }
 
-  input:last-child {
-    border-bottom: 0;
-  }
+
 }
 
 
@@ -28,6 +30,8 @@
 %ButtonForSign {
   width: 500rpx;
   height: 80rpx;
+  font-size: 30rpx;
+  color: $TITLE;
 }
 
 

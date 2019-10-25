@@ -321,13 +321,13 @@ export default class Index extends Component {
   ];
 
   //真正处理的
-  arrs = this.defaultArrs
+  arrs = this.defaultArrs;
 
   //页面初始化，用于首次进入/更新
   initPage = () => {
-    this.arrs = this.defaultArrs
-    const token = getGlobalData('token')
-    console.log('token:' + token)
+    this.arrs = this.defaultArrs;
+    const token = getGlobalData('token');
+    console.log('token:' + token);
     Taro.request({
       url: 'https://wghtstudio.cn/mini/img/imgs',
       method: 'GET',
@@ -338,7 +338,7 @@ export default class Index extends Component {
         num: 1
       }
     }).then(res => {
-      console.log(res)
+      console.log(res);
       if (res.data.status == 'success') {
         this.setState({
           img: res.data.date
@@ -351,7 +351,7 @@ export default class Index extends Component {
       }
 
     })
-  }
+  };
 
   //更改处理器
   changeDisplay = (state, action) => {

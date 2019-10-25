@@ -1,4 +1,4 @@
-import Taro, {useEffect} from '@tarojs/taro';
+import Taro from '@tarojs/taro';
 import {View, Text, Input, Button} from '@tarojs/components';
 import {CommonEvent} from '@tarojs/components/types/common';
 import {useSelector, useDispatch} from '@tarojs/redux';
@@ -53,7 +53,7 @@ let Login = (() => {
       {/*注册入口*/}
       <View
         className={style.register}
-        onClick={() => Taro.navigateTo({url: 'pages/register/index'})}
+        onClick={() => Taro.navigateTo({url: '../register/index'})}
       >
         <Text>>> 还没注册? 点这里 >></Text>
       </View>
