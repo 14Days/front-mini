@@ -24,10 +24,11 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/work/index',
-      'pages/marklabel/index',
+      'pages/anylabels/index',
       'pages/info/index',
       'pages/login/index',
-      'pages/register/index'
+      'pages/register/index',
+      'pages/shelve/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -54,7 +55,7 @@ class App extends Component {
           selectedIconPath: 'static/icon/sousuo.png'
         },
         {
-          pagePath: 'pages/marklabel/index',
+          pagePath: 'pages/anylabels/index',
           text: '标签',
           iconPath: 'static/icon/ubianji.png',
           selectedIconPath: 'static/icon/bianji.png'
