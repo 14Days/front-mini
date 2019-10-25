@@ -5,6 +5,7 @@ import Headswiper from './components/head_swiper';
 import Statistics from './components/statistics';
 import Bulletin from './components/bulletin';
 import Shelvebar from './components/shelveBar';
+import { shelve } from '../../services/index'
 //全局变量
 import { get as getGlobalData } from '../../common/globalData/global_data';
 import './index.scss';
@@ -14,6 +15,7 @@ interface IState {
   dayNumber: number;
   weekNumber: number;
   cyclePhoto: Array<string>;
+  shelveNumber: number;
 }
 
 export default class Index extends Component<{}, IState> {
@@ -27,11 +29,12 @@ export default class Index extends Component<{}, IState> {
       bulletinWord: '',
       dayNumber: 0,
       weekNumber: 0,
-      cyclePhoto: []
+      cyclePhoto: [],
+      shelveNumber: 0
     };
   }
 
-  componentWillMount() {
+  componentDidShow() {
     const token = Taro.getStorageSync('token')
     console.log('indextoken: ' + token);
     
@@ -72,11 +75,10 @@ export default class Index extends Component<{}, IState> {
           token: token
         }
       }).then(res => {
-        console.log(res);
         if (res.data.status == 'success') {
           this.setState({
-            dayNumber: res.data.day,
-            weekNumber: res.data.week
+            dayNumber: res.data.data.day,
+            weekNumber: res.data.data.week
           });
         } else {
           Taro.showToast({
@@ -106,7 +108,19 @@ export default class Index extends Component<{}, IState> {
           });
         }
       });
+      this.askforShelve()
     }
+  }
+
+  askforShelve = async () => {
+    //搁置表
+    const res = await shelve()
+    console.log('res');
+    console.log(res.data.length);
+    const data = res.data.length;
+    this.setState({
+      shelveNumber: data
+    });
   }
   //样例公告
   // bulletinWord = '每人每天额定700张图片，请确定是否满足额度';
@@ -121,7 +135,7 @@ export default class Index extends Component<{}, IState> {
         </View>
         <Statistics week={this.state.weekNumber} day={this.state.dayNumber} />
         <Bulletin content={this.state.bulletinWord} />
-        <Shelvebar />
+        <Shelvebar num={this.state.shelveNumber} />
       </View>
     );
   }
