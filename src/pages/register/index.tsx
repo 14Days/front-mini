@@ -1,24 +1,32 @@
 import Taro, {Component} from '@tarojs/taro';
 import {View, Text, Input, Button} from '@tarojs/components';
-import {RegisterProp, RegisterState} from '../../interface/register';
 import './index.scss';
 
+interface IRegisterState {
+  username: string,  //用户名
+  phoneNumber: string,  //手机号
+  firstPassword: string,  //密码
+  secondPassword: string, //确认密码
+  step: number,  //注册步骤
+  code: string,  //验证码
+  sendText: string  //按钮文字
+  allowSend: boolean,  //直接控制‘下一步’按钮状态, 输入手机号格式正确时
+  isRepeat: boolean,  //是否正在重发读秒
+  frontTip: string, //文字提示
+}
 
-class Register extends Component<RegisterProp, RegisterState> {
-  constructor(props: RegisterProp) {
+class Register extends Component<{}, IRegisterState> {
+  constructor(props) {
     super(props);
-
     this.state = {
       phoneNumber: '',
-      auth: 0,
       username: '',
       firstPassword: '',
       secondPassword: '',
-      password: '',
       code: '',
       step: 1,
-      sendText:'下一步',
-      allowSend: false,  //直接控制‘下一步’按钮状态
+      sendText: '下一步',
+      allowSend: false,  //直接控制‘下一步’按钮状态, 输入手机号格式正确时
       isRepeat: false,  //是否正在重发读秒
       frontTip: '',  //发送提示
     };
@@ -26,22 +34,21 @@ class Register extends Component<RegisterProp, RegisterState> {
     this.confirm = this.confirm.bind(this);
   }
 
-  config = {};
 
-
-  confirm():void {
+  confirm(): void {
     //检查是否填写验证码
-    if(this.state.code === ''){
+    if (this.state.code === '') {
 
     }
 
   }
+
   //检查手机号, 改变下一步按钮的状态
   checkPhoneNumber(): boolean {
     //检查手机号
-    const reg = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/
-    const ifphoneCorrect = reg.test(this.state.phoneNumber)
-    if (ifphoneCorrect === true && this.state.isRepeat === false) {  //确保此时不在读秒状态，否则这时更改框中号码会出现读秒状态按钮却激活的现象
+    const reg = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/;
+    const ifphoneCorrect = reg.test(this.state.phoneNumber);
+    if (ifphoneCorrect && !this.state.isRepeat) {  //确保此时不在读秒状态，否则这时更改框中号码会出现读秒状态按钮却激活的现象
       this.setState({
         allowSend: true
       })
@@ -52,24 +59,29 @@ class Register extends Component<RegisterProp, RegisterState> {
     }
     return false;
   }
-  
+
   //用于重发读秒
-  loopCount(count:number): void {
+  loopCount(count: number): void {
     this.setState({
       sendText: count + '秒后重发'
     });
 
-    count -= 1
+    count -= 1;
     if (count > 0) {
-      setTimeout(() => {this.loopCount(count)}, 1000)
+      setTimeout(() => {
+        this.loopCount(count)
+      }, 1000)
     } else {
-      setTimeout(() => {this.setState({
-        sendText: '重新发送',
-        isRepeat: false,
-      },
-      () => {this.checkPhoneNumber()}},   //读秒最后额外检查一次电话号码，来决定是否真的激活按钮
-      1000)
-      
+      setTimeout(() => {
+          this.setState({
+              sendText: '重新发送',
+              isRepeat: false,
+            },
+            () => {
+              this.checkPhoneNumber()
+            })
+        },   //读秒最后额外检查一次电话号码，来决定是否真的激活按钮
+        1000)
     }
   }
 
@@ -86,7 +98,7 @@ class Register extends Component<RegisterProp, RegisterState> {
       isRepeat: true,  //进入读秒状态
     });
     this.loopCount(10);  //重发读秒
-    
+
     //API
 
     this.setState({
@@ -107,18 +119,18 @@ class Register extends Component<RegisterProp, RegisterState> {
           <Input
             value={this.state.phoneNumber}
             placeholder='手机号码'
-            onInput={(e) => {
+            onInput={(e:any) => {
               this.setState({
-                phoneNumber: e.target.value
-              },
-              () => this.checkPhoneNumber())
+                  phoneNumber: e.target.value
+                },
+                () => this.checkPhoneNumber())
             }}
           >
           </Input>
         </View>
       </View>
     );
-    
+
     //验证码输入框在这一段，与其余信息一并提交
     const StepTwo: JSX.Element = (
       <View>
@@ -126,7 +138,7 @@ class Register extends Component<RegisterProp, RegisterState> {
           <Input
             type='number'
             placeholder='验证码'
-            onInput={(e) => {
+            onInput={(e:any) => {
               this.setState({
                 code: e.target.value
               })
@@ -135,32 +147,32 @@ class Register extends Component<RegisterProp, RegisterState> {
           </Input>
         </View>
         <View className='userInfo'>
-            <Input
-              value={this.state.username}
-              placeholder='用户名'
-              onInput={() => {
-              }}>
-            </Input>
-            <Input
-              value={this.state.firstPassword}
-              placeholder='密码'
-              password={true}
-              onInput={(e) => {
-                this.setState({
-                  firstPassword: e.target.value
-                })
-              }}
-            ></Input>
-            <Input
-              value={this.state.secondPassword}
-              placeholder='再次输入密码'
-              password={true}
-              onInput={(e) => {
-                this.setState({
-                  secondPassword: e.target.value
-                })
-              }}
-            ></Input>
+          <Input
+            value={this.state.username}
+            placeholder='用户名'
+            onInput={() => {
+            }}>
+          </Input>
+          <Input
+            value={this.state.firstPassword}
+            placeholder='密码'
+            password={true}
+            onInput={(e:any) => {
+              this.setState({
+                firstPassword: e.target.value
+              })
+            }}
+          ></Input>
+          <Input
+            value={this.state.secondPassword}
+            placeholder='再次输入密码'
+            password={true}
+            onInput={(e:any) => {
+              this.setState({
+                secondPassword: e.target.value
+              })
+            }}
+          ></Input>
         </View>
         <Button
           onClick={this.confirm}

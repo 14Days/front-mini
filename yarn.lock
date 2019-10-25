@@ -133,10 +133,10 @@
     swiper "^4.4.2"
     weui "^1.1.2"
 
-"@tarojs/plugin-babel@1.3.19":
-  version "1.3.19"
-  resolved "https://registry.npm.taobao.org/@tarojs/plugin-babel/download/@tarojs/plugin-babel-1.3.19.tgz#69c23dfcaf762760d2af300e11c7f5cc130b57d5"
-  integrity sha1-acI9/K92J2DSrzAOEcf1zBMLV9U=
+"@tarojs/plugin-babel@^1.3.21":
+  version "1.3.21"
+  resolved "https://registry.npm.taobao.org/@tarojs/plugin-babel/download/@tarojs/plugin-babel-1.3.21.tgz#b3f6d093a46ddbe9066c399b0745ba76e01b1bd0"
+  integrity sha1-s/bQk6Rt2+kGbDmbB0W6duAbG9A=
   dependencies:
     babel-core "^6.26.0"
 
@@ -155,10 +155,10 @@
     node-sass "^4.12.0"
     scss-bundle "^2.5.1"
 
-"@tarojs/plugin-uglifyjs@1.3.19":
-  version "1.3.19"
-  resolved "https://registry.npm.taobao.org/@tarojs/plugin-uglifyjs/download/@tarojs/plugin-uglifyjs-1.3.19.tgz#d21aa73bdf14e8539a54db8d7630b42330cc715d"
-  integrity sha1-0hqnO98U6FOaVNuNdjC0IzDMcV0=
+"@tarojs/plugin-uglifyjs@^1.3.21":
+  version "1.3.21"
+  resolved "https://registry.npm.taobao.org/@tarojs/plugin-uglifyjs/download/@tarojs/plugin-uglifyjs-1.3.21.tgz#eb4ad4a02758c31b7ed70f241327612881285982"
+  integrity sha1-60rUoCdYwxt+1w8kEydhKIEoWYI=
   dependencies:
     uglify-js "^3.3.24"
 
