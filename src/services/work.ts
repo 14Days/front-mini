@@ -7,7 +7,8 @@ export async function fetchImg() {
   const token = Taro.getStorageSync('token')
   console.log(token)
   return await request.get<string>(imgURL, {
-    num: 1
+    num: 1,
+    t: Math.random() * 100
   }, {
     token: token
   });

@@ -22,16 +22,6 @@ export default class Operatebar extends Component<operatebarAttr> {
     config: Config = {
       //navigationBarTitleText: '首页'
     }
-  
-    componentWillMount () { }
-  
-    componentDidMount () { }
-  
-    componentWillUnmount () { }
-  
-    componentDidShow () { }
-  
-    componentDidHide () { }
 
     toNext = async () => {
       //集合已选label的id

@@ -333,16 +333,13 @@ export default class Index extends Component<null, workState> {
   initPage = async () => {
     try {
       const res = await fetchImg()
-      console.log(res)
-      const name = res.data
-      console.log(name);
-      
-      let num;
-      let url;
-      for (let key in name) {
-        num = key;
-        url = name[key]
-      }
+      const data = res.data
+      console.log(data);
+
+      let num = data[0].img_id;
+      console.log(num);
+      let url = data[0].img_url;
+      console.log("url:" + url);
       
       this.setState({
         imgURL: url,
@@ -377,7 +374,7 @@ export default class Index extends Component<null, workState> {
     return v;
   };
 
-  componentWillMount() {
+  componentDidShow() {
     const token = Taro.getStorageSync('token')
     console.log(token);
     
