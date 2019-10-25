@@ -5,6 +5,7 @@ import './index.scss';
 
 interface IRegisterState {
   username: string,  //用户名
+  password: string,  //密码
   phoneNumber: string,  //手机号
   firstPassword: string,  //密码
   secondPassword: string, //确认密码
@@ -23,6 +24,7 @@ class Register extends Component<{}, IRegisterState> {
     this.state = {
       phoneNumber: '',
       username: '',
+      password: '',
       firstPassword: '',
       secondPassword: '',
       code: '',
@@ -41,18 +43,18 @@ class Register extends Component<{}, IRegisterState> {
     //检查手机号
     let ifphoneCorrect = false;
     if (this.state.phoneNumber.length === 11) {
-      const reg = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/
+      const reg = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/;
       ifphoneCorrect = reg.test(this.state.phoneNumber)
     }
     if (ifphoneCorrect && !this.state.isRepeat) {  //确保此时不在读秒状态，否则这时更改框中号码会出现读秒状态按钮却激活的现象
       this.setState({
         allowSend: true
-      })
+      });
       return true;
     } else {
       this.setState({
         allowSend: false
-      })
+      });
       return false;
     }
 
@@ -94,7 +96,7 @@ class Register extends Component<{}, IRegisterState> {
       isRepeat: true,  //进入读秒状态
     });
     // const res = request.get();
-    this.loopCount(10);  //重发读秒
+    this.loopCount(60);  //重发读秒
 
 
     //API
@@ -105,7 +107,7 @@ class Register extends Component<{}, IRegisterState> {
       }
     }).then(res => {
       console.log(res)
-    })
+    });
 
     this.setState({
       step: 2
@@ -116,43 +118,43 @@ class Register extends Component<{}, IRegisterState> {
     Taro.showLoading({
       title: '请稍后..',
       mask: true,
-    })
+    });
     if (!this.checkPhoneNumber) {
       this.setState({
         frontTip: '手机号码格式不正确'
-      })
-      Taro.hideLoading()
+      });
+      Taro.hideLoading();
       return
     }
     if (this.state.code.length != 4) {
       this.setState({
         frontTip: '验证码格式不正确'
-      })
-      Taro.hideLoading()
+      });
+      Taro.hideLoading();
       return
     }
     if (this.state.username == '') {
       this.setState({
         frontTip: '用户名不能为空'
-      })
-      Taro.hideLoading()
+      });
+      Taro.hideLoading();
       return
     }
     if (this.state.firstPassword == '') {
       this.setState({
         frontTip: '密码不能为空'
-      })
-      Taro.hideLoading()
+      });
+      Taro.hideLoading();
       return
     }
-    if (this.state.firstPassword != this.state.secondPassword) {
+    if (this.state.firstPassword !== this.state.secondPassword) {
       this.setState({
         frontTip: '两次密码不相同'
-      })
-      Taro.hideLoading()
+      });
+      Taro.hideLoading();
       return
     }
-    console.log('all correct')
+    console.log('all correct');
     Taro.request({
       url: 'https://wghtstudio.cn/mini/user/account',
       method: 'POST',
@@ -163,7 +165,7 @@ class Register extends Component<{}, IRegisterState> {
         name: this.state.username
       }
     }).then(res => {
-      console.log(res)
+      console.log(res);
       if (res.data.status == 'success') {  //注册成功
 
         //马上尝试登录
@@ -175,34 +177,33 @@ class Register extends Component<{}, IRegisterState> {
             password: this.state.password,
           }
         }).then(res => {
-          console.log(res)
+          console.log(res);
           if (res.data.status != 'success') {
             this.setState({
               frontTip: res.data.err_msg
-            })
+            });
             Taro.hideLoading()
           } else {
-            console.log('set token: ' + res.data.data)
-            setGlobalData('token', res.data.data)
-            setGlobalData('username', this.state.username)
-            Taro.hideLoading()
+            console.log('set token: ' + res.data.data);
+            setGlobalData('token', res.data.data);
+            setGlobalData('username', this.state.username);
+            Taro.hideLoading();
             Taro.switchTab({
               url: '../index/index'
             })
           }
-        })
+        });
         console.log('login');
 
         Taro.hideLoading()
       } else {
         this.setState({
           frontTip: '验证码错误'
-        })
+        });
         Taro.hideLoading()
       }
-    })
+    });
     Taro.hideLoading()
-
   }
 
 
@@ -264,7 +265,8 @@ class Register extends Component<{}, IRegisterState> {
                   firstPassword: e.target.value
                 })
               }}
-            ></Input>
+            >
+            </Input>
             <Input
               value={this.state.secondPassword}
               placeholder='再次输入密码'
@@ -274,7 +276,8 @@ class Register extends Component<{}, IRegisterState> {
                   secondPassword: e.target.value
                 })
               }}
-            ></Input>
+            >
+            </Input>
         </View>
         <Button
           className='comfirmButton'
