@@ -1,15 +1,13 @@
 .capsule {
-  left: 4%;
-  top: 104rpx;
+  top: 438rpx;
   width: 42%;
   height: 60rpx;
   line-height: 60rpx;
-  border-radius: 34rpx;
-  background-color: rgba(249, 249, 249, 1);
+  border-radius: 0 34rpx 34rpx 0;
+  background-color: #f5f5f5;
   color: rgba(16, 16, 16, 1);
   font-size: 14px;
   text-align: center;
-  font-family: Arial;
   position: fixed;
 }
 
@@ -19,5 +17,4 @@
   color: rgba(16, 16, 16, 1);
   font-size: 28rpx;
   text-align: center;
-  font-family: PingFangSC-regular;
 }
