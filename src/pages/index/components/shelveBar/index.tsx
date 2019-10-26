@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro';
 import { View, Text } from '@tarojs/components';
 import style from './index.module.scss';
 
-function ShelveBar(num: number) {
+function ShelveBar(num: any) {
   return (
     <View className={style.shelvebar} onClick={() => {Taro.navigateTo({url: '../shelve/index'})}}>
       <View className={style.linebetween} />

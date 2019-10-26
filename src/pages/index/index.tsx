@@ -10,16 +10,8 @@ import Shelvebar from './components/shelveBar';
 
 import style from './index.module.scss';
 
-interface IState {
-  bulletinWord: string;
-  dayNumber: number;
-  weekNumber: number;
-  cyclePhoto: Array<string>;
-  shelveNumber: number;
-}
-
 let Index = (() => {
-  const { bulletinWord, dayNumber, weekNumber, cyclePhoto } = useSelector(
+  const { bulletinWord, dayNumber, weekNumber, cyclePhoto, shelveNumber } = useSelector(
     (state: any) => state.index
   );
 
@@ -47,7 +39,7 @@ let Index = (() => {
       </View>
       <Statistics week={weekNumber} day={dayNumber} />
       <Bulletin content={bulletinWord} />
-      <Shelvebar />
+      <Shelvebar num={shelveNumber}/>
     </View>
   );
 }) as IFunctionConfig;
