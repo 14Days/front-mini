@@ -1,22 +1,23 @@
 import Taro, { Component, Config, useReducer } from '@tarojs/taro';
 import { View } from '@tarojs/components';
 import Headimg from './components/head_img/head_img';
-import Capsule from '../../components/capsule';
 import Labelpage from './components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
+import { shelve } from '../../services/index'
 import { fetchImg } from '../../services/work'
+import { get as getGlobalData } from '../../common/globalData/global_data';
 import './index.scss';
 
 interface workState {
   imgURL: string,
-  imgID: number,
-  dayNumber: number
+  imgID: number
 }
 
 export default class Index extends Component<null, workState> {
   config: Config = {
-    navigationStyle: 'custom'
+    navigationStyle: 'default',
+    navigationBarTitleText: '搁置打标'
   };
 
   constructor(props) {
@@ -24,7 +25,6 @@ export default class Index extends Component<null, workState> {
     this.state = {
       imgURL: '',
       imgID: -1,
-      dayNumber: 0
     };
   }
 
@@ -328,12 +328,12 @@ export default class Index extends Component<null, workState> {
   ];
 
   //真正处理的
-  arrs = this.defaultArrs;
+  arrs = this.defaultArrs
 
   //页面初始化，用于首次进入/更新
   initPage = async () => {
     try {
-      const res = await fetchImg()
+      const res = await shelve()
       const data = res.data
       console.log(data);
 
@@ -353,26 +353,6 @@ export default class Index extends Component<null, workState> {
       });
     }
 
-    //后期更改
-    const token = Taro.getStorageSync('token');
-    await Taro.request({
-      url: 'https://wghtstudio.cn/mini/record/count',
-      method: 'GET',
-      header: {
-        token: token
-      }
-    }).then(res => {
-      if (res.data.status == 'success') {
-        this.setState({
-          dayNumber: res.data.data.day,
-        });
-      } else {
-        Taro.showToast({
-          title: '获取统计错误',
-          icon: 'warning'
-        });
-      }
-    });
   }
   
 
@@ -395,7 +375,7 @@ export default class Index extends Component<null, workState> {
     return v;
   };
 
-  componentDidShow() {
+  componentWillMount() {
     const token = Taro.getStorageSync('token')
     console.log(token);
     
@@ -416,7 +396,6 @@ export default class Index extends Component<null, workState> {
       <View className='doing'>
         <Headimg url={this.state.imgURL} />
         <Headstand />
-        <Capsule number={this.state.dayNumber} displayName={false} />
 
         <OperateBar toRefresh={dispatch} toInit={this.initPage} imgID={this.state.imgID} info={arrState}/>
 

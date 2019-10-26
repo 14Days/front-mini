@@ -19,6 +19,12 @@ function Capsule(props: IProps) {
 
   const userName = getGlobalData('username');
 
+  //获取状态栏高度并决定实际胶囊据顶端高度，必要
+  const statusBarHeight = Taro.getSystemInfoSync().statusBarHeight
+  const style = {
+    top: statusBarHeight + 8 + 'px'
+  }
+
   let textTip: null | React.ReactElement = null;
   if (displayName) {
     textTip = <Text className='tip'>{userName}</Text>;
@@ -27,7 +33,7 @@ function Capsule(props: IProps) {
   }
 
   return (
-    <View className='capsule' onClick={handleClick}>
+    <View className='capsule' style={style} onClick={handleClick}>
       {textTip}
     </View>
   );

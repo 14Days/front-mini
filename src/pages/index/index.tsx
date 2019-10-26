@@ -15,6 +15,7 @@ interface IState {
   dayNumber: number;
   weekNumber: number;
   cyclePhoto: Array<string>;
+  shelveNumber: number;
 }
 
 let Index = (() => {
