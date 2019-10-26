@@ -2,7 +2,7 @@ import request from '../utils/request';
 import { getNoticeURL, getStatisticDataURL, getCycleImginURL } from '../utils/url';
 
 export async function fetchCycle() {
-  return await request.get(getNoticeURL);
+  return await request.get(getCycleImginURL);
 }
 
 export async function fetchCount() {
@@ -10,5 +10,5 @@ export async function fetchCount() {
 }
 
 export async function fetchNotice() {
-  return await request.get(getCycleImginURL);
+  return await request.get(getNoticeURL);
 }

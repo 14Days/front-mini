@@ -4,10 +4,6 @@ let baseURL = 'https://wghtstudio.cn/mini';
 if (process.env.NODE_ENV === 'development')
   baseURL = 'https://www.fastmock.site/mock/06aee04415ba130a12bc60a55a6a2585/lucky';
 
-console.log("qqqq");
-console.log(process.env.NODE_ENV);
-console.log(baseURL);
-
 // 获取注册验证码
 export const getCodeURL = `${baseURL}/user/code`;
 

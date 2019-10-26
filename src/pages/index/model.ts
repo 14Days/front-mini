@@ -24,16 +24,14 @@ export default {
         call(fetchNotice)
       ]);
       const temp: string[] = [];
-      cycle.data.forEach(item => {
-        temp.push(`http://pull.wghtstudio.cn/img/${item}`);
-      });
+      console.log(notice)
       yield put({
         type: 'save',
         payload: {
           bulletinWord: notice.data,
           dayNumber: count.data.day,
           weekNumber: count.data.week,
-          cyclePhoto: temp
+          cyclePhoto: cycle.data
         }
       });
     }
