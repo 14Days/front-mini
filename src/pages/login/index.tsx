@@ -9,7 +9,7 @@ import style from './index.module.scss';
 let Login = (() => {
   const {username, password} = useSelector((state: any) => state.login);
   const dispatch = useDispatch();
-
+  console.log(Taro.getEnv());
   return (
     <View className={style.container}>
       {/*标题*/}
