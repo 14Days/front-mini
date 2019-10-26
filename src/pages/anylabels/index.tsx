@@ -1,32 +1,19 @@
 import Taro, { Component, Config, useReducer } from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import Headimg from './components/head_img/head_img';
-import Capsule from '../../components/capsule';
 import Labelpage from './components/label_group/label_group';
-import Headstand from './components/head_stand/head_stand';
-import OperateBar from './components/operate_bar/operate_bar';
 import { fetchImg } from '../../services/work'
 import './index.scss';
 
 interface workState {
   imgURL: string,
-  imgID: number,
-  dayNumber: number
+  imgID: number
 }
 
 export default class Index extends Component<null, workState> {
   config: Config = {
-    navigationStyle: 'custom'
+    navigationStyle: 'default',
+    navigationBarTitleText: '标签'
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      imgURL: '',
-      imgID: -1,
-      dayNumber: 0
-    };
-  }
 
   // 一组对象的形式：
   // title： String
@@ -327,112 +314,25 @@ export default class Index extends Component<null, workState> {
     },
   ];
 
-  //真正处理的
-  arrs = this.defaultArrs;
-
-  //页面初始化，用于首次进入/更新
-  initPage = async () => {
-    try {
-      const res = await fetchImg()
-      const data = res.data
-      console.log(data);
-
-      let num = data[0].img_id;
-      console.log(num);
-      let url = data[0].img_url;
-      console.log("url:" + url);
-      
-      this.setState({
-        imgURL: url,
-        imgID: num
-      })
-    } catch (e) {
-      Taro.showToast({
-        icon: 'none',
-        title: e.message
-      });
-    }
-
-    //后期更改
-    const token = Taro.getStorageSync('token');
-    await Taro.request({
-      url: 'https://wghtstudio.cn/mini/record/count',
-      method: 'GET',
-      header: {
-        token: token
-      }
-    }).then(res => {
-      if (res.data.status == 'success') {
-        this.setState({
-          dayNumber: res.data.data.day,
-        });
-      } else {
-        Taro.showToast({
-          title: '获取统计错误',
-          icon: 'warning'
-        });
-      }
-    });
-  }
-  
-
-  //更改处理器
-  changeDisplay = (state, action) => {
-    if (action.ifRefresh == true) {
-      return this.defaultArrs;
-    }
-    let v = JSON.parse(JSON.stringify(state));
-    for (let i = 0; i < v.length; i++) {
-      if (v[i].pageid == action.pageid) {
-        for (let j = 0; j < v[i].labels.length; j++) {
-          if (v[i].labels[j].id == action.id) {
-            v[i].labels[j].ifChoose = !state[i].labels[j].ifChoose;
-            return v;
-          }
-        }
-      }
-    }
-    return v;
-  };
-
-  componentDidShow() {
-    const token = Taro.getStorageSync('token')
-    console.log(token);
-    
-    if (token == '') {
-
-    } else {
-      this.arrs = this.defaultArrs
-      this.initPage()
-    }
-  }
-
   render() {
     //useReducer管理整个标签面板
     //arrs 在此转成 arrState 使用
-    const [arrState, dispatch] = useReducer(this.changeDisplay, this.arrs);
     
     return (
       <View className='doing'>
-        <Headimg url={this.state.imgURL} />
-        <Headstand />
-        <Capsule number={this.state.dayNumber} displayName={false} />
 
-        <OperateBar toRefresh={dispatch} toInit={this.initPage} imgID={this.state.imgID} info={arrState}/>
-
-        {arrState.map(ele => {
+        {this.defaultArrs.map(ele => {
           return (
             <Labelpage
               key={ele.pageid}
               title={ele.title}
               labels={ele.labels}
-              doing={dispatch}
+              doing={null}
+              
               pageid={ele.pageid}
             />
           );
         })}
-        {/*底部占位，让标签页拉满*/}
-        <View className='takeplace' />
       </View>
     );
   }

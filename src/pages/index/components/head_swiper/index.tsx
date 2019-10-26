@@ -11,17 +11,20 @@ function HeadSwiper({ pics }: Readonly<any>) {
       interval={3000}
       circular={true}
     >
-      {pics.map(pic => (
+      {pics.pics.map(pic => {
+        console.log(pic);
+        return (
         <SwiperItem key={pic}>
           <View>
             <Image
-              src={pic}
+              src={'http://pull.wghtstudio.cn/img/' + pic}
               mode='aspectFill'
               className={style.swiperimg}
             ></Image>
           </View>
         </SwiperItem>
-      ))}
+        )
+      })}
     </Swiper>
   );
 }
