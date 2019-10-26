@@ -1,11 +1,14 @@
-import Taro from '@tarojs/taro';
 import request from '../utils/request';
-import { shelveURL } from './url';
+import { noticeURL, countURL, cycleURL } from './url';
 
-export async function shelve() {
-    const token = Taro.getStorageSync('token')
-    return await request.get<string>(shelveURL, {
-    }, {
-      token: token
-    });
-  }
+export async function fetchCycle() {
+  return await request.get(cycleURL);
+}
+
+export async function fetchCount() {
+  return await request.get(countURL);
+}
+
+export async function fetchNotice() {
+  return await request.get(noticeURL);
+}

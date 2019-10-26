@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -42,6 +42,13 @@
 					"id": -1,
 					"name": "注册",
 					"pathName": "pages/register/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "开始打标",
+					"pathName": "pages/work/index",
 					"query": "",
 					"scene": null
 				}

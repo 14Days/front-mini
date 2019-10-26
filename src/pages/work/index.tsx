@@ -328,7 +328,7 @@ export default class Index extends Component<null, workState> {
   ];
 
   //真正处理的
-  arrs = this.defaultArrs
+  arrs = this.defaultArrs;
 
   //页面初始化，用于首次进入/更新
   initPage = async () => {

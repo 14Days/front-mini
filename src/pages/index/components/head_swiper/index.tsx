@@ -3,9 +3,7 @@ import { View, Image, Swiper, SwiperItem } from '@tarojs/components';
 
 import style from './index.module.scss';
 
-function HeadSwiper(pics: Readonly<any>) {
-  console.log(pics.pics)
-
+function HeadSwiper({ pics }: Readonly<any>) {
   return (
     <Swiper
       className={style.head}
