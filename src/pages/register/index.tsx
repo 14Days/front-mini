@@ -1,6 +1,5 @@
 import Taro, {Component} from '@tarojs/taro';
 import {View, Text, Input, Button} from '@tarojs/components';
-import {set as setGlobalData} from '../../common/globalData/global_data';
 import {getCodeURL, registerURL, loginURL} from "../../utils/url";
 import request from '../../utils/request';
 

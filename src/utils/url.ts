@@ -1,8 +1,7 @@
-import ENV from './config';
 
 let baseURL = 'https://wghtstudio.cn/mini';
 
-if (ENV == 'dev')
+if (process.env.NODE_ENV === 'development')
   baseURL = 'https://www.fastmock.site/mock/06aee04415ba130a12bc60a55a6a2585/lucky';
 
 // 获取注册验证码
