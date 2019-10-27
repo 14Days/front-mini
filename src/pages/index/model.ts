@@ -1,4 +1,4 @@
-import { fetchCount, fetchCycle, fetchNotice,fetchShelve } from '../../services/index';
+import { fetchCount, fetchCycle, fetchNotice } from '../../services/index';
 
 export default {
   namespace: 'index',
@@ -6,8 +6,7 @@ export default {
     bulletinWord: '',
     dayNumber: 0,
     weekNumber: 0,
-    cyclePhoto: [],
-    shelveNumber: 0
+    cyclePhoto: []
   },
   reducers: {
     save(state, { payload: data }) {
@@ -19,11 +18,10 @@ export default {
   },
   effects: {
     *handleInit(_, { all, call, put }) {
-      const [count, cycle, notice, shelve] = yield all([
+      const [count, cycle, notice] = yield all([
         call(fetchCount),
         call(fetchCycle),
-        call(fetchNotice),
-        call(fetchShelve)
+        call(fetchNotice)
       ]);
       const temp: string[] = [];
       cycle.data.forEach(item => {
@@ -35,8 +33,7 @@ export default {
           bulletinWord: notice.data,
           dayNumber: count.data.day,
           weekNumber: count.data.week,
-          cyclePhoto: temp,
-          shelveNumber: shelve.data.length
+          cyclePhoto: temp
         }
       });
     }
