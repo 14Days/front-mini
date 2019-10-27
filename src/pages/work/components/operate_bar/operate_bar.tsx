@@ -36,7 +36,7 @@ export default class Operatebar extends Component<operatebarAttr> {
       console.log(res)
 
       //发送
-      const r = await deliverLabels(this.props.imgID, res)
+      const r = await deliverLabels(this.props.imgID, res, 0) //0表明对非搁置的图片打标
       console.log(r);
       
       //刷新至下一页

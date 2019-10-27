@@ -26,11 +26,20 @@ export default class Info extends Component<null, IState> {
     });
   }
 
+  exitLoginState() {
+    Taro.setStorageSync('token','')
+    Taro.setStorageSync('username','')
+    Taro.reLaunch({
+      url: '../login/index'
+    })
+  }
+
+
   render() {
     const { id } = this.state;
     return (
       <View>
-        <Text className={style.textID}>您的唯一识别ID： {id}</Text>
+        <Text className={style.textID} onClick={() => this.exitLoginState()}>退出登录</Text>
       </View>
     );
   }
