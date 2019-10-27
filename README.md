@@ -52,7 +52,7 @@ fast-mock
 				│   ├── info
 				│   ├── login
 				│   ├── marklabel
-				│   ├── register
+				│   ├── register.ts
 				│   └── work
 				└── static
 	    			└── images
