@@ -14,12 +14,13 @@ export async function fetchImg() {
   });
 }
   
-export async function deliverLabels(id: number, tags: Array<number>) {
+export async function deliverLabels(id: number, tags: Array<number>, type: number) {
   const token = Taro.getStorageSync('token')
   console.log(token)
   return await request.post<string>(getTagURL, {
     img_id: id,
-    tag: tags
+    tag: tags,
+    type: type
   }, {
     token: token
   });
