@@ -1,5 +1,5 @@
 import { fetchCount, fetchCycle, fetchNotice } from '../../services/index';
-
+import {showLoading, hideLoading} from '../../utils/loading'
 export default {
   namespace: 'index',
   state: {
@@ -18,6 +18,7 @@ export default {
   },
   effects: {
     *handleInit(_, { all, call, put }) {
+      showLoading();
       const [count, cycle, notice] = yield all([
         call(fetchCount),
         call(fetchCycle),
@@ -36,6 +37,7 @@ export default {
           cyclePhoto: temp
         }
       });
+      hideLoading();
     }
   }
 };

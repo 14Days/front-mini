@@ -6,6 +6,7 @@ import Labelpage from './components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
 import { fetchImg, fetchCount } from '../../services/index'
+import { showLoading, hideLoading } from '../../utils/loading'
 import './index.scss';
 
 interface workState {
@@ -386,8 +387,10 @@ export default class Index extends Component<null, workState> {
     if (token == '') {
 
     } else {
-      this.arrs = this.defaultArrs
-      this.initPage()
+      showLoading();
+      this.arrs = this.defaultArrs;
+      this.initPage();
+      hideLoading();
     }
   }
 

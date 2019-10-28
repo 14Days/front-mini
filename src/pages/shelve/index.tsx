@@ -5,8 +5,7 @@ import Labelpage from './components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
 import { fetchShelve } from '../../services/index'
-import { fetchImg } from '../../services/work'
-import { get as getGlobalData } from '../../common/globalData/global_data';
+import { showLoading, hideLoading } from '../../utils/loading'
 import './index.scss';
 
 interface workState {
@@ -389,8 +388,10 @@ export default class Index extends Component<null, workState> {
     if (token == '') {
 
     } else {
+      showLoading()
       this.arrs = this.defaultArrs
       this.initPage(-1)
+      hideLoading()
     }
   }
 
