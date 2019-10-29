@@ -33,6 +33,7 @@ export default {
         const res = yield call(fetchLogin, username, password);
         Taro.hideLoading();
         Taro.setStorageSync('token', res.data);
+        Taro.setStorageSync('username', username);
         Taro.reLaunch({
           url: '/pages/index/index'
         });

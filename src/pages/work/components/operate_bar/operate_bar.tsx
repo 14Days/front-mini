@@ -1,6 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import { deliverLabels, shelveImg } from '../../../../services/work'
+import { showLoading, hideLoading } from '../../../../utils/loading'
 import './operate_bar.scss'
 
 interface operatebarAttr {
@@ -24,6 +25,7 @@ export default class Operatebar extends Component<operatebarAttr> {
     }
 
     toNext = async () => {
+      showLoading();
       //集合已选label的id
       let res: Array<number> = []
       this.props.info.map(group => {
@@ -36,12 +38,13 @@ export default class Operatebar extends Component<operatebarAttr> {
       console.log(res)
 
       //发送
-      const r = await deliverLabels(this.props.imgID, res)
+      const r = await deliverLabels(this.props.imgID, res, 0) //0表明对非搁置的图片打标
       console.log(r);
       
       //刷新至下一页
       this.props.toRefresh({ifRefresh: true})
       this.props.toInit()
+      hideLoading();
     }
 
     toShelve = async () => {
@@ -50,6 +53,7 @@ export default class Operatebar extends Component<operatebarAttr> {
         title: '警告'
       }).then(async (res) => {
         if (res.confirm == true) {
+          showLoading();
           //请求
           const r = await shelveImg(this.props.imgID)
           console.log(r);
@@ -57,6 +61,7 @@ export default class Operatebar extends Component<operatebarAttr> {
           //刷新至下一页
           this.props.toRefresh({ifRefresh: true})
           this.props.toInit()
+          hideLoading();
         }
       })
     }

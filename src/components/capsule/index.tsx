@@ -17,7 +17,7 @@ function Capsule(props: IProps) {
     });
   };
 
-  const userName = getGlobalData('username');
+  const userName =Taro.getStorageSync('username');
 
   //获取状态栏高度并决定实际胶囊据顶端高度，必要
   const statusBarHeight = Taro.getSystemInfoSync().statusBarHeight

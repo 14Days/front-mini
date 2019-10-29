@@ -1,8 +1,9 @@
 import Taro from '@tarojs/taro';
-import { View, Text } from '@tarojs/components';
+import { View, Text, Image } from '@tarojs/components';
 import style from './index.module.scss';
+import arrow_right from '../../../../static/icon/arrow_right.png'
 
-function ShelveBar(num: number) {
+function ShelveBar() {
   return (
     <View className={style.shelvebar} onClick={() => {Taro.navigateTo({url: '../shelve/index'})}}>
       <View className={style.linebetween} />
@@ -11,7 +12,7 @@ function ShelveBar(num: number) {
           <Text>搁置图片</Text>
         </View>
         <View className={style.contentRight}>
-          <Text className={style.tip}>{num.num}张图片</Text>
+          <Image className={style.img} src={arrow_right} mode='aspectFit'/>
         </View>
       </View>
     </View>

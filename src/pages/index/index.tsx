@@ -10,14 +10,6 @@ import Shelvebar from './components/shelveBar';
 
 import style from './index.module.scss';
 
-interface IState {
-  bulletinWord: string;
-  dayNumber: number;
-  weekNumber: number;
-  cyclePhoto: Array<string>;
-  shelveNumber: number;
-}
-
 let Index = (() => {
   const { bulletinWord, dayNumber, weekNumber, cyclePhoto } = useSelector(
     (state: any) => state.index

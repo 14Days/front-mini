@@ -5,7 +5,8 @@ import Capsule from '../../components/capsule';
 import Labelpage from './components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
-import { fetchImg } from '../../services/work'
+import { fetchImg, fetchCount } from '../../services/index'
+import { showLoading, hideLoading } from '../../utils/loading'
 import './index.scss';
 
 interface workState {
@@ -341,10 +342,13 @@ export default class Index extends Component<null, workState> {
       console.log(num);
       let url = data[0].img_url;
       console.log("url:" + url);
+
+      const res2 = await fetchCount()
       
       this.setState({
         imgURL: url,
-        imgID: num
+        imgID: num,
+        dayNumber: res2.data.day
       })
     } catch (e) {
       Taro.showToast({
@@ -353,26 +357,7 @@ export default class Index extends Component<null, workState> {
       });
     }
 
-    //后期更改
-    const token = Taro.getStorageSync('token');
-    await Taro.request({
-      url: 'https://wghtstudio.cn/mini/record/count',
-      method: 'GET',
-      header: {
-        token: token
-      }
-    }).then(res => {
-      if (res.data.status == 'success') {
-        this.setState({
-          dayNumber: res.data.data.day,
-        });
-      } else {
-        Taro.showToast({
-          title: '获取统计错误',
-          icon: 'warning'
-        });
-      }
-    });
+    
   }
   
 
@@ -402,8 +387,10 @@ export default class Index extends Component<null, workState> {
     if (token == '') {
 
     } else {
-      this.arrs = this.defaultArrs
-      this.initPage()
+      showLoading();
+      this.arrs = this.defaultArrs;
+      this.initPage();
+      hideLoading();
     }
   }
 

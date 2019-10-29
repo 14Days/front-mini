@@ -1,12 +1,12 @@
 import Taro from '@tarojs/taro';
 import request from '../utils/request';
-import { imgURL, submitURL, shelveImgURL } from './url';
+import { getMarkImgURL, getTagURL, commitUnknownURL } from '../utils/url';
 
 
 export async function fetchImg() {
   const token = Taro.getStorageSync('token')
   console.log(token)
-  return await request.get<string>(imgURL, {
+  return await request.get<string>(getMarkImgURL, {
     num: 1,
     t: Math.random() * 100
   }, {
@@ -14,12 +14,13 @@ export async function fetchImg() {
   });
 }
   
-export async function deliverLabels(id: number, tags: Array<number>) {
+export async function deliverLabels(id: number, tags: Array<number>, type: number) {
   const token = Taro.getStorageSync('token')
   console.log(token)
-  return await request.post<string>(submitURL, {
+  return await request.post<string>(getTagURL, {
     img_id: id,
-    tag: tags
+    tag: tags,
+    type: type
   }, {
     token: token
   });
@@ -28,7 +29,7 @@ export async function deliverLabels(id: number, tags: Array<number>) {
 export async function shelveImg(imgID: number) {
   const token = Taro.getStorageSync('token')
   console.log(token)
-  return await request.post<string>(shelveImgURL, {
+  return await request.post<string>(commitUnknownURL, {
     img_id: imgID
   }, {
     token: token

@@ -4,9 +4,8 @@ import Headimg from './components/head_img/head_img';
 import Labelpage from './components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
-import { shelve } from '../../services/index'
-import { fetchImg } from '../../services/work'
-import { get as getGlobalData } from '../../common/globalData/global_data';
+import { fetchShelve } from '../../services/index'
+import { showLoading, hideLoading } from '../../utils/loading'
 import './index.scss';
 
 interface workState {
@@ -331,15 +330,21 @@ export default class Index extends Component<null, workState> {
   arrs = this.defaultArrs
 
   //页面初始化，用于首次进入/更新
-  initPage = async () => {
+  initPage = async (currentNum) => {
     try {
-      const res = await shelve()
+      const res = await fetchShelve()
       const data = res.data
-      console.log(data);
-
-      let num = data[0].img_id;
+      console.log(data.length);
+      if (data.length == 0) {
+        Taro.navigateBack()
+        return;
+      }
+      if (data[data.length - 1].img_id == currentNum) {
+        return false;
+      }
+      let num = data[data.length - 1].img_id;
       console.log(num);
-      let url = data[0].img_url;
+      let url = data[data.length - 1].img_url;
       console.log("url:" + url);
       
       this.setState({
@@ -352,6 +357,7 @@ export default class Index extends Component<null, workState> {
         title: e.message
       });
     }
+    return true;
 
   }
   
@@ -382,8 +388,10 @@ export default class Index extends Component<null, workState> {
     if (token == '') {
 
     } else {
+      showLoading()
       this.arrs = this.defaultArrs
-      this.initPage()
+      this.initPage(-1)
+      hideLoading()
     }
   }
 

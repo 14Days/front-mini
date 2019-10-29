@@ -119,10 +119,6 @@ class Register extends Component<{}, IRegisterState> {
   }
 
   checkALL(): boolean {
-    Taro.showLoading({
-      title: '请稍后..',
-      mask: true,
-    });
     if (!this.checkPhoneNumber) {
       this.setState({
         frontTip: '手机号码格式不正确'
@@ -159,12 +155,15 @@ class Register extends Component<{}, IRegisterState> {
       return false;
     }
 
-    Taro.hideLoading();
     return true
   }
 
   // 信息格式✅, 提交至服务器
   commitInfo(): void {
+    Taro.showLoading({
+      title: '请稍后..',
+      mask: true,
+    });
     if (this.checkALL()) {
       const {phoneNumber: phone, password, code, username: name} = this.state;
       const regData = {phone, password, code, name};
@@ -177,6 +176,7 @@ class Register extends Component<{}, IRegisterState> {
                 // 登陆成功👌, 进入 Tab 页
                 Taro.switchTab({url:"../index/index"})
               })
+            Taro.hideLoading();
           }
         )
     }

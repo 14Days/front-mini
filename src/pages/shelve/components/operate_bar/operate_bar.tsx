@@ -1,7 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
-import { deliverLabels, shelveImg } from '../../../../services/work'
+import { deliverLabels } from '../../../../services/work'
 import './operate_bar.scss'
+import { showLoading, hideLoading } from '../../../../utils/loading'
 
 interface operatebarAttr {
   info: Array<any>,  //所有的标签信息（未统计）
@@ -24,6 +25,7 @@ export default class Operatebar extends Component<operatebarAttr> {
     }
 
     toNext = async () => {
+      showLoading()
       //集合已选label的id
       let res: Array<number> = []
       this.props.info.map(group => {
@@ -34,38 +36,29 @@ export default class Operatebar extends Component<operatebarAttr> {
         })
       })
       console.log(res)
+      const currentNumber = this.props.imgID
 
       //发送
-      const r = await deliverLabels(this.props.imgID, res)
+      const r = await deliverLabels(this.props.imgID, res, 1) //1表明对搁置的图片打标
       console.log(r);
       
       //刷新至下一页
       this.props.toRefresh({ifRefresh: true})
-      this.props.toInit()
-    }
-
-    toShelve = async () => {
-      Taro.showModal({
-        content: '确认搁置这张图片？',
-        title: '警告'
-      }).then(async (res) => {
-        if (res.confirm == true) {
-          //请求
-          const r = await shelveImg(this.props.imgID)
-          console.log(r);
-          
-          //刷新至下一页
-          this.props.toRefresh({ifRefresh: true})
-          this.props.toInit()
-        }
-      })
+      let recoverState = await this.props.toInit(currentNumber)
+      while (!recoverState) {
+        console.log('重试');
+        
+        await setTimeout(async () => {
+          recoverState = await this.props.toInit(currentNumber)
+        }, 1000);
+      }
+      hideLoading()
     }
   
     render () {
     
       return (
         <View className='header'>
-          <Button className='abutton' onClick={() => this.toShelve()}>不确定，先搁置</Button>
           <Button className='abutton' onClick={() => this.toNext()}>确定，下一张</Button>
         </View>
       )
