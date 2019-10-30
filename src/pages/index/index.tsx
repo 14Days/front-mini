@@ -25,6 +25,7 @@ let Index = (() => {
       });
       return
     }
+    console.log("dispatch")
     dispatch({
       type: 'index/handleInit'
     });

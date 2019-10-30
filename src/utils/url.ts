@@ -26,7 +26,7 @@ export const getMarkImgURL = `${baseURL}/img/imgs`;
 export const getTagURL = `${baseURL}/tag`;
 
 // 获取用户统计数据
-export const getStatisticData = `${baseURL}/record/count`;
+export const getStatisticDataURL = `${baseURL}/record/count`;
 
 // 搁置图片
 export const commitUnknownURL = `${baseURL}/img/unknown`;

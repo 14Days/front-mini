@@ -1,12 +1,12 @@
 import request from '../utils/request';
-import { getNoticeURL, getStatisticData, getCycleImginURL, getUnknownURL, commitUnknownURL, getTagURL, getMarkImgURL } from '../utils/url';
+import { getNoticeURL, getStatisticDataURL, getCycleImginURL, getUnknownURL, commitUnknownURL, getTagURL, getMarkImgURL } from '../utils/url';
 
 export async function fetchCycle() {
   return await request.get(getCycleImginURL);
 }
 
 export async function fetchCount() {
-  return await request.get(getStatisticData);
+  return await request.get(getStatisticDataURL);
 }
 
 export async function fetchNotice() {

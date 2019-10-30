@@ -1,4 +1,5 @@
 import Login from '../pages/login/model';
 import Index from '../pages/index/model';
+import Register from '../pages/register/model';
 
-export default [Login, Index];
+export default [Login, Index, Register];
