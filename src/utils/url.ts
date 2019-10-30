@@ -1,8 +1,8 @@
 
 let baseURL = 'https://wghtstudio.cn/mini';
 
-//if (process.env.NODE_ENV === 'development')
-  //baseURL = 'https://www.fastmock.site/mock/06aee04415ba130a12bc60a55a6a2585/lucky';
+if (process.env.NODE_ENV === 'development')
+  baseURL = 'https://www.fastmock.site/mock/06aee04415ba130a12bc60a55a6a2585/lucky';
 
 // 获取注册验证码
 export const getCodeURL = `${baseURL}/user/code`;
@@ -35,7 +35,7 @@ export const commitUnknownURL = `${baseURL}/img/unknown`;
 export const getUnknownURL = `${baseURL}/img/unknown`;
 
 // 获取标签
-export const getTagURL = `${baseURL}/tag/get`
+export const getTagURL = `${baseURL}/img/tags`;
 
 
 
