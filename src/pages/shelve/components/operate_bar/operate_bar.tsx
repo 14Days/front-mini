@@ -2,6 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import { deliverLabels } from '../../../../services/work'
 import './operate_bar.scss'
+import { showLoading, hideLoading } from '../../../../utils/loading'
 
 interface operatebarAttr {
   info: Array<any>,  //所有的标签信息（未统计）
@@ -24,6 +25,7 @@ export default class Operatebar extends Component<operatebarAttr> {
     }
 
     toNext = async () => {
+      showLoading()
       //集合已选label的id
       let res: Array<number> = []
       this.props.info.map(group => {
@@ -50,6 +52,7 @@ export default class Operatebar extends Component<operatebarAttr> {
           recoverState = await this.props.toInit(currentNumber)
         }, 1000);
       }
+      hideLoading()
     }
   
     render () {

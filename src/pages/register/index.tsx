@@ -30,7 +30,6 @@ class Register extends Component<IRegisterProps, {}> {
       type: 'register/handleConfirm'
     })
   }
-
   confirm(): void {
     new Promise((resolve) => {
       this.props.dispatch({
