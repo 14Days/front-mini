@@ -1,7 +1,6 @@
 import Taro from '@tarojs/taro';
 import request from '../utils/request';
-import { getMarkImgURL, getTagURL, commitUnknownURL } from '../utils/url';
-
+import { getMarkImgURL, commitTagURL, commitUnknownURL, getTagURL } from '../utils/url';
 
 export async function fetchImg() {
   const token = Taro.getStorageSync('token')
@@ -13,7 +12,17 @@ export async function fetchImg() {
     token: token
   });
 }
-  
+
+export async function fetchTag() {
+  return await request.get(getTagURL);
+}
+
+export async function commitTagInfo(img_id: number, tag: Array<number>) {
+  return await request.post(commitTagURL,{
+    img_id,
+    tag
+  })
+}
 export async function deliverLabels(id: number, tags: Array<number>, type: number) {
   const token = Taro.getStorageSync('token')
   console.log(token)

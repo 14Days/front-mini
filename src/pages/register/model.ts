@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import {fetchCode, fetchLogin, fetchRegister} from "../../services/register";
-import showToast = Taro.showToast;
+
 
 const delay = (timeout) => {
   return new Promise((resolve) => {

@@ -1,4 +1,4 @@
-import { fetchCount, fetchCycle, fetchNotice } from '../../services/index';
+import { fetchCount, fetchCycle, fetchNotice } from '../../services/';
 
 export default {
   namespace: 'index',
@@ -23,7 +23,6 @@ export default {
         call(fetchCycle),
         call(fetchNotice)
       ]);
-      const temp: string[] = [];
       console.log(notice)
       yield put({
         type: 'save',

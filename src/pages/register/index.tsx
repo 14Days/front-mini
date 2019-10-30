@@ -31,7 +31,6 @@ class Register extends Component<IRegisterProps, {}> {
     })
   }
 
-  //检查信息是否填写完整
   confirm(): void {
     new Promise((resolve) => {
       this.props.dispatch({

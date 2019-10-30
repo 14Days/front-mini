@@ -22,8 +22,8 @@ export const getCycleImginURL = `${baseURL}/img/cycle`;
 // 获取要打标的图片
 export const getMarkImgURL = `${baseURL}/img/imgs`;
 
-// 获取用户自定义的标签
-export const getTagURL = `${baseURL}/tag`;
+// 获取打好标提交
+export const commitTagURL = `${baseURL}/tag`;
 
 // 获取用户统计数据
 export const getStatisticDataURL = `${baseURL}/record/count`;
@@ -33,6 +33,9 @@ export const commitUnknownURL = `${baseURL}/img/unknown`;
 
 // 获取被搁置的图片
 export const getUnknownURL = `${baseURL}/img/unknown`;
+
+// 获取标签
+export const getTagURL = `${baseURL}/tag/get`
 
 
 
