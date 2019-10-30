@@ -61,6 +61,14 @@ export default {
         }
       }
     },
+    cleanCode(state,{payload}) {
+      return {
+        ...state,
+        firstPassword: '',
+        secondPassword: '',
+        code: ''
+      }
+    },
     checkShowTip(state, {payload}) {
       const {phoneNumber, firstPassword, secondPassword, code, username} = payload;
       let resTip = '';

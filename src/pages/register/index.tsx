@@ -37,6 +37,16 @@ class Register extends Component<IRegisterProps, IRegisterState> {
   constructor(props) {
     super(props);
   }
+  
+  componentDidMount() {
+    this.initInfo();
+  }
+
+  initInfo(): void {
+    this.props.dispatch({
+      type: 'register/cleanCode'
+    })
+  }
 
   // 信息格式✅, 提交至服务器
   commitInfo(): void {
@@ -45,7 +55,7 @@ class Register extends Component<IRegisterProps, IRegisterState> {
     })
   }
   confirm(): void {
-    new Promise((resolve) => {
+    new Promise((resolve,reject) => {
       this.props.dispatch({
         type: 'register/checkShowTip',
         payload: {
