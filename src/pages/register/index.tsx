@@ -44,7 +44,6 @@ class Register extends Component<IRegisterProps, IRegisterState> {
       type: 'register/handleConfirm'
     })
   }
-
   confirm(): void {
     new Promise((resolve) => {
       this.props.dispatch({
