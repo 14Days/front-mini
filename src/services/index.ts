@@ -32,6 +32,6 @@ export async function submitLabels(id, tags) {
 
 export async function fetchImg() {
   return await request.get(getMarkImgURL, {
-    num: 1
+    num: 4
   })
 }

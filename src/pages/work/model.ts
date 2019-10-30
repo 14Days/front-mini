@@ -18,7 +18,7 @@ export default {
         ...payload
       }
     },
-    handleChooseTag(state, {payload}) {
+    handleChooseTag(state, {payload}) {           //点击 tag 时触发,变灰变绿
       let {pickedTag} = state;
       let {tagID} = payload;
       //先判断 id 是否在
@@ -36,7 +36,7 @@ export default {
     }
   },
   effects: {
-    * handleInitPage(_, {put}) {
+    * handleInitPage(_, {put}) {                //页面初始化,获取图片
       const imgRes = yield fetchImg();
 
       yield put({
@@ -47,7 +47,7 @@ export default {
         }
       })
     },
-    * handleImgOnLoad(_, {put, all, call}){
+    * handleImgOnLoad(_, {put, all, call}){     //图片加载完成后触发,获取统计数据以及标签
       const [count, tags] = yield all([
         call(fetchCount),
         call(fetchTag)
@@ -61,7 +61,7 @@ export default {
         }
       })
     },
-    * handleClickNext(_, {select, put}) {
+    * handleClickNext(_, {select, put}) {       //点击下一张图片时触发,切换到下一张,或者重新拉取新的一组图片
       let {imgArr, currImgIndex, pickedTag: tag, dayNumber} = yield select(state => state.work);
       const img_id = imgArr[currImgIndex].id;
 
@@ -83,7 +83,7 @@ export default {
             yield put({
               type: 'handleInitPage'
             })
-          } else {                                            // 进入下一张图,其他状态清空
+          } else {                                              // 进入下一张图,其他状态清空
             yield put({
               type: 'save',
               payload: {
@@ -105,7 +105,7 @@ export default {
       }
 
     },
-    * handleClickUnknown(_, {put, select}) {
+    * handleClickUnknown(_, {put, select}) {                //点击搁置按钮触发,调到下一张图片或者拉取新的一组
       Taro.showToast({
         icon: 'none',
         title: '被搁置的图片可在首页重新打标',
