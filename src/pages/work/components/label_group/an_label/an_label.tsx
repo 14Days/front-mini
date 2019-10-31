@@ -14,7 +14,7 @@ export default function Anlable(props) {
   };
 
   /* 被选中的变绿 */
-  if (pickedTag.indexOf(props.tagID) !== -1) {
+  if (pickedTag[props.tagID+''] === 1) {
     styleIc.opacity = 1;
     styleBg.background = 'rgba(139, 195, 74, 1);';
   }

@@ -10,7 +10,7 @@ export default function Head(props) {
   return (
     <View>
       <Image
-        src={props.url}
+        src={`http://pull.wghtstudio.cn/img/${props.url}`}
         mode='aspectFill'
         className='header'
         onLoad={() => {dispatch({

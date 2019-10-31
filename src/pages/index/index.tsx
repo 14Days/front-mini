@@ -39,7 +39,7 @@ let Index = (() => {
         <Text>欢迎您 亲爱的设计师</Text>
       </View>
       <Statistics week={weekNumber} day={dayNumber} />
-      <Bulletin content={bulletinWord} />
+      <Bulletin content={bulletinWord.content} />
       <Shelvebar />
     </View>
   );

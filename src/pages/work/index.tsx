@@ -40,7 +40,7 @@ class Work extends Component<IWorkProps, {}> {
     //arrs 在此转成 arrState 使用
     return (
       <View className='doing'>
-        <Headimg url={this.props.imgArr[currImgIndex]}/>
+        <Headimg url={this.props.imgArr[currImgIndex].url}/>
         <Capsule number={dayNumber} displayName={false}/>
 
         <OperateBar/>

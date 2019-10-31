@@ -8,7 +8,7 @@ export default {
     imgArr: [],
     dayNumber: 0,
     currImgIndex: 0,
-    pickedTag: [],
+    pickedTag: {},
     tags: []
   },
   reducers: {
@@ -22,12 +22,12 @@ export default {
       let {pickedTag} = state;
       let {tagID} = payload;
       //先判断 id 是否在
-      let index = pickedTag.indexOf(tagID);
+      tagID += '';
 
-      if (index === -1)  //不存在
-        pickedTag.push(tagID);
+      if (pickedTag[tagID] === 0 || pickedTag[tagID] === undefined)  //不存在
+        pickedTag[tagID] = 1;
       else  // 已存在
-        pickedTag.splice(index, 1);
+        pickedTag[tagID] = 0;
 
       return {
         ...state,
@@ -57,16 +57,22 @@ export default {
         payload: {
           tags: tags.data,
           dayNumber: count.data.day,
-          pickedTag: []
+          pickedTag: {}
         }
       })
     },
     * handleClickNext(_, {select, put}) {       //点击下一张图片时触发,切换到下一张,或者重新拉取新的一组图片
       let {imgArr, currImgIndex, pickedTag: tag, dayNumber} = yield select(state => state.work);
+
       const img_id = imgArr[currImgIndex].id;
+      let postTags:Array<number> = []; //要发送的数据
+      for(let props in tag){
+        if(tag[props] === 1)
+          postTags.push(parseInt(props));
+      }
 
       // 检查是否选够了标签
-      if(tag.length <= 1){
+      if(postTags.length <= 1){
         Taro.showToast({
           icon: 'none',
           title: '请至少选择两个标签哦☺️'
@@ -75,7 +81,7 @@ export default {
       }
 
       try {
-        const res = yield commitTagInfo(img_id, tag);
+        const res = yield commitTagInfo(img_id, postTags);
         if (res.status === 'success') {                         // 成功,打标数加一,然后切换到下一张图片
           currImgIndex++;
 
@@ -88,7 +94,7 @@ export default {
               type: 'save',
               payload: {
                 currImgIndex,
-                pickedTag: [],
+                pickedTag: {},
                 dayNumber: dayNumber + 1
               }
             })

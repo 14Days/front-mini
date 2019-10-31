@@ -7,7 +7,7 @@ export async function fetchCode(data:getCodeAPI){
 }
 
 export async function fetchRegister(data:registerAPI){
-  return await request.get(registerURL,data)
+  return await request.post(registerURL,data)
 }
 
 export async function fetchLogin(data:loginAPI){
