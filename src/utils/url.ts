@@ -28,7 +28,7 @@ export const commitTagURL = `${baseURL}/tag`;
 // 获取用户统计数据
 export const getStatisticDataURL = `${baseURL}/record`;
 
-// 搁置图片
+// 提交搁置图片
 export const commitUnknownURL = `${baseURL}/tag/unknown`;
 
 // 获取被搁置的图片
