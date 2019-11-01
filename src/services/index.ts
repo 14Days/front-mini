@@ -39,6 +39,6 @@ export async function submitLabels(id, tags) {
 //请求普通图片
 export async function fetchImg() {
   return await request.get(getMarkImgURL, {
-    num: 1
+    num: 4
   })
 }

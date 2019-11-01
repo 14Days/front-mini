@@ -24,7 +24,6 @@ export default {
         call(fetchCycle),
         call(fetchNotice)
       ]);
-      const temp: string[] = [];
       console.log(notice)
       yield put({
         type: 'save',

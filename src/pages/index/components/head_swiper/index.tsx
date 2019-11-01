@@ -17,7 +17,7 @@ function HeadSwiper({ pics }: Readonly<any>) {
         <SwiperItem key={pic}>
           <View>
             <Image
-              src={pic}
+              src={`http://pull.wghtstudio.cn/img/${pic}`}
               mode='aspectFill'
               className={style.swiperimg}
             ></Image>
