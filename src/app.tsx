@@ -61,12 +61,6 @@ class App extends Component {
           text: '开始打标',
           iconPath: 'static/icon/usousuo.png',
           selectedIconPath: 'static/icon/sousuo.png'
-        },
-        {
-          pagePath: 'pages/anylabels/index',
-          text: '标签',
-          iconPath: 'static/icon/ubianji.png',
-          selectedIconPath: 'static/icon/bianji.png'
         }
       ]
     }

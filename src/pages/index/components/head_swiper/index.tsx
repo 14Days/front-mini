@@ -3,7 +3,11 @@ import { View, Image, Swiper, SwiperItem } from '@tarojs/components';
 
 import style from './index.module.scss';
 
-function HeadSwiper({ pics }: Readonly<any>) {
+interface IProps {
+  pics: string[];
+}
+
+function HeadSwiper({ pics }: IProps) {
   return (
     <Swiper
       className={style.head}
@@ -14,19 +18,23 @@ function HeadSwiper({ pics }: Readonly<any>) {
       {pics.map(pic => {
         console.log(pic);
         return (
-        <SwiperItem key={pic}>
-          <View>
-            <Image
-              src={`http://pull.wghtstudio.cn/img/${pic}`}
-              mode='aspectFill'
-              className={style.swiperimg}
-            ></Image>
-          </View>
-        </SwiperItem>
-        )
+          <SwiperItem key={pic}>
+            <View>
+              <Image
+                src={`http://pull.wghtstudio.cn/img/${pic}`}
+                mode='aspectFill'
+                className={style.swiperimg}
+              ></Image>
+            </View>
+          </SwiperItem>
+        );
       })}
     </Swiper>
   );
 }
+
+HeadSwiper.defaultProps = {
+  pics: []
+};
 
 export default HeadSwiper;
