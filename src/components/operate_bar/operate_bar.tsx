@@ -22,7 +22,7 @@ export default function Operatebar() {
         className='abutton'
         onClick={() => {
           dispatch({
-            type: 'work/handleClickNext'
+            type: 'work/handleClickNext',
           });
         }}
       >

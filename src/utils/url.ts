@@ -29,7 +29,7 @@ export const commitTagURL = `${baseURL}/tag`;
 export const getStatisticDataURL = `${baseURL}/record`;
 
 // 搁置图片
-export const commitUnknownURL = `${baseURL}/img/unknown`;
+export const commitUnknownURL = `${baseURL}/tag/unknown`;
 
 // 获取被搁置的图片
 export const getUnknownURL = `${baseURL}/img/unknown`;

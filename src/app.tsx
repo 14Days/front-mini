@@ -32,7 +32,6 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/work/index',
-      'pages/anylabels/index',
       'pages/info/index',
       'pages/login/index',
       'pages/register/index',

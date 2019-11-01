@@ -1,4 +1,4 @@
-import { fetchTag, commitTagInfo } from '../../services/work';
+import { fetchTag, commitTagInfo, shelveImg } from '../../services/work';
 import { fetchCount, fetchImg } from '../../services';
 import Taro from '@tarojs/taro';
 
@@ -38,7 +38,7 @@ export default {
     }
   },
   effects: {
-    *handleInitPage(_, { put }) {
+    *handleInitPage(_, { put, call, all}) {
       //页面初始化,获取图片
       const imgRes = yield fetchImg();
 
@@ -49,9 +49,7 @@ export default {
           currImgIndex: 0
         }
       });
-    },
-    *handleImgOnLoad(_, { put, all, call }) {
-      //图片加载完成后触发,获取统计数据以及标签
+
       const [count, tags] = yield all([call(fetchCount), call(fetchTag)]);
       yield put({
         type: 'save',
@@ -61,6 +59,7 @@ export default {
           pickedTag: {}
         }
       });
+
     },
     *handleClickNext(_, { select, put }) {
       //点击下一张图片时触发,切换到下一张,或者重新拉取新的一组图片
@@ -118,13 +117,22 @@ export default {
     },
     *handleClickUnknown(_, { put, select }) {
       //点击搁置按钮触发,调到下一张图片或者拉取新的一组
+      Taro.showLoading();
+      //发送信息至服务器
+      let { imgArr, currImgIndex} = yield select(
+        state => state.work
+      );
+
+      const img_id = imgArr[currImgIndex].id;
+      const res = yield shelveImg(img_id);
+      console.log(res);
       Taro.showToast({
         icon: 'none',
-        title: '被搁置的图片可在首页重新打标',
+        title: '提交搁置成功\n被搁置的图片可在首页重新打标!',
         duration: 500
       });
 
-      const { currImgIndex, imgArr } = yield select(state => state.work);
+      //进入下一张图片
       if (currImgIndex + 1 === imgArr.length) {
         yield put({
           type: 'handleInitPage'
@@ -137,6 +145,8 @@ export default {
           }
         });
       }
+
+      Taro.hideLoading();
     }
   }
 };
