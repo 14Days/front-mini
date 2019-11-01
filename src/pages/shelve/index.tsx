@@ -22,9 +22,10 @@ interface IWorkProps {
   dispatch: Function;
 }
 
-class Work extends Component<IWorkProps, {}> {
+class Shelve extends Component<IWorkProps, {}> {
   config: Config = {
-    navigationStyle: 'custom'
+    navigationStyle: 'custom',
+
   };
 
   constructor(props) {
@@ -33,7 +34,7 @@ class Work extends Component<IWorkProps, {}> {
 
   componentWillMount(): void {
     this.props.dispatch({
-      type: 'work/handleInitPage'
+      type: 'work/handleInitShelvePage'
     });
   }
 
@@ -45,7 +46,7 @@ class Work extends Component<IWorkProps, {}> {
       <View className='doing'>
         <Headimg url={imgArr[currImgIndex].url} />
         <Capsule number={dayNumber} displayName={false} />
-        <View className='headerPlace'></View>
+        <View className='headerPlace'/>
         {this.props.tags.map((ele: any) => {
           return (
             <LabelGroup key={ele.top} title={ele.top} labels={ele.second} />
@@ -59,4 +60,4 @@ class Work extends Component<IWorkProps, {}> {
   }
 }
 
-export default connect(state => state.work)(Work);
+export default connect(state => state.work)(Shelve);

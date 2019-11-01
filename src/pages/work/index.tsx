@@ -37,6 +37,12 @@ class Work extends Component<IWorkProps, {}> {
     });
   }
 
+  onTabItemTap(): void {
+    this.props.dispatch({
+      type: 'work/handleInitPage'
+    });
+  }
+
   render() {
     const { currImgIndex, dayNumber, imgArr } = this.props;
     //useReducer管理整个标签面板
@@ -45,7 +51,7 @@ class Work extends Component<IWorkProps, {}> {
       <View className='doing'>
         <Headimg url={imgArr[currImgIndex].url} />
         <Capsule number={dayNumber} displayName={false} />
-        <View className='headerPlace'></View>
+        <View className='headerPlace'/>
         {this.props.tags.map((ele: any) => {
           return (
             <LabelGroup key={ele.top} title={ele.top} labels={ele.second} />

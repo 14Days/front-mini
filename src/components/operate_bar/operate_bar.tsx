@@ -1,11 +1,12 @@
 import Taro from '@tarojs/taro';
 import { View, Button } from '@tarojs/components';
-import { useDispatch } from '@tarojs/redux';
+import {useDispatch, useSelector} from '@tarojs/redux';
 
 import './operate_bar.scss';
 
 export default function Operatebar() {
   const dispatch = useDispatch();
+  const {loadSuccess} = useSelector((state:any) => state.work);
   return (
     <View className='header'>
       <Button
@@ -25,6 +26,7 @@ export default function Operatebar() {
             type: 'work/handleClickNext',
           });
         }}
+        disabled={!loadSuccess}
       >
         确定，下一张
       </Button>
