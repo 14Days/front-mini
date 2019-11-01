@@ -16,7 +16,6 @@ function HeadSwiper({ pics }: IProps) {
       circular={true}
     >
       {pics.map(pic => {
-        console.log(pic);
         return (
           <SwiperItem key={pic}>
             <View>

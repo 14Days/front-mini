@@ -4,13 +4,13 @@ import Headimg from './components/head_img/head_img';
 import Labelpage from './components/label_group/label_group';
 import Headstand from './components/head_stand/head_stand';
 import OperateBar from './components/operate_bar/operate_bar';
-import { fetchShelve } from '../../services/index'
-import { showLoading, hideLoading } from '../../utils/loading'
+import { fetchShelve } from '../../services/index';
+import { showLoading, hideLoading } from '../../utils/loading';
 import './index.scss';
 
 interface workState {
-  imgURL: string,
-  imgID: number
+  imgURL: string;
+  imgID: number;
 }
 
 export default class Index extends Component<null, workState> {
@@ -23,17 +23,10 @@ export default class Index extends Component<null, workState> {
     super(props);
     this.state = {
       imgURL: '',
-      imgID: -1,
+      imgID: -1
     };
   }
 
-  // 一组对象的形式：
-  // title： String
-  // pageid: number (组id)
-  // label： Array (下方到AnLabel)
-
-  //pageid一定要对
-  //默认的标签
   defaultArrs = [
     {
       title: '色系',
@@ -323,34 +316,32 @@ export default class Index extends Component<null, workState> {
           ifChoose: false
         }
       ]
-    },
+    }
   ];
 
   //真正处理的
-  arrs = this.defaultArrs
+  arrs = this.defaultArrs;
 
   //页面初始化，用于首次进入/更新
-  initPage = async (currentNum) => {
+  initPage = async currentNum => {
     try {
-      const res = await fetchShelve()
-      const data = res.data
+      const res = await fetchShelve();
+      const data = res.data;
       console.log(data.length);
       if (data.length == 0) {
-        Taro.navigateBack()
+        Taro.navigateBack();
         return;
       }
       if (data[data.length - 1].img_id == currentNum) {
         return false;
       }
       let num = data[data.length - 1].img_id;
-      console.log(num);
       let url = data[data.length - 1].img_url;
-      console.log("url:" + url);
-      
+
       this.setState({
         imgURL: url,
         imgID: num
-      })
+      });
     } catch (e) {
       Taro.showToast({
         icon: 'none',
@@ -358,9 +349,7 @@ export default class Index extends Component<null, workState> {
       });
     }
     return true;
-
-  }
-  
+  };
 
   //更改处理器
   changeDisplay = (state, action) => {
@@ -382,16 +371,15 @@ export default class Index extends Component<null, workState> {
   };
 
   componentWillMount() {
-    const token = Taro.getStorageSync('token')
+    const token = Taro.getStorageSync('token');
     console.log(token);
-    
-    if (token == '') {
 
+    if (token == '') {
     } else {
-      showLoading()
-      this.arrs = this.defaultArrs
-      this.initPage(-1)
-      hideLoading()
+      showLoading();
+      this.arrs = this.defaultArrs;
+      this.initPage(-1);
+      hideLoading();
     }
   }
 
@@ -399,13 +387,18 @@ export default class Index extends Component<null, workState> {
     //useReducer管理整个标签面板
     //arrs 在此转成 arrState 使用
     const [arrState, dispatch] = useReducer(this.changeDisplay, this.arrs);
-    
+
     return (
       <View className='doing'>
         <Headimg url={this.state.imgURL} />
         <Headstand />
 
-        <OperateBar toRefresh={dispatch} toInit={this.initPage} imgID={this.state.imgID} info={arrState}/>
+        <OperateBar
+          toRefresh={dispatch}
+          toInit={this.initPage}
+          imgID={this.state.imgID}
+          info={arrState}
+        />
 
         {arrState.map(ele => {
           return (

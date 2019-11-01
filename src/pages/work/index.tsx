@@ -1,9 +1,9 @@
-import Taro, { Component } from '@tarojs/taro';
+import Taro, { Component, Config } from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import Headimg from './components/head_img/head_img';
+import Headimg from '../../components/head_img/head_img';
 import Capsule from '../../components/capsule';
-import LabelGroup from './components/label_group/label_group';
-import OperateBar from './components/operate_bar/operate_bar';
+import LabelGroup from '../../components/label_group/label_group';
+import OperateBar from '../../components/operate_bar/operate_bar';
 import { connect } from '@tarojs/redux';
 
 import './index.scss';
@@ -23,6 +23,10 @@ interface IWorkProps {
 }
 
 class Work extends Component<IWorkProps, {}> {
+  config: Config = {
+    navigationStyle: 'custom'
+  };
+
   constructor(props) {
     super(props);
   }
@@ -41,8 +45,6 @@ class Work extends Component<IWorkProps, {}> {
       <View className='doing'>
         <Headimg url={imgArr[currImgIndex].url} />
         <Capsule number={dayNumber} displayName={false} />
-
-        <OperateBar />
         <View className='headerPlace'></View>
         {this.props.tags.map((ele: any) => {
           return (
@@ -50,6 +52,7 @@ class Work extends Component<IWorkProps, {}> {
           );
         })}
         {/*底部占位，让标签页拉满*/}
+        <OperateBar />
         <View className='takeplace' />
       </View>
     );
