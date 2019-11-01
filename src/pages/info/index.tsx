@@ -36,7 +36,6 @@ export default class Info extends Component<null, IState> {
 
 
   render() {
-    const { id } = this.state;
     return (
       <View>
         <Text className={style.textID} onClick={() => this.exitLoginState()}>退出登录</Text>

@@ -1,22 +1,8 @@
 import Taro, {Component} from '@tarojs/taro';
 import {View, Text, Input, Button} from '@tarojs/components';
-
-import './index.scss';
 import {connect} from "@tarojs/redux";
+import './index.scss';
 
-interface IRegisterState {
-  username: string,  //用户名
-  password: string,  //密码
-  phoneNumber: string,  //手机号
-  firstPassword: string,  //密码
-  secondPassword: string, //确认密码
-  step: number,  //注册步骤
-  code: string,  //验证码
-  sendText: string  //按钮文字
-  unableSend: boolean,  //直接控制‘下一步’按钮状态, 输入手机号格式正确时
-  isRepeat: boolean,  //是否正在重发读秒
-  frontTip: string, //文字提示
-}
 
 interface IRegisterProps {
   username: string,  //用户名
@@ -33,7 +19,7 @@ interface IRegisterProps {
   dispatch: Function
 }
 
-class Register extends Component<IRegisterProps, IRegisterState> {
+class Register extends Component<IRegisterProps, {}> {
   constructor(props) {
     super(props);
   }

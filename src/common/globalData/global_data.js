@@ -7,3 +7,4 @@ export function set (key, val) {
 export function get (key) {
   return globalData[key]
 }
+
