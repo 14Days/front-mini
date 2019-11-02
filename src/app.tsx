@@ -32,7 +32,6 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/work/index',
-      'pages/anylabels/index',
       'pages/info/index',
       'pages/login/index',
       'pages/register/index',
@@ -61,12 +60,6 @@ class App extends Component {
           text: '开始打标',
           iconPath: 'static/icon/usousuo.png',
           selectedIconPath: 'static/icon/sousuo.png'
-        },
-        {
-          pagePath: 'pages/anylabels/index',
-          text: '标签',
-          iconPath: 'static/icon/ubianji.png',
-          selectedIconPath: 'static/icon/bianji.png'
         }
       ]
     }

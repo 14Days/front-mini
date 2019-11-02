@@ -1,5 +1,12 @@
 import request from '../utils/request';
-import { getNoticeURL, getStatisticDataURL, getCycleImginURL, getUnknownURL, commitUnknownURL, getTagURL, getMarkImgURL } from '../utils/url';
+import Taro from '@tarojs/taro'
+import {
+  getNoticeURL,
+  getStatisticDataURL,
+  getCycleImginURL,
+  getUnknownURL,
+  getMarkImgURL
+} from '../utils/url';
 
 //获取轮播图
 export async function fetchCycle() {
@@ -16,29 +23,16 @@ export async function fetchNotice() {
   return await request.get(getNoticeURL);
 }
 
-//获取被搁置图片
-export async function fetchShelve() {
-  return await request.get(getUnknownURL);
-}
-
-//请求图片放入搁置
-export async function passShelve(imgID) {
-  return await request.post(commitUnknownURL, {
-    img_id: imgID,
-  })
-}
-
-//上传打标
-export async function submitLabels(id, tags) {
-  return await request.post(getTagURL, {
-    img_id: id,
-    tag: tags
-  })
-}
-
-//请求普通图片
 export async function fetchImg() {
+  const token = Taro.getStorageSync('token');
   return await request.get(getMarkImgURL, {
     num: 4
+  },{
+    token
   })
+}
+
+export async function fetchShelve(){
+  const token = Taro.getStorageSync('token');
+  return await request.get(getUnknownURL,{},{token})
 }

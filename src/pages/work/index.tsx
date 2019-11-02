@@ -1,28 +1,32 @@
-import Taro, {Component} from '@tarojs/taro';
-import {View} from '@tarojs/components';
-import Headimg from './components/head_img/head_img';
+import Taro, { Component, Config } from '@tarojs/taro';
+import { View } from '@tarojs/components';
+import Headimg from '../../components/head_img/head_img';
 import Capsule from '../../components/capsule';
-import LabelGroup from './components/label_group/label_group';
-import OperateBar from './components/operate_bar/operate_bar';
-import {connect} from "@tarojs/redux";
+import LabelGroup from '../../components/label_group/label_group';
+import OperateBar from '../../components/operate_bar/operate_bar';
+import { connect } from '@tarojs/redux';
 
 import './index.scss';
 
 interface markImg {
-  id: number,
-  url: string
+  id: number;
+  url: string;
 }
 
 interface IWorkProps {
-  imgArr: Array<markImg>,
-  dayNumber: number,
-  currImgIndex: number,
-  pickedTag: object,
-  tags: Array<object>
-  dispatch: Function
+  imgArr: Array<markImg>;
+  dayNumber: number;
+  currImgIndex: number;
+  pickedTag: object;
+  tags: Array<object>;
+  dispatch: Function;
 }
 
 class Work extends Component<IWorkProps, {}> {
+  config: Config = {
+    navigationStyle: 'custom'
+  };
+
   constructor(props) {
     super(props);
   }
@@ -33,34 +37,32 @@ class Work extends Component<IWorkProps, {}> {
     });
   }
 
+  onTabItemTap(): void {
+    this.props.dispatch({
+      type: 'work/handleInitPage'
+    });
+  }
 
   render() {
-    const {currImgIndex, dayNumber} = this.props;
+    const { currImgIndex, dayNumber, imgArr } = this.props;
     //useReducer管理整个标签面板
     //arrs 在此转成 arrState 使用
     return (
       <View className='doing'>
-        <Headimg url={this.props.imgArr[currImgIndex].url}/>
-        <Capsule number={dayNumber} displayName={false}/>
-
-        <OperateBar/>
-        <View className='headerPlace'>
-        </View>
+        <Headimg url={imgArr[currImgIndex].url} />
+        <Capsule number={dayNumber} displayName={false} />
+        <View className='headerPlace'/>
         {this.props.tags.map((ele: any) => {
           return (
-            <LabelGroup
-              key={ele.top}
-              title={ele.top}
-              labels={ele.second}
-            />
+            <LabelGroup key={ele.top} title={ele.top} labels={ele.second} />
           );
         })}
         {/*底部占位，让标签页拉满*/}
-        <View className='takeplace'/>
+        <OperateBar />
+        <View className='takeplace' />
       </View>
     );
   }
 }
 
-
-export default connect((state) => (state.work))(Work);
+export default connect(state => state.work)(Work);
