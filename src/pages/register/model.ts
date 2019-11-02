@@ -118,7 +118,9 @@ export default {
           password
         });
         if(res.status === 'success'){
-          Taro.switchTab({url:'../index/index'});
+          Taro.reLaunch({
+            url: '/pages/index/index'
+          });
         }
       } catch(e){
         console.log(e);
