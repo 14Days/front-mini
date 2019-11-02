@@ -156,18 +156,17 @@ export default {
     },
     * handleClickUnknown(_, {put, select}) {
       //点击搁置按钮触发,调到下一张图片或者拉取新的一组
-      Taro.showLoading();
       //发送信息至服务器
       let {imgArr, currImgIndex, status} = yield select(
         state => state.work
       );
 
       const img_id = imgArr[currImgIndex].id;
-      const res = yield shelveImg(img_id);
-      console.log(res);
+      yield shelveImg(img_id);
       Taro.showToast({
         icon: 'none',
         title: '提交搁置成功,被搁置的图片可在首页重新打标!',
+        duration: 1500
       });
 
       //进入下一张图片
@@ -193,8 +192,6 @@ export default {
           }
         });
       }
-
-      Taro.hideLoading();
     }
   }
 };
