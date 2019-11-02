@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro';
-import { fetchLogin } from '../../services/login';
+import {fetchLogin} from '../../services/login';
 import dayjs from 'dayjs'
 
 export default {
@@ -9,7 +9,7 @@ export default {
     password: ''
   },
   reducers: {
-    save(state, { payload: data }) {
+    save(state, {payload: data}) {
       return {
         ...state,
         ...data
@@ -17,16 +17,16 @@ export default {
     }
   },
   effects: {
-    *handlerLogin(_, { select, call }) {
-      const { username, password } = yield select(state => state.login);
-      if (username === '' || password === '') {
-        Taro.showToast({
-          icon: 'none',
-          title: '请检查必填项'
-        });
-        return;
-      }
+    * handlerLogin(_, {select, call}) {
       try {
+        const {username, password} = yield select(state => state.login);
+        if (username === '' || password === '') {
+          Taro.showToast({
+            icon: 'none',
+            title: '请检查必填项'
+          });
+          return;
+        }
         Taro.showLoading({
           title: '加载中...',
           mask: true
@@ -35,7 +35,7 @@ export default {
         const res = yield call(fetchLogin, username, password);
         const now = dayjs(); // 获取当前时间
         let expire; //计算出过期时间
-        if(process.env.NODE_ENV === 'development')
+        if (process.env.NODE_ENV === 'development')
           expire = now.add(300, 'second');
         else
           expire = now.add(5, 'day');

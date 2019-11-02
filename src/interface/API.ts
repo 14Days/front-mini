@@ -10,7 +10,7 @@ interface registerAPI {
 }
 
 interface loginAPI {
-  username: string,
+  name: string,
   password: string
 }
 

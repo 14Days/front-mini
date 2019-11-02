@@ -81,63 +81,48 @@ export default {
   },
   effects: {
     * handleRequestCode(_, {select, put, call}) {
-
-      const {phoneNumber: phone} = yield select(state => state.register);
-      fetchCode({phone})
-        .then((res: any) => {
-            console.log(res);
-            if (res.status !== 'success') {
-              Taro.showToast({
-                icon: 'none',
-                title: res.err_msg
-              });
+      try {
+        const {phoneNumber: phone} = yield select(state => state.register);
+        const res = yield fetchCode({phone});
+        if (res.status === 'success') {
+          yield put({
+            type: 'save',
+            payload: {
+              frontTip: `已发送验证码到${phone}`,
+              unableSend: true,
+              isRepeat: true,
+              step: 2
             }
-          }
-        );
+          });
 
-      yield put({
-        type: 'save',
-        payload: {
-          frontTip: `已发送验证码到${phone}`,
-          unableSend: true,
-          isRepeat: true,
-          step: 2
+          for (let i = 60; i >= 0; i--) {
+            yield put({
+              type: 'loopCount',
+              payload: {
+                count: i
+              }
+            });
+            yield call(delay, 1000);
+          }
         }
-      });
-
-      for (let i = 60; i >= 0; i--) {
-        yield put({
-          type: 'loopCount',
-          payload: {
-            count: i
-          }
-        });
-        yield call(delay, 1000);
+      } catch (e) {
+        console.log(e);
       }
     },
     * handleConfirm(_, {select}) {
-      const {phoneNumber: phone, firstPassword:password, code, username:name} = yield select(state => state.register);
-      yield fetchRegister({name, password, code, phone})
-        .then((res:any) => {
-          if(res.status != 'success'){
-            Taro.showToast({
-              icon: 'none',
-              title: res.err_msg
-            })
-          } else {
-            fetchLogin({username:name, password})
-              .then((res:any) => {
-                if(res.status === 'success')
-                  Taro.switchTab({url:'../index/index'});
-                else {
-                  Taro.showToast({
-                    icon: 'none',
-                    title: res.err_mas
-                  })
-                }
-              })
-          }
-        })
+      try{
+        const {phoneNumber: phone, firstPassword: password, code, username: name} = yield select(state => state.register);
+        yield fetchRegister({name, password, code, phone});
+        const res = yield fetchLogin({
+          name,
+          password
+        });
+        if(res.status === 'success'){
+          Taro.switchTab({url:'../index/index'});
+        }
+      } catch(e){
+        console.log(e);
+      }
     }
   }
 }
