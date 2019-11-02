@@ -3,14 +3,14 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   height: 1200rpx;
   margin-top: 100rpx;
 
   Image {
     width: 400rpx;
     height: 400rpx;
-    margin: 0 auto;
+    margin: 100rpx auto 0 auto;
   }
 
   Text{
@@ -23,6 +23,7 @@
     @extend %ButtonForSign;
     color: red;
     background-color:#ffffff;
+    margin-top: 400rpx;
   }
 }
 

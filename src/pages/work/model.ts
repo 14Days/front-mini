@@ -91,7 +91,11 @@ export default {
           pickedTag: {},
         }
       });
-
+      Taro.showToast({
+        icon: 'none',
+        title: '您可以右滑返回首页😬',
+        duration: 2000
+      })
     },
     * handleClickNext(_, {select, put}) {
       //点击下一张图片时触发,切换到下一张,或者重新拉取新的一组图片
@@ -129,7 +133,7 @@ export default {
           Taro.switchTab({url: '../index/index'});
           Taro.showToast({
             icon: 'none',
-            title: '您完成了所有的搁置任务!'
+            title: '您浏览完了所有的搁置任务!'
           })
         }
       } else {
