@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -50,6 +50,12 @@
 					"name": "开始打标",
 					"pathName": "pages/work/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人信息",
+					"pathName": "pages/info/index",
 					"scene": null
 				}
 			]

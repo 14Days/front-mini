@@ -7,10 +7,11 @@ export async function fetchTag() {
 }
 
 export async function commitTagInfo(img_id: number, tag: Array<number>) {
+  const token = Taro.getStorageSync('token');
   return await request.post(commitTagURL,{
     img_id,
     tag
-  })
+  },{token})
 }
 
 export async function shelveImg(imgID: number,) {
