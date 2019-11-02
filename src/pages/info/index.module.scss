@@ -1,10 +1,28 @@
-.textID {
-  position: relative;
-  left: 174rpx;
-  top: 282rpx;
-  height: 40rpx;
-  color: rgba(16, 16, 16, 1);
-  font-size: 28rpx;
-  text-align: center;
-  font-family: PingFangSC-regular;
+@import '../../static/style/index';
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-evenly;
+  height: 1200rpx;
+  margin-top: 100rpx;
+
+  Image {
+    width: 400rpx;
+    height: 400rpx;
+    margin: 0 auto;
+  }
+
+  Text{
+    text-align: center;
+    color: #b8b8b8;
+  }
+
+
+  Button{
+    @extend %ButtonForSign;
+    color: red;
+    background-color:#ffffff;
+  }
 }
+
