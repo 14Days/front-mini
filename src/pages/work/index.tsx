@@ -50,7 +50,7 @@ class Work extends Component<IWorkProps, {}> {
     return (
       <View className='doing'>
         <Headimg url={imgArr[currImgIndex].url} />
-        <Capsule number={dayNumber} displayName={false} />
+        <Capsule number={dayNumber + 1} displayName={false} />
         <View className='headerPlace'/>
         {this.props.tags.map((ele: any) => {
           return (
