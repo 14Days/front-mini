@@ -25,13 +25,30 @@ export default {
       let {pickedTag} = state;
       let {tagID} = payload;
       //先判断 id 是否在
-      tagID += '';
 
-      if (pickedTag[tagID] === 0 || pickedTag[tagID] === undefined)
-      //不存在
-        pickedTag[tagID] = 1;
-      // 已存在
-      else pickedTag[tagID] = 0;
+      if (pickedTag[tagID] === 0 || pickedTag[tagID] === undefined) {
+        //不存在
+
+        // 清除所选组
+        let { tags } = state;
+        for (let tagGroup in tags) {
+          for (let tag in tags[tagGroup].second) {
+            if (tags[tagGroup].second[tag].id === tagID) {
+              for (let t in tags[tagGroup].second) {
+                pickedTag[tags[tagGroup].second[t].id + ''] = 0;
+              }
+              break;
+            }
+          }
+        }
+        // 再选中
+        pickedTag[tagID + ''] = 1;
+      
+      } else {
+        // 已存在
+        pickedTag[tagID + ''] = 0;
+      }
+
 
       return {
         ...state,
@@ -68,6 +85,7 @@ export default {
           pickedTag: {},
         }
       });
+      console.log(tags);
 
     },
     * handleInitShelvePage(_, {put, call, all}) {
@@ -97,7 +115,7 @@ export default {
         duration: 2000
       })
     },
-    * handleClickNext(_, {select, put}) {
+    * handleClickNext(_, {select, put, call}) {
       //点击下一张图片时触发,切换到下一张,或者重新拉取新的一组图片
       let {imgArr, currImgIndex, pickedTag: tag, dayNumber, status} = yield select(
         state => state.work
@@ -147,6 +165,8 @@ export default {
             loadSuccess: false
           }
         });
+        //滚回页首
+        yield call(Taro.pageScrollTo, { scrollTop: 0 });
       }
 
       //更新首页数据
