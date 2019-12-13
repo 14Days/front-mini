@@ -1,10 +1,10 @@
 import Taro, {Component, Config} from '@tarojs/taro';
 import {View} from '@tarojs/components';
+import {connect} from '@tarojs/redux';
 import Headimg from '../../components/head_img/head_img';
 import Capsule from '../../components/capsule';
 import LabelGroup from '../../components/label_group/label_group';
 import OperateBar from '../../components/operate_bar/operate_bar';
-import {connect} from '@tarojs/redux';
 
 import './index.scss';
 
@@ -41,9 +41,6 @@ class Work extends Component<IWorkProps, {}> {
 
   render() {
     const {currImgIndex, dayNumber, imgArr} = this.props;
-    console.log(currImgIndex, dayNumber, imgArr);
-    //useReducer管理整个标签面板
-    //arrs 在此转成 arrState 使用
     return (
       <View className="doing">
         <Headimg url={imgArr[currImgIndex].url} />
