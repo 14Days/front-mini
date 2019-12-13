@@ -1,7 +1,7 @@
-import {fetchCount, fetchCycle, fetchNotice} from '../../services/';
-import {showLoading, hideLoading} from '../../utils/loading'
 import Taro from '@tarojs/taro';
 import dayjs from 'dayjs';
+import {fetchCount, fetchCycle, fetchNotice} from '../../services/';
+import {showLoading, hideLoading} from '../../utils/loading';
 
 export default {
   namespace: 'index',
@@ -9,18 +9,18 @@ export default {
     bulletinWord: '',
     dayNumber: 0,
     weekNumber: 0,
-    cyclePhoto: []
+    cyclePhoto: [],
   },
   reducers: {
     save(state, {payload: data}) {
       return {
         ...state,
-        ...data
+        ...data,
       };
-    }
+    },
   },
   effects: {
-    * handleInit(_, {all, call, put}) {
+    *handleInit(_, {all, call, put}) {
       showLoading();
       const expire = Taro.getStorageSync('expire');
       const now = dayjs();
@@ -29,18 +29,18 @@ export default {
       if (now.isAfter(expire)) {
         Taro.showToast({
           icon: 'none',
-          title: '您的登陆信息已过期,请重新登陆'
+          title: '您的登陆信息已过期,请重新登陆',
         }).then(() => {
           hideLoading();
           Taro.redirectTo({
-            url: '/pages/login/index'
+            url: '/pages/login/index',
           });
         });
       }
       const [count, cycle, notice] = yield all([
         call(fetchCount),
         call(fetchCycle),
-        call(fetchNotice)
+        call(fetchNotice),
       ]);
       yield put({
         type: 'save',
@@ -48,20 +48,20 @@ export default {
           bulletinWord: notice.data,
           dayNumber: count.data.day,
           weekNumber: count.data.week,
-          cyclePhoto: cycle.data
-        }
+          cyclePhoto: cycle.data,
+        },
       });
       hideLoading();
     },
-    * handleRefresh(_, {put}) {
+    *handleRefresh(_, {put}) {
       const count = yield fetchCount();
       yield put({
         type: 'save',
         payload: {
           dayNumber: count.data.day,
           weekNumber: count.data.week,
-        }
+        },
       });
-    }
-  }
+    },
+  },
 };

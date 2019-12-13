@@ -1,6 +1,5 @@
-import Taro, { Component, Config } from '@tarojs/taro';
-import { Provider } from '@tarojs/redux';
-import '@tarojs/async-await';
+import Taro, {Component, Config} from '@tarojs/taro';
+import {Provider} from '@tarojs/redux';
 import dva from './utils/dva';
 import models from './models';
 import Index from './pages/index';
@@ -15,7 +14,7 @@ import './app.scss';
 
 const dvaApp = dva.createApp({
   initialState: {},
-  models: models
+  models: models,
 });
 
 const store = dvaApp.getStore();
@@ -35,13 +34,13 @@ class App extends Component {
       'pages/info/index',
       'pages/login/index',
       'pages/register/index',
-      'pages/shelve/index'
+      'pages/shelve/index',
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'black',
     },
     tabBar: {
       color: '#CDCDCD',
@@ -53,16 +52,16 @@ class App extends Component {
           pagePath: 'pages/index/index',
           text: '首页',
           iconPath: 'static/icon/ushouye.png',
-          selectedIconPath: 'static/icon/shouye.png'
+          selectedIconPath: 'static/icon/shouye.png',
         },
         {
           pagePath: 'pages/work/index',
           text: '开始打标',
           iconPath: 'static/icon/usousuo.png',
-          selectedIconPath: 'static/icon/sousuo.png'
-        }
-      ]
-    }
+          selectedIconPath: 'static/icon/sousuo.png',
+        },
+      ],
+    },
   };
 
   // 在 App 类中的 render() 函数没有实际作用
