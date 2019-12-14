@@ -1,25 +1,27 @@
-import Taro from '@tarojs/taro'
-import {View, Image} from '@tarojs/components'
-import {useDispatch} from "@tarojs/redux";
+import Taro from '@tarojs/taro';
+import {View, Image} from '@tarojs/components';
+import {useDispatch} from '@tarojs/redux';
 
-import './head_img.scss'
+import './head_img.scss';
 
+interface IProps {
+  url: string;
+}
 
-// 传递url
-export default function Head(props) {
+export default function Head(props: IProps) {
   const dispatch = useDispatch();
   return (
     <View>
       <Image
         src={`http://pull.wghtstudio.cn/img/${props.url}`}
-        mode='aspectFill'
-        className='header'
+        mode="aspectFill"
+        className="header"
         onLoad={() => {
           dispatch({
-            type: 'work/triggerLoad'
-          })
+            type: 'work/triggerLoad',
+          });
         }}
       />
     </View>
-  )
+  );
 }

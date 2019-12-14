@@ -2,6 +2,7 @@ import Taro, {useEffect} from '@tarojs/taro';
 import {View, Text} from '@tarojs/components';
 import {useSelector, useDispatch} from '@tarojs/redux';
 import {fcomponent} from 'typings/fcomponent';
+import auth from '../../utils/auth';
 
 import Capsule from '../../components/capsule';
 import Headswiper from './components/head_swiper';
@@ -19,11 +20,7 @@ let Index = (() => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token: string = Taro.getStorageSync('token');
-    if (!token) {
-      Taro.redirectTo({
-        url: '/pages/login/index',
-      });
+    if (auth()) {
       return;
     }
     dispatch({

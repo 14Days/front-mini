@@ -27,6 +27,8 @@ class Work extends Component<IWorkProps, {}> {
     navigationStyle: 'custom',
   };
 
+  static defaultProps = {};
+
   componentWillMount(): void {
     this.props.dispatch({
       type: 'work/handleInitPage',
