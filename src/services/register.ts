@@ -9,6 +9,6 @@ export async function fetchRegister(data: api.IRegisterAPI) {
   return await request.post(registerURL, data);
 }
 
-export async function fetchLogin(data: api.ILoginAPI) {
-  return await request.get(loginURL, data);
+export async function fetchLogin(data:loginAPI){
+  return await request.post(loginURL,data)
 }
