@@ -1,7 +1,8 @@
-import Taro, { useEffect } from '@tarojs/taro';
-import { View, Text } from '@tarojs/components';
-import { useSelector, useDispatch } from '@tarojs/redux';
-import { IFunctionConfig } from '../../types/fcomponent';
+import Taro, {useEffect} from '@tarojs/taro';
+import {View, Text} from '@tarojs/components';
+import {useSelector, useDispatch} from '@tarojs/redux';
+import {fcomponent} from 'typings/fcomponent';
+
 import Capsule from '../../components/capsule';
 import Headswiper from './components/head_swiper';
 import Statistics from './components/statistics';
@@ -11,8 +12,8 @@ import Shelvebar from './components/shelveBar';
 import style from './index.module.scss';
 
 let Index = (() => {
-  const { bulletinWord, dayNumber, weekNumber, cyclePhoto } = useSelector(
-    (state: any) => state.index
+  const {bulletinWord, dayNumber, weekNumber, cyclePhoto} = useSelector(
+    (state: any) => state.index,
   );
 
   const dispatch = useDispatch();
@@ -21,12 +22,12 @@ let Index = (() => {
     const token: string = Taro.getStorageSync('token');
     if (!token) {
       Taro.redirectTo({
-        url: '/pages/login/index'
+        url: '/pages/login/index',
       });
       return;
     }
     dispatch({
-      type: 'index/handleInit'
+      type: 'index/handleInit',
     });
   }, []);
 
@@ -42,10 +43,10 @@ let Index = (() => {
       <Shelvebar />
     </View>
   );
-}) as IFunctionConfig;
+}) as fcomponent.IFunctionConfig;
 
 Index.config = {
-  navigationStyle: 'custom'
+  navigationStyle: 'custom',
 };
 
 export default Index;

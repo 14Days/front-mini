@@ -1,11 +1,10 @@
 import Taro from '@tarojs/taro';
-import { IResponse, IData } from '../types/request';
 
 /**
  * 网络请求状态检验
  * @param response
  */
-function checkStatusCode(response: IResponse): IResponse {
+function checkStatusCode(response: request.IResponse): request.IResponse {
   if (response.statusCode >= 200 && response.statusCode < 300) {
     return response;
   }
@@ -20,7 +19,7 @@ function checkStatusCode(response: IResponse): IResponse {
  * 服务器返回数据检验
  * @param response
  */
-function chaeckStatus<T = any>(data: IData<T>): IData<T> {
+function chaeckStatus<T = any>(data: request.IData<T>): request.IData<T> {
   if (data.status === 'success') {
     return data;
   }
@@ -42,23 +41,23 @@ async function request<T = any>(
   url: string,
   method: 'GET' | 'POST',
   data: object = {},
-  header: object = {}
-): Promise<IData<T>> {
+  header: object = {},
+): Promise<request.IData<T>> {
   try {
     const token = Taro.getStorageSync('token');
-    const response: IResponse = await Taro.request({
+    const response: request.IResponse = await Taro.request({
       url: url,
-      header: token ? { ...header, token: token } : { ...header },
+      header: token ? {...header, token: token} : {...header},
       method: method,
-      data: data
+      data: data,
     });
     checkStatusCode(response);
-    const result = response.data as IData<T>;
+    const result = response.data as request.IData<T>;
     return chaeckStatus(result);
   } catch (e) {
     Taro.showToast({
       title: e.message,
-      icon: 'none'
+      icon: 'none',
     });
     throw e;
   }
@@ -75,8 +74,8 @@ export default {
   async get<T = any>(
     url: string,
     data: object = {},
-    header: object = {}
-  ): Promise<IData<T>> {
+    header: object = {},
+  ): Promise<request.IData<T>> {
     return await request<T>(url, 'GET', data, header);
   },
   /**
@@ -88,8 +87,8 @@ export default {
   async post<T = any>(
     url: string,
     data: object = {},
-    header: object = {}
-  ): Promise<IData<T>> {
+    header: object = {},
+  ): Promise<request.IData<T>> {
     return await request<T>(url, 'POST', data, header);
-  }
+  },
 };

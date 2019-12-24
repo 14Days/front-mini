@@ -1,4 +1,3 @@
-
 let baseURL = 'https://wghtstudio.cn/mini';
 
 if (process.env.NODE_ENV === 'development')
@@ -36,6 +35,3 @@ export const getUnknownURL = `${baseURL}/img/unknown`;
 
 // 获取标签
 export const getTagURL = `${baseURL}/img/tags`;
-
-
-
