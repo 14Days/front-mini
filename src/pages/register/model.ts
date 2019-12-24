@@ -119,7 +119,7 @@ export default {
         });
         if(res.status === 'success'){
           Taro.reLaunch({
-            url: '/pages/index/index'
+            url: '/pages/login/index'
           });
         }
       } catch(e){
