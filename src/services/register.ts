@@ -11,5 +11,5 @@ export async function fetchRegister(data:registerAPI){
 }
 
 export async function fetchLogin(data:loginAPI){
-  return await request.get(loginURL,data)
+  return await request.post(loginURL,data)
 }
