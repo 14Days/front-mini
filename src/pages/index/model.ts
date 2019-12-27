@@ -36,21 +36,22 @@ export default {
             url: '/pages/login/index'
           });
         });
+      } else {
+        const [count, cycle, notice] = yield all([
+          call(fetchCount),
+          call(fetchCycle),
+          call(fetchNotice)
+        ]);
+        yield put({
+          type: 'save',
+          payload: {
+            bulletinWord: notice.data,
+            dayNumber: count.data.day,
+            weekNumber: count.data.week,
+            cyclePhoto: cycle.data
+          }
+        });
       }
-      const [count, cycle, notice] = yield all([
-        call(fetchCount),
-        call(fetchCycle),
-        call(fetchNotice)
-      ]);
-      yield put({
-        type: 'save',
-        payload: {
-          bulletinWord: notice.data,
-          dayNumber: count.data.day,
-          weekNumber: count.data.week,
-          cyclePhoto: cycle.data
-        }
-      });
       hideLoading();
     },
     * handleRefresh(_, {put}) {
